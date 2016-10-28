@@ -106,7 +106,16 @@ class TSRecordViewController: UIViewController {
     }
     
     @IBAction func startStream(_ sender: UIButton) {
+       
+        let recordingDelegate:AVCaptureFileOutputRecordingDelegate? = self
         
+        let videoFileOutput = AVCaptureMovieFileOutput()
+        self.captureSession.addOutput(videoFileOutput)
+        
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let filePath = documentsURL.appendingPathComponent("temp")
+        
+        videoFileOutput.startRecording(toOutputFileURL: filePath as URL!, recordingDelegate: recordingDelegate)
     }
     
     func keyboardWillShow(notification: NSNotification) {
@@ -128,5 +137,16 @@ class TSRecordViewController: UIViewController {
         UIView.animate(withDuration: time as! TimeInterval, animations: { () -> Void in
             self.view.layoutIfNeeded()
         })
+    }
+}
+
+extension TSRecordViewController: AVCaptureFileOutputRecordingDelegate {
+    
+    func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
+        
+    }
+    
+    func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
+        
     }
 }
