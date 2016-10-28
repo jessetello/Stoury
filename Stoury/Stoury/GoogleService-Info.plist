@@ -34,5 +34,7 @@
 	<string>1:394804303151:ios:a7b63593e8814bc8</string>
 	<key>DATABASE_URL</key>
 	<string>https://stoury-c55b9.firebaseio.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDlgY9ezYOilwHJjBYM0mI_IEyw7ZbCmc0</string>
 </dict>
 </plist>

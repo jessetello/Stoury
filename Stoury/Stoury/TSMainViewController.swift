@@ -10,7 +10,7 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class TSMainViewController: UITabBarController, UINavigationControllerDelegate {
+class TSMainViewController: UITabBarController, UINavigationControllerDelegate, UITabBarControllerDelegate {
 
     let imagePicker = UIImagePickerController()
     private let sb = UIStoryboard(name: "Main", bundle: nil)
@@ -18,22 +18,14 @@ class TSMainViewController: UITabBarController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imagePicker.delegate = self
+        self.navigationItem.hidesBackButton = true
+        self.delegate = self
     }
     
     func presentCamera() {
-        if (UIImagePickerController.isSourceTypeAvailable(.camera)) {
-            if UIImagePickerController.availableCaptureModes(for: .rear) != nil {
-                self.imagePicker.sourceType = .camera
-                if let cam = UIImagePickerController.availableMediaTypes(for: .camera) {
-                    self.imagePicker.mediaTypes = cam
-                }
-                self.imagePicker.allowsEditing = false
-                present(self.imagePicker, animated: true, completion:nil)
-            } else {
-                // postAlert("Rear camera doesn't exist", message: "Application cannot access the camera.")
-            }
-        } else {
-            // postAlert("Camera inaccessable", message: "Application cannot access the camera.")
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Record") as? TSRecordViewController {
+            self.present(vc, animated: true, completion: nil)
+            
         }
     }
     
@@ -63,12 +55,16 @@ class TSMainViewController: UITabBarController, UINavigationControllerDelegate {
             }
         }
     }
-    
-   override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item.tag == 99 {
+     
+    func tabBarController(_ tabBarController: UITabBarController,
+                          shouldSelect viewController: UIViewController) -> Bool {
+        if viewController.tabBarItem.tag == 99 {
             authorizeRecordingView()
+            return false
         }
+        return true
     }
+
 }
 
 extension TSMainViewController: UIImagePickerControllerDelegate {
