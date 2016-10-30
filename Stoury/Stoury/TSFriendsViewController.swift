@@ -10,4 +10,9 @@ import UIKit
 
 class TSFriendsViewController: UIViewController {
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+
 }

@@ -52,4 +52,13 @@ class AuthenticationManager {
         })
     }
     
+    func logout() {
+        do {
+            try FIRAuth.auth()?.signOut()
+            
+        } catch {
+                
+        }
+    }
+    
 }

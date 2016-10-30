@@ -148,10 +148,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="125" id="36P-AK-e2D">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="125"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="36P-AK-e2D" id="tC4-yC-RXg">
-                                            <frame key="frameInset" width="1000" height="124.5"/>
+                                            <frame key="frameInset" width="375" height="124.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AsW-R0-s8d">
@@ -276,7 +276,7 @@
         <scene sceneID="DHq-s5-HlV">
             <objects>
                 <navigationController id="6fc-fI-XBv" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6Eb-py-OTH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="6Eb-py-OTH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

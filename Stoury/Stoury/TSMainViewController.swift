@@ -19,17 +19,26 @@ class TSMainViewController: UITabBarController, UINavigationControllerDelegate, 
         super.viewDidLoad()
         self.imagePicker.delegate = self
         self.navigationItem.hidesBackButton = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action:#selector(TSMainViewController.logout))
         self.delegate = self
     }
     
-    func presentCamera() {
+    func tabBarController(_ tabBarController: UITabBarController,
+                          shouldSelect viewController: UIViewController) -> Bool {
+        if viewController.tabBarItem.tag == 99 {
+            authorizeRecordingView()
+            return false
+        }
+        return true
+    }
+    
+    private func presentCamera() {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Record") as? TSRecordViewController {
             self.present(vc, animated: true, completion: nil)
-            
         }
     }
     
-    func authorizeRecordingView() {
+    private func authorizeRecordingView() {
         if AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) == .notDetermined ||  AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) == .denied {
             AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (videoGranted: Bool) -> Void in
                 if (videoGranted) {
@@ -55,16 +64,10 @@ class TSMainViewController: UITabBarController, UINavigationControllerDelegate, 
             }
         }
     }
-     
-    func tabBarController(_ tabBarController: UITabBarController,
-                          shouldSelect viewController: UIViewController) -> Bool {
-        if viewController.tabBarItem.tag == 99 {
-            authorizeRecordingView()
-            return false
-        }
-        return true
+    
+    func logout() {
+        AuthenticationManager.sharedInstance.logout()
     }
-
 }
 
 extension TSMainViewController: UIImagePickerControllerDelegate {

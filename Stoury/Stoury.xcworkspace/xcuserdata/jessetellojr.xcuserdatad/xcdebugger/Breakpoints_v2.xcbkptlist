@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stoury/TSMainViewController.swift"
-            timestampString = "499375423.231672"
+            timestampString = "499544050.502129"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "tabBarController(_:shouldSelect:)"
-            landmarkType = "7">
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "TSMainViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -31,8 +31,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
             endingLineNumber = "67"
-            landmarkName = "tabBarController(_:shouldSelect:)"
-            landmarkType = "7">
+            landmarkName = "TSMainViewController"
+            landmarkType = "3">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"

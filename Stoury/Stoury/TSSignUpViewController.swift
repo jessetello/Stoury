@@ -82,8 +82,7 @@ class TSSignUpViewController: UIViewController, UITextFieldDelegate {
         }
         else {
             
-            
-            
+        
         }
     }
     
