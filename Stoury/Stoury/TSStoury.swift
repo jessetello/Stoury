@@ -8,9 +8,9 @@
 
 import UIKit
 
-class TSStori: NSObject {
-    var storiUserID: String?
-    var storiTitle: String?
-    var storiDescription: String?
-    var storiID: NSNumber?
+class TSStoury: NSObject {
+    var stouryUserID: String?
+    var stouryTitle: String?
+    var stouryDescription: String?
+    var stouryID: NSNumber?
 }

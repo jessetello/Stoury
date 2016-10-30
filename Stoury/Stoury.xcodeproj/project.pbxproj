@@ -22,7 +22,7 @@
 		911C5D5E1DB31038004C2862 /* TSHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D4F1DB31038004C2862 /* TSHelpers.swift */; };
 		911C5D5F1DB31038004C2862 /* TSFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D501DB31038004C2862 /* TSFeedViewController.swift */; };
 		911C5D601DB31038004C2862 /* TSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D511DB31038004C2862 /* TSUser.swift */; };
-		911C5D611DB31038004C2862 /* TSStori.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D521DB31038004C2862 /* TSStori.swift */; };
+		911C5D611DB31038004C2862 /* TSStoury.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D521DB31038004C2862 /* TSStoury.swift */; };
 		911C5D621DB31038004C2862 /* TSFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D531DB31038004C2862 /* TSFriendsViewController.swift */; };
 		911C5D631DB31038004C2862 /* TSStorisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D541DB31038004C2862 /* TSStorisViewController.swift */; };
 		911C5D6B1DB31339004C2862 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 911C5D6A1DB31339004C2862 /* GoogleService-Info.plist */; };
@@ -49,7 +49,7 @@
 		911C5D4F1DB31038004C2862 /* TSHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSHelpers.swift; sourceTree = "<group>"; };
 		911C5D501DB31038004C2862 /* TSFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSFeedViewController.swift; sourceTree = "<group>"; };
 		911C5D511DB31038004C2862 /* TSUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSUser.swift; sourceTree = "<group>"; };
-		911C5D521DB31038004C2862 /* TSStori.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSStori.swift; sourceTree = "<group>"; };
+		911C5D521DB31038004C2862 /* TSStoury.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSStoury.swift; sourceTree = "<group>"; };
 		911C5D531DB31038004C2862 /* TSFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSFriendsViewController.swift; sourceTree = "<group>"; };
 		911C5D541DB31038004C2862 /* TSStorisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSStorisViewController.swift; sourceTree = "<group>"; };
 		911C5D6A1DB31339004C2862 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				911C5D511DB31038004C2862 /* TSUser.swift */,
-				911C5D521DB31038004C2862 /* TSStori.swift */,
+				911C5D521DB31038004C2862 /* TSStoury.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -303,7 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				911C5D611DB31038004C2862 /* TSStori.swift in Sources */,
+				911C5D611DB31038004C2862 /* TSStoury.swift in Sources */,
 				911C5D631DB31038004C2862 /* TSStorisViewController.swift in Sources */,
 				911C5D621DB31038004C2862 /* TSFriendsViewController.swift in Sources */,
 				911C5D591DB31038004C2862 /* TSMainViewController.swift in Sources */,

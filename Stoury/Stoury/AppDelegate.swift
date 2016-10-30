@@ -25,6 +25,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
+        if let user = FIRAuth.auth()?.currentUser {
+            // User is signed in.
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            if let mainVC = sb.instantiateViewController(withIdentifier: "TSMainViewController") as? TSMainViewController {
+                self.window?.rootViewController = mainVC
+            }
+        }
+        
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 

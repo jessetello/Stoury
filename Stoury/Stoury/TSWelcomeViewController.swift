@@ -36,16 +36,19 @@ class TSWelcomeViewController: UIViewController, GIDSignInUIDelegate {
             let cred = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             AuthenticationManager.sharedInstance.socialLoginWith(credential: cred, completion: { (success) in
                 if success {
-                    let sb = UIStoryboard(name: "Main", bundle: nil)
-                    if let mainVC = sb.instantiateViewController(withIdentifier: "TSMainViewController") as? TSMainViewController {
-                        self.navigationController?.pushViewController(mainVC, animated: true)
-                    }
+                   self.loadMain()
                 }
                 else {
                     
                     
                 }
             })
+        }
+    }
+    
+    func loadMain() {
+        if let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "TSMainViewController") as? TSMainViewController {
+            self.navigationController?.pushViewController(mainVC, animated: true)
         }
     }
 }

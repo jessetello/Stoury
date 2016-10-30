@@ -54,19 +54,23 @@ class TSLogInViewController: UIViewController, UITextFieldDelegate {
                 AuthenticationManager.sharedInstance.signIn(email: email, password: password) { (success) in
                     if success {
                         TSSpinner.hide()
-                        let sb = UIStoryboard(name: "Main", bundle: nil)
-                        if let mainVC = sb.instantiateViewController(withIdentifier: "TSMainViewController") as? TSMainViewController {
-                            self.navigationController?.pushViewController(mainVC, animated: true)
-                        }
+                        self.loadMain()
                     }
                     else {
-                        TSSpinner.show(duration: 3, title: "Login Failed")
+                        TSSpinner.show(duration: 1, title: "Login Failed")
                     }
                 }
             }
         }
         else {
-            TSSpinner.show(duration: 5, title: "Invalid Credentials")
+            TSSpinner.show(duration: 3, title: "Invalid Credentials")
+        }
+    }
+    
+    func loadMain() {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        if let mainVC = sb.instantiateViewController(withIdentifier: "TSMainViewController") as? TSMainViewController {
+            self.navigationController?.pushViewController(mainVC, animated: true)
         }
     }
     
