@@ -55,7 +55,7 @@ class AuthenticationManager {
     func logout() {
         do {
             try FIRAuth.auth()?.signOut()
-            
+            //take to sign in screen
         } catch {
                 
         }

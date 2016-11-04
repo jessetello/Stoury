@@ -38,31 +38,31 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Stoury.TSMainViewController.tabBarController (__ObjC.UITabBarController, shouldSelect : __ObjC.UIViewController) -&gt; Swift.Bool"
+                  symbolName = "Stoury.TSMainViewController.logout () -&gt; ()"
                   moduleName = "Stoury"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jessetellojr/Stoury/Stoury/Stoury/TSMainViewController.swift"
-                  timestampString = "499375662.446757"
+                  timestampString = "499988549.901411"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "100">
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "48">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "@objc Stoury.TSMainViewController.tabBarController (__ObjC.UITabBarController, shouldSelect : __ObjC.UIViewController) -&gt; Swift.Bool"
+                  symbolName = "@objc Stoury.TSMainViewController.logout () -&gt; ()"
                   moduleName = "Stoury"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jessetellojr/Stoury/Stoury/Stoury/TSMainViewController.swift"
-                  timestampString = "499375662.448409"
+                  timestampString = "499988549.902886"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "128">
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "60">
                </Location>
             </Locations>
          </BreakpointContent>

@@ -47,7 +47,8 @@ class TSRecordViewController: UIViewController {
         }
         NotificationCenter.default.addObserver(self, selector:#selector(TSRecordViewController.keyboardWillShow(notification:)) , name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(TSRecordViewController.keyboardWillHide(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
-        descriptionTextView.becomeFirstResponder()  
+        descriptionTextView.becomeFirstResponder()
+        descriptionTextView.delegate = self;
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -147,6 +148,18 @@ extension TSRecordViewController: AVCaptureFileOutputRecordingDelegate {
     }
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
-        
+            if let videoData = NSData(contentsOf:outputFileURL) {
+                print(videoData)
+                VideoUploadManager.sharedInstance.saveToFireBase(data: videoData)
+            }
+            dismiss(animated: true, completion: nil)
     }
+}
+
+extension TSRecordViewController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.text = ""
+    }
+    
 }

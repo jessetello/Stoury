@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TSStoury: NSObject {
+struct TSStoury {
     var stouryUserID: String?
     var stouryTitle: String?
     var stouryDescription: String?
