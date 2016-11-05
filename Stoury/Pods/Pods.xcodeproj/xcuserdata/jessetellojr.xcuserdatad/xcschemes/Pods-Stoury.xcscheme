@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '74B3AAD76365A082978CBAEF'
+               BlueprintIdentifier = '93E1C8F08547AE0F78F5936D'
                BlueprintName = 'Pods-Stoury'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_Stoury.framework'>
