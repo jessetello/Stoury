@@ -42,7 +42,7 @@
                   moduleName = "Stoury"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jessetellojr/Stoury/Stoury/Stoury/TSMainViewController.swift"
-                  timestampString = "499988549.901411"
+                  timestampString = "500086396.349549"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "69"
@@ -57,7 +57,7 @@
                   moduleName = "Stoury"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jessetellojr/Stoury/Stoury/Stoury/TSMainViewController.swift"
-                  timestampString = "499988549.902886"
+                  timestampString = "500086396.351281"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "69"
@@ -65,6 +65,70 @@
                   offsetFromSymbolStart = "60">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stoury/StreamManager.swift"
+            timestampString = "500083409.735975"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "initalizeWowza(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Stoury.StreamManager.initalizeWowza () -&gt; ()"
+                  moduleName = "Stoury"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jessetellojr/Stoury/Stoury/Stoury/StreamManager.swift"
+                  timestampString = "500077015.478177"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "@objc Stoury.StreamManager.initalizeWowza () -&gt; ()"
+                  moduleName = "Stoury"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jessetellojr/Stoury/Stoury/Stoury/StreamManager.swift"
+                  timestampString = "500077015.481291"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "128">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stoury/StreamManager.swift"
+            timestampString = "500084615.76878"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "initalizeWowza(completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

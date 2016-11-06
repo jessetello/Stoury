@@ -8,6 +8,8 @@
 
 import UIKit
 import AVFoundation
+import WowzaGoCoderSDK
+import GooglePlacePicker
 
 class TSRecordViewController: UIViewController {
    //This will eventually be custom recording view
@@ -30,16 +32,6 @@ class TSRecordViewController: UIViewController {
     var audioDeviceInput: AVCaptureDeviceInput?
     var movieDeviceInput: AVCaptureDeviceInput?
     
-    lazy var previewLayer: AVCaptureVideoPreviewLayer? = {
-            if let preview =  AVCaptureVideoPreviewLayer(session: self.captureSession) {
-                preview.frame = self.cameraView.bounds
-                preview.position = CGPoint(x: self.cameraView.bounds.midX, y: self.cameraView.bounds.midY)
-                preview.videoGravity = AVLayerVideoGravityResizeAspectFill
-            return preview
-            }
-        return nil
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async {
@@ -53,55 +45,31 @@ class TSRecordViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
     }
     
     func setupCamera() {
-        
-        captureSession.sessionPreset = AVCaptureSessionPresetInputPriority
-        if let backCamera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) {
-            var error: NSError?
-            do {
-                movieDeviceInput = try AVCaptureDeviceInput(device: backCamera)
-            } catch let error1 as NSError {
-                error = error1
-                movieDeviceInput = nil
-                print(error!.localizedDescription)
-            }
-           
-            captureSession.beginConfiguration()
+        DispatchQueue.main.async {
+            StreamManager.sharedInstance.initalizeWowza(completion: { (success) in
+                if success {
+                    self.initializingLabel.isHidden = true
+                    self.startStreamButton.isHidden = false
+                }
+                else {
+                    self.initializingLabel.text = "Initialization Error"
+                }
+            })
             
-            if error == nil && captureSession.canAddInput(movieDeviceInput) {
-                captureSession.addInput(movieDeviceInput)
-                movieFileOutput = AVCaptureMovieFileOutput()
-                movieFileOutput?.maxRecordedDuration = CMTime(seconds: 180.0, preferredTimescale: CMTimeScale(30.0))
-                if captureSession.canAddOutput(movieFileOutput) {
-                    captureSession.addOutput(movieFileOutput)
-                }
-            }
+            StreamManager.sharedInstance.goCoder?.cameraView = self.view
+            StreamManager.sharedInstance.goCoder?.config.load(WZFrameSizePreset.preset1280x720)
+            StreamManager.sharedInstance.goCoder?.config.hostAddress = ""
+            StreamManager.sharedInstance.goCoder?.config.streamName = "test"
             
-            if let audioDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio) {
-                var error: NSError?
-                do {
-                    audioDeviceInput = try AVCaptureDeviceInput(device: audioDevice)
-                } catch let error2 as NSError {
-                    error = error2
-                    audioDeviceInput = nil
-                    print(error?.localizedDescription)
-                }
-                
-                if error == nil && captureSession.canAddInput(audioDeviceInput) {
-                    captureSession.addInput(audioDeviceInput)
-                }
-            }
-            captureSession.commitConfiguration()
+            StreamManager.sharedInstance.goCoder?.cameraPreview?.previewGravity = WZCameraPreviewGravity.resizeAspectFill
+            StreamManager.sharedInstance.goCoder?.cameraPreview?.start()
         }
-        if let preview = previewLayer {
-            cameraView.layer.addSublayer(preview)
-            captureSession.startRunning()
-        }
+       //  "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/WowzaGoCoderSDK.framework/strip-frameworks.sh"
     }
-    
+ 
     @IBAction func closeRecorder(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -139,6 +107,13 @@ class TSRecordViewController: UIViewController {
             self.view.layoutIfNeeded()
         })
     }
+    
+    @IBAction func showLocationPicker(_ sender: UIButton) {
+        let locationsVC = GMSAutocompleteViewController()
+        locationsVC.delegate = self
+        present(locationsVC, animated: true, completion: nil)
+    }
+    
 }
 
 extension TSRecordViewController: AVCaptureFileOutputRecordingDelegate {
@@ -161,5 +136,20 @@ extension TSRecordViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.text = ""
     }
-    
 }
+
+extension TSRecordViewController: GMSAutocompleteViewControllerDelegate {
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        
+    }
+    
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+}
+
