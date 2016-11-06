@@ -34,9 +34,9 @@ class TSRecordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.async {
-            self.setupCamera()
-        }
+        self.setupCamera()
+        
+        
         NotificationCenter.default.addObserver(self, selector:#selector(TSRecordViewController.keyboardWillShow(notification:)) , name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(TSRecordViewController.keyboardWillHide(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         descriptionTextView.becomeFirstResponder()
@@ -49,7 +49,15 @@ class TSRecordViewController: UIViewController {
     
     func setupCamera() {
         DispatchQueue.main.async {
-            StreamManager.sharedInstance.initalizeWowza(completion: { (success) in
+            StreamManager.sharedInstance.goCoder?.cameraView = self.view
+            StreamManager.sharedInstance.goCoder?.config.load(WZFrameSizePreset.preset1280x720)
+            StreamManager.sharedInstance.goCoder?.config.hostAddress = "test"
+            StreamManager.sharedInstance.goCoder?.config.streamName = "userName"
+            
+            StreamManager.sharedInstance.goCoder?.cameraPreview?.previewGravity = WZCameraPreviewGravity.resizeAspectFill
+            StreamManager.sharedInstance.goCoder?.cameraPreview?.start()
+            
+            StreamManager.sharedInstance.initalizeBroadcast(completion: { (success) in
                 if success {
                     self.initializingLabel.isHidden = true
                     self.startStreamButton.isHidden = false
@@ -58,14 +66,6 @@ class TSRecordViewController: UIViewController {
                     self.initializingLabel.text = "Initialization Error"
                 }
             })
-            
-            StreamManager.sharedInstance.goCoder?.cameraView = self.view
-            StreamManager.sharedInstance.goCoder?.config.load(WZFrameSizePreset.preset1280x720)
-            StreamManager.sharedInstance.goCoder?.config.hostAddress = ""
-            StreamManager.sharedInstance.goCoder?.config.streamName = "test"
-            
-            StreamManager.sharedInstance.goCoder?.cameraPreview?.previewGravity = WZCameraPreviewGravity.resizeAspectFill
-            StreamManager.sharedInstance.goCoder?.cameraPreview?.start()
         }
        //  "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/WowzaGoCoderSDK.framework/strip-frameworks.sh"
     }

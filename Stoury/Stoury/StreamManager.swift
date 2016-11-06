@@ -16,17 +16,17 @@ class StreamManager: NSObject, WZStatusCallback, AVCaptureFileOutputRecordingDel
     static let sharedInstance = StreamManager()
     var goCoder: WowzaGoCoder?
     
-    func initalizeWowza(completion: @escaping BrodcastIntializationHandler) {
-        let error = WowzaGoCoder.registerLicenseKey("GOSK-F342-0103-9224-C83B-C91D")
-        if error == nil {
+    override init() {
+        if WowzaGoCoder.registerLicenseKey("GOSK-F342-0103-9224-C83B-C91D") == nil {
             goCoder = WowzaGoCoder.sharedInstance()
-           
-            //Validate broadcast stream
+        }
+    }
+    
+    func initalizeBroadcast(completion: @escaping BrodcastIntializationHandler) {
             if self.goCoder?.config.validateForBroadcast() == nil {
                 completion(true)
             }
             completion(false)
-        }
     }
     
     func startBroadcast() {
