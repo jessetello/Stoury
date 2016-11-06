@@ -14,11 +14,24 @@ class StreamManager: NSObject, WZStatusCallback, AVCaptureFileOutputRecordingDel
    
     typealias BrodcastIntializationHandler = (_ success:Bool) -> Void
     static let sharedInstance = StreamManager()
+    let WowzaLicenseKey = "GOSK-F342-0103-9224-C83B-C91D"
+
+    var captureSession = AVCaptureSession()
+    var movieFileOutput: AVCaptureMovieFileOutput?
+    var movieDeviceInput: AVCaptureInput?
+
     var goCoder: WowzaGoCoder?
     
     override init() {
-        if WowzaGoCoder.registerLicenseKey("GOSK-F342-0103-9224-C83B-C91D") == nil {
+        if WowzaGoCoder.registerLicenseKey(WowzaLicenseKey) == nil {
             goCoder = WowzaGoCoder.sharedInstance()
+            WowzaGoCoder.requestPermission(for: .camera, response: { (permission) in
+                print("Camera permission is: \(permission == .authorized ? "authorized" : "denied")")
+            })
+            
+            WowzaGoCoder.requestPermission(for: .microphone, response: { (permission) in
+                print("Microphone permission is: \(permission == .authorized ? "authorized" : "denied")")
+            })
         }
     }
     
