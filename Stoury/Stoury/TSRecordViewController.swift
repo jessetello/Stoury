@@ -10,6 +10,8 @@ import UIKit
 import AVFoundation
 import WowzaGoCoderSDK
 import GooglePlacePicker
+import Firebase
+import FirebaseAuth
 
 class TSRecordViewController: UIViewController {
    //This will eventually be custom recording view
@@ -27,16 +29,16 @@ class TSRecordViewController: UIViewController {
     
     @IBOutlet weak var bottomViewConstraint: NSLayoutConstraint!
     
-    var captureSession = AVCaptureSession()
-    var movieFileOutput: AVCaptureMovieFileOutput?
-    var audioDeviceInput: AVCaptureDeviceInput?
-    var movieDeviceInput: AVCaptureDeviceInput?
+    var selectedPlace:GMSPlace?
+    
+//    var captureSession = AVCaptureSession()
+//    var movieFileOutput: AVCaptureMovieFileOutput?
+//    var audioDeviceInput: AVCaptureDeviceInput?
+//    var movieDeviceInput: AVCaptureDeviceInput?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupCamera()
-        
-        
+        setupCamera()
         NotificationCenter.default.addObserver(self, selector:#selector(TSRecordViewController.keyboardWillShow(notification:)) , name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(TSRecordViewController.keyboardWillHide(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         descriptionTextView.becomeFirstResponder()
@@ -51,8 +53,8 @@ class TSRecordViewController: UIViewController {
         DispatchQueue.main.async {
             StreamManager.sharedInstance.goCoder?.cameraView = self.view
             StreamManager.sharedInstance.goCoder?.config.load(WZFrameSizePreset.preset1280x720)
-            StreamManager.sharedInstance.goCoder?.config.hostAddress = "test"
-            StreamManager.sharedInstance.goCoder?.config.streamName = "userName"
+            StreamManager.sharedInstance.goCoder?.config.hostAddress = "live.streamingserver.com"
+            StreamManager.sharedInstance.goCoder?.config.streamName = FIRAuth.auth()?.currentUser?.displayName
             
             StreamManager.sharedInstance.goCoder?.cameraPreview?.previewGravity = WZCameraPreviewGravity.resizeAspectFill
             StreamManager.sharedInstance.goCoder?.cameraPreview?.start()
@@ -75,23 +77,14 @@ class TSRecordViewController: UIViewController {
     }
     
     @IBAction func startStream(_ sender: UIButton) {
-       
-        let recordingDelegate:AVCaptureFileOutputRecordingDelegate? = self
-        
-        let videoFileOutput = AVCaptureMovieFileOutput()
-        self.captureSession.addOutput(videoFileOutput)
-        
-        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let filePath = documentsURL.appendingPathComponent("temp")
-        
-        videoFileOutput.startRecording(toOutputFileURL: filePath as URL!, recordingDelegate: recordingDelegate)
+        StreamManager.sharedInstance.startBroadcast()
     }
     
     func keyboardWillShow(notification: NSNotification) {
         let info = notification.userInfo!
         let keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let time = info[UIKeyboardAnimationDurationUserInfoKey]
-        self.bottomViewConstraint.constant = keyboardFrame.size.height
+        bottomViewConstraint.constant = keyboardFrame.size.height
         
         UIView.animate(withDuration: time as! TimeInterval, animations: { () -> Void in
             self.view.layoutIfNeeded()
@@ -101,7 +94,7 @@ class TSRecordViewController: UIViewController {
     func keyboardWillHide(notification: NSNotification) {
         let info = notification.userInfo!
         let time = info[UIKeyboardAnimationDurationUserInfoKey]
-        self.bottomViewConstraint.constant = 0
+        bottomViewConstraint.constant = 0
         
         UIView.animate(withDuration: time as! TimeInterval, animations: { () -> Void in
             self.view.layoutIfNeeded()
@@ -141,7 +134,8 @@ extension TSRecordViewController: UITextViewDelegate {
 extension TSRecordViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        
+            selectedPlace = place
+            addLocationButton.setTitle(place.name, for: .normal)
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {

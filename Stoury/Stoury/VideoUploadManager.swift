@@ -24,11 +24,11 @@ class VideoUploadManager {
         let uploadTask = vidRef.put(data as Data, metadata: nil) { metadata, error in
             if (error != nil) {
                 // an error occurred!
-                print(error)
+                print(error!)
             } else {
                 // Metadata contains file metadata such as size, content-type, and download URL.
                 if let data = metadata {
-                    print(data.downloadURLs)
+                    print(data.downloadURLs!)
                 }
             }
         }

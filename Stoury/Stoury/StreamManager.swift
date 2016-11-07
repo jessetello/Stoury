@@ -9,8 +9,7 @@
 import Foundation
 import WowzaGoCoderSDK
 
-
-class StreamManager: NSObject, WZStatusCallback, AVCaptureFileOutputRecordingDelegate {
+class StreamManager: NSObject, WZStatusCallback, AVCaptureFileOutputRecordingDelegate, WZVideoEncoderSink {
    
     typealias BrodcastIntializationHandler = (_ success:Bool) -> Void
     static let sharedInstance = StreamManager()
@@ -23,10 +22,11 @@ class StreamManager: NSObject, WZStatusCallback, AVCaptureFileOutputRecordingDel
     var goCoder: WowzaGoCoder?
     
     override init() {
+        
         if WowzaGoCoder.registerLicenseKey(WowzaLicenseKey) == nil {
             goCoder = WowzaGoCoder.sharedInstance()
             WowzaGoCoder.requestPermission(for: .camera, response: { (permission) in
-                print("Camera permission is: \(permission == .authorized ? "authorized" : "denied")")
+                print("Camera permission is: \(permission == .authorized ? "authorized" : "denied")")                
             })
             
             WowzaGoCoder.requestPermission(for: .microphone, response: { (permission) in
@@ -50,10 +50,21 @@ class StreamManager: NSObject, WZStatusCallback, AVCaptureFileOutputRecordingDel
         } else if self.goCoder?.status.state != WZState.running {
             self.goCoder?.startStreaming(self)
         }
+        
+        //        let recordingDelegate:AVCaptureFileOutputRecordingDelegate? = self
+        //
+        //        let videoFileOutput = AVCaptureMovieFileOutput()
+        //        self.captureSession.addOutput(videoFileOutput)
+        //
+        //        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        //        let filePath = documentsURL.appendingPathComponent("temp")
+        //
+        //        videoFileOutput.startRecording(toOutputFileURL: filePath as URL!, recordingDelegate: recordingDelegate)
+
     }
     
     func stopBroadCast() {
-        
+        self.goCoder?.endStreaming(self)
     }
     
     func onWZStatus(_ status: WZStatus!) {
@@ -62,7 +73,11 @@ class StreamManager: NSObject, WZStatusCallback, AVCaptureFileOutputRecordingDel
     
     func onWZError(_ status: WZStatus!) {
         
-        
+    }
+    
+    func videoFrameWasEncoded(_ data: CMSampleBuffer) {
+        //Upload to firebase?
+        print("Data logging \(data)")
     }
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {

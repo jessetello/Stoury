@@ -25,6 +25,7 @@ class TSSignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setUp() {
+        
         firstNameField.underlined()
         lastNameField.underlined()
         emailField.underlined()
@@ -37,7 +38,6 @@ class TSSignUpViewController: UIViewController, UITextFieldDelegate {
         passwordField.delegate = self
         confirmPasswordField.delegate = self
 
-        
         NotificationCenter.default.addObserver(self, selector:#selector(TSSignUpViewController.keyboardWillShow(notification:)) , name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(TSSignUpViewController.keyboardWillHide(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
@@ -48,7 +48,6 @@ class TSSignUpViewController: UIViewController, UITextFieldDelegate {
     
     func validateSignupInfo() -> Bool {
         
-        
         if emailField.text?.isEmpty == true || passwordField.text?.isEmpty == true {
             return false
         }
@@ -58,7 +57,6 @@ class TSSignUpViewController: UIViewController, UITextFieldDelegate {
                 return false
             }
         }
-        
         return true
     }
 
