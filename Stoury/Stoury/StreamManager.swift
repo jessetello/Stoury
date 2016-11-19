@@ -43,36 +43,22 @@ class StreamManager: NSObject, WZStatusCallback, AVCaptureFileOutputRecordingDel
     }
     
     func startBroadcast() {
-        let error = self.goCoder?.config.validateForBroadcast()
-        
-        if error != nil {
-            //show error
-        } else if self.goCoder?.status.state != WZState.running {
+       if self.goCoder?.status.state != WZState.running {
             self.goCoder?.startStreaming(self)
-        }
-        
-        //        let recordingDelegate:AVCaptureFileOutputRecordingDelegate? = self
-        //
-        //        let videoFileOutput = AVCaptureMovieFileOutput()
-        //        self.captureSession.addOutput(videoFileOutput)
-        //
-        //        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        //        let filePath = documentsURL.appendingPathComponent("temp")
-        //
-        //        videoFileOutput.startRecording(toOutputFileURL: filePath as URL!, recordingDelegate: recordingDelegate)
-
+      }
     }
     
     func stopBroadCast() {
         self.goCoder?.endStreaming(self)
+        
     }
     
     func onWZStatus(_ status: WZStatus!) {
-        
+        print(status.description)
     }
     
     func onWZError(_ status: WZStatus!) {
-        
+        print(status.description)
     }
     
     func videoFrameWasEncoded(_ data: CMSampleBuffer) {

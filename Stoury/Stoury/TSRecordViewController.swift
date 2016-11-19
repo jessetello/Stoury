@@ -43,6 +43,7 @@ class TSRecordViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector:#selector(TSRecordViewController.keyboardWillHide(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         descriptionTextView.becomeFirstResponder()
         descriptionTextView.delegate = self;
+        startStreamButton.layer.cornerRadius = 5
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,9 +54,10 @@ class TSRecordViewController: UIViewController {
         DispatchQueue.main.async {
             StreamManager.sharedInstance.goCoder?.cameraView = self.view
             StreamManager.sharedInstance.goCoder?.config.load(WZFrameSizePreset.preset1280x720)
-            StreamManager.sharedInstance.goCoder?.config.hostAddress = "live.streamingserver.com"
-            StreamManager.sharedInstance.goCoder?.config.streamName = FIRAuth.auth()?.currentUser?.displayName
-            
+            StreamManager.sharedInstance.goCoder?.config.hostAddress = "rtsp://dbde73.entrypoint.cloud.wowza.com/app-9640"//"live.streamingserver.com"
+            StreamManager.sharedInstance.goCoder?.config.portNumber = 1935
+            StreamManager.sharedInstance.goCoder?.config.streamName = "Test"//FIRAuth.auth()?.currentUser?.displayName
+            StreamManager.sharedInstance.goCoder?.config.applicationName = "Stoury"
             StreamManager.sharedInstance.goCoder?.cameraPreview?.previewGravity = WZCameraPreviewGravity.resizeAspectFill
             StreamManager.sharedInstance.goCoder?.cameraPreview?.start()
             
@@ -77,7 +79,17 @@ class TSRecordViewController: UIViewController {
     }
     
     @IBAction func startStream(_ sender: UIButton) {
-        StreamManager.sharedInstance.startBroadcast()
+        
+        if StreamManager.sharedInstance.goCoder?.status.state != WZState.running {
+            descriptionTextView.resignFirstResponder()
+            startStreamButton.titleLabel?.text = "Stop Stream"
+            shareToFacebook.isHidden = true
+            StreamManager.sharedInstance.startBroadcast()
+        }
+        else {
+            StreamManager.sharedInstance.stopBroadCast()
+            
+        }
     }
     
     func keyboardWillShow(notification: NSNotification) {
@@ -136,6 +148,7 @@ extension TSRecordViewController: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
             selectedPlace = place
             addLocationButton.setTitle(place.name, for: .normal)
+            viewController.dismiss(animated: true, completion: nil)
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
