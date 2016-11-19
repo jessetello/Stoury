@@ -56,11 +56,14 @@ class AuthenticationManager {
         do {
             try FIRAuth.auth()?.signOut()
             //take to sign in screen
-        } catch {
+                let sb = UIStoryboard(name: "Main", bundle: nil)
+                if let loginVC = sb.instantiateViewController(withIdentifier: "Welcome") as? UINavigationController {
+                    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                    appDelegate?.window?.rootViewController = loginVC
+                }
+        }
+        catch {
                 
         }
     }
-    
-    
-    
 }

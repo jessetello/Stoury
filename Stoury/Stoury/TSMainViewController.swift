@@ -19,7 +19,7 @@ class TSMainViewController: UITabBarController, UINavigationControllerDelegate, 
         super.viewDidLoad()
         self.imagePicker.delegate = self
         self.navigationItem.hidesBackButton = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action:#selector(TSMainViewController.logout))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(TSMainViewController.logout))
         self.delegate = self
     }
     

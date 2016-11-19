@@ -30,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             // User is signed in.
             let sb = UIStoryboard(name: "Main", bundle: nil)
             if let mainVC = sb.instantiateViewController(withIdentifier: "TSMainViewController") as? TSMainViewController {
-                self.window?.rootViewController = mainVC
+                let nav = UINavigationController(rootViewController: mainVC)
+                self.window?.rootViewController = nav
             }
         }
         
@@ -79,9 +80,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         do {
           try FIRAuth.auth()?.signOut()
+            //self.signOut()
         } catch {
         
         }
     }
-}
+    
+   }
 
