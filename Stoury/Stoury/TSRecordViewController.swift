@@ -12,6 +12,7 @@ import WowzaGoCoderSDK
 import GooglePlacePicker
 import Firebase
 import FirebaseAuth
+import Photos
 
 enum StouryType {
     case live
@@ -42,11 +43,12 @@ class TSRecordViewController: UIViewController {
     var stouryType = StouryType.live
     var recordingState = RecordingState.stopped
 
+    @IBOutlet var liveStreamLabel: UILabel!
     var captureSession = AVCaptureSession()
     var movieFileOutput: AVCaptureMovieFileOutput?
     var audioDeviceInput: AVCaptureDeviceInput?
     var movieDeviceInput: AVCaptureDeviceInput?
-    
+    var nonLivePreviewLayer: AVCaptureVideoPreviewLayer?
 //    lazy var previewLayer: AVCaptureVideoPreviewLayer? = {
 //        if let preview =  AVCaptureVideoPreviewLayer(session: self.captureSession) {
 //            preview.frame = self.view.bounds
@@ -61,7 +63,8 @@ class TSRecordViewController: UIViewController {
         super.viewDidLoad()
         
         nonLiveStream()
-        
+        initializeLiveStream()
+
         NotificationCenter.default.addObserver(self, selector:#selector(TSRecordViewController.keyboardWillShow(notification:)) , name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(TSRecordViewController.keyboardWillHide(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         
@@ -78,20 +81,21 @@ class TSRecordViewController: UIViewController {
     
     func initializeLiveStream() {
         DispatchQueue.main.async {
-            StreamManager.sharedInstance.goCoder?.cameraView = self.view
+            //StreamManager.sharedInstance.goCoder?.cameraView = self.view
             StreamManager.sharedInstance.goCoder?.config.load(WZFrameSizePreset.preset1280x720)
             StreamManager.sharedInstance.goCoder?.config.hostAddress = "rtmp://ec6587.entrypoint.cloud.wowza.com"
             StreamManager.sharedInstance.goCoder?.config.portNumber = 1935
             StreamManager.sharedInstance.goCoder?.config.streamName = "e34dad1f"
             StreamManager.sharedInstance.goCoder?.config.applicationName = "app-a989"
             StreamManager.sharedInstance.goCoder?.cameraPreview?.previewGravity = WZCameraPreviewGravity.resizeAspectFill
-            StreamManager.sharedInstance.goCoder?.cameraPreview?.start()
+            //StreamManager.sharedInstance.goCoder?.cameraPreview?.start()
             
             StreamManager.sharedInstance.initalizeBroadcast(completion: { (success) in
                 if success {
                     self.initializingLabel.isHidden = true
                     self.startStreamButton.isHidden = false
                     self.videoTypeSwitch.isEnabled = true
+                    self.liveStreamLabel.textColor = UIColor.white
                 }
                 else {
                     self.videoTypeSwitch.isEnabled = false
@@ -103,6 +107,7 @@ class TSRecordViewController: UIViewController {
     }
     
     func nonLiveStream() {
+
         captureSession.sessionPreset = AVCaptureSessionPresetInputPriority
         if let backCamera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) {
             var error: NSError?
@@ -143,10 +148,11 @@ class TSRecordViewController: UIViewController {
         }
         DispatchQueue.main.async {
             if let preview = AVCaptureVideoPreviewLayer(session: self.captureSession) {
-                preview.frame = self.view.bounds
-                preview.position = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
-                preview.videoGravity = AVLayerVideoGravityResizeAspectFill
-                self.view.layer.insertSublayer(preview, at: 0)
+                self.nonLivePreviewLayer = preview
+                self.nonLivePreviewLayer?.frame = self.view.bounds
+                self.nonLivePreviewLayer?.position = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
+                self.nonLivePreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+                self.view.layer.insertSublayer(self.nonLivePreviewLayer!, at: 0)
                 self.captureSession.startRunning()
             }
         }
@@ -155,12 +161,19 @@ class TSRecordViewController: UIViewController {
     @IBAction func toggleRecordingType(_ sender: UISwitch) {
         
         if sender.isOn {
-           stouryType = .live
-           initializeLiveStream()
+            self.captureSession.stopRunning()
+            self.nonLivePreviewLayer?.removeFromSuperlayer()
+            self.nonLivePreviewLayer = nil
+            StreamManager.sharedInstance.goCoder?.cameraView = self.view
+            StreamManager.sharedInstance.goCoder?.cameraPreview?.start()
+            stouryType = .live
+            
         }
         else {
-           stouryType = .nonlive
-           nonLiveStream()
+            StreamManager.sharedInstance.goCoder?.cameraPreview?.stop()
+            StreamManager.sharedInstance.goCoder?.cameraView = nil
+            stouryType = .nonlive
+            nonLiveStream()
         }
     }
  
@@ -171,7 +184,6 @@ class TSRecordViewController: UIViewController {
     @IBAction func startStream(_ sender: UIButton) {
        
         if recordingState == .stopped {
-           
             switch stouryType {
             case .live:
                 if StreamManager.sharedInstance.goCoder?.status.state != WZState.running {
@@ -196,7 +208,6 @@ class TSRecordViewController: UIViewController {
                 videoFileOutput.startRecording(toOutputFileURL: filePath as URL!, recordingDelegate: recordingDelegate)
                 break
             }
-            
             self.videoTypeSwitch.isHidden = true
             
         }
@@ -251,8 +262,17 @@ extension TSRecordViewController: AVCaptureFileOutputRecordingDelegate {
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
             if let videoData = NSData(contentsOf:outputFileURL) {
-                print(videoData)
                 VideoUploadManager.sharedInstance.saveToFireBase(data: videoData)
+                PHPhotoLibrary.shared().performChanges({
+                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
+                }) { saved, error in
+                    if saved && self.stouryType == .nonlive {
+//                        let alertController = UIAlertController(title: "Your video was successfully saved to library", message: nil, preferredStyle: .alert)
+//                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//                        alertController.addAction(defaultAction)
+//                        self.present(alertController, animated: true, completion: nil)
+                    }
+                }
             }
             dismiss(animated: true, completion: nil)
     }

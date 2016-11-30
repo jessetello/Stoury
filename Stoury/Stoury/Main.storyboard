@@ -82,7 +82,7 @@
                                         <rect key="frame" x="180" y="16" width="97" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LnK-EE-tCb">
@@ -144,6 +144,7 @@
                         <outlet property="closeButton" destination="0xP-9A-h02" id="cOC-9B-OM1"/>
                         <outlet property="descriptionTextView" destination="i7S-8N-GLN" id="EwI-R5-Jqv"/>
                         <outlet property="initializingLabel" destination="rIM-IB-m3Y" id="0Ew-2B-mfl"/>
+                        <outlet property="liveStreamLabel" destination="2jG-8e-BZZ" id="kZQ-mU-OOT"/>
                         <outlet property="seperatorLine" destination="3t1-qq-b0L" id="WD6-6N-8Pn"/>
                         <outlet property="startStreamButton" destination="AAc-De-Ppu" id="Pt2-ka-Nx1"/>
                         <outlet property="videoTypeSwitch" destination="LnK-EE-tCb" id="teF-0n-Swp"/>
@@ -169,7 +170,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="125" id="36P-AK-e2D">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="125" id="36P-AK-e2D" customClass="TSMainFeedCell" customModule="Stoury" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="36P-AK-e2D" id="tC4-yC-RXg">
@@ -355,7 +356,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGH-0R-F1m">
-                                <rect key="frame" x="179" y="516.5" width="16" height="20.5"/>
+                                <rect key="frame" x="179" y="516" width="16" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -405,13 +406,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stoury" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6HS-IN-Eei">
-                                <rect key="frame" x="16" y="72" width="343" height="58.5"/>
+                                <rect key="frame" x="16" y="72" width="343" height="59"/>
                                 <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="50"/>
                                 <color key="textColor" red="0.015686274510000001" green="0.22352941179999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Everyone has a story to tell" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5C-f4-nkf">
-                                <rect key="frame" x="16" y="133.5" width="343" height="19.5"/>
+                                <rect key="frame" x="16" y="134" width="343" height="20"/>
                                 <fontDescription key="fontDescription" name="GillSans-Italic" family="Gill Sans" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -586,7 +587,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DYM-xB-7Xk">
-                                <rect key="frame" x="87.5" y="72" width="200" height="29"/>
+                                <rect key="frame" x="88" y="72" width="200" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Bps-jZ-KMZ"/>
                                 </constraints>

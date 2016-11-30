@@ -26,6 +26,7 @@
 		911C5D621DB31038004C2862 /* TSFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D531DB31038004C2862 /* TSFriendsViewController.swift */; };
 		911C5D631DB31038004C2862 /* TSStorisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D541DB31038004C2862 /* TSStorisViewController.swift */; };
 		911C5D6B1DB31339004C2862 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 911C5D6A1DB31339004C2862 /* GoogleService-Info.plist */; };
+		91D088401DEE6B5E005C9702 /* TSMainFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0883F1DEE6B5E005C9702 /* TSMainFeedCell.swift */; };
 		91F948011DCE824F004B24F9 /* WowzaGoCoderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F947FF1DCE81BB004B24F9 /* WowzaGoCoderSDK.framework */; };
 		91F948021DCE824F004B24F9 /* WowzaGoCoderSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91F947FF1DCE81BB004B24F9 /* WowzaGoCoderSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		91F948061DCE837E004B24F9 /* StreamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F948051DCE837E004B24F9 /* StreamManager.swift */; };
@@ -71,6 +72,7 @@
 		911C5D531DB31038004C2862 /* TSFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSFriendsViewController.swift; sourceTree = "<group>"; };
 		911C5D541DB31038004C2862 /* TSStorisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSStorisViewController.swift; sourceTree = "<group>"; };
 		911C5D6A1DB31339004C2862 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		91D0883F1DEE6B5E005C9702 /* TSMainFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSMainFeedCell.swift; sourceTree = "<group>"; };
 		91F947FF1DCE81BB004B24F9 /* WowzaGoCoderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WowzaGoCoderSDK.framework; path = Stoury/WowzaGoCoderSDK.framework; sourceTree = "<group>"; };
 		91F948051DCE837E004B24F9 /* StreamManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamManager.swift; sourceTree = "<group>"; };
 		91F948071DCEB1EF004B24F9 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				911C5D3B1DB30D51004C2862 /* LaunchScreen.storyboard */,
 				911C5D461DB31038004C2862 /* Main.storyboard */,
+				91D0883F1DEE6B5E005C9702 /* TSMainFeedCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				911C5D601DB31038004C2862 /* TSUser.swift in Sources */,
 				911C5D5A1DB31038004C2862 /* TSWelcomeViewController.swift in Sources */,
 				911C5D571DB31038004C2862 /* TSSignUpViewController.swift in Sources */,
+				91D088401DEE6B5E005C9702 /* TSMainFeedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

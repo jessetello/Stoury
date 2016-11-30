@@ -38,8 +38,9 @@ class StreamManager: NSObject, WZStatusCallback, AVCaptureFileOutputRecordingDel
     func initalizeBroadcast(completion: @escaping BrodcastIntializationHandler) {
             if self.goCoder?.config.validateForBroadcast() == nil {
                 completion(true)
+            } else {
+                completion(false)
             }
-            completion(false)
     }
     
     func startBroadcast() {
