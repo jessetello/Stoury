@@ -10,24 +10,17 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FBSDKLoginKit
-import GoogleSignIn
 
-class TSWelcomeViewController: UIViewController, GIDSignInUIDelegate {
+class TSWelcomeViewController: UIViewController {
 
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var signUp: UIButton!
     @IBOutlet weak var facebookButton: FBSDKLoginButton!
-    @IBOutlet weak var googleButton: UIButton!
     
     private let dataURL = "gs://tripstori-59fb9.appspot.com"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        GIDSignIn.sharedInstance().uiDelegate = self
-        googleButton.layer.cornerRadius = 3
-        googleButton.layer.borderWidth = 1
-        googleButton.layer.borderColor = UIColor.black.cgColor
     }
 
     @IBAction func facebookLogin(_ sender: FBSDKLoginButton) {
