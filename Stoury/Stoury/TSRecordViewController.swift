@@ -49,6 +49,10 @@ class TSRecordViewController: UIViewController {
     var audioDeviceInput: AVCaptureDeviceInput?
     var movieDeviceInput: AVCaptureDeviceInput?
     var nonLivePreviewLayer: AVCaptureVideoPreviewLayer?
+    
+    @IBOutlet var timeLabel: UILabel!
+    var counter = 0
+    var timer = Timer()
 //    lazy var previewLayer: AVCaptureVideoPreviewLayer? = {
 //        if let preview =  AVCaptureVideoPreviewLayer(session: self.captureSession) {
 //            preview.frame = self.view.bounds
@@ -157,7 +161,6 @@ class TSRecordViewController: UIViewController {
         }
         
         }
-        
     }
     
     @IBAction func toggleRecordingType(_ sender: UISwitch) {
@@ -169,7 +172,6 @@ class TSRecordViewController: UIViewController {
             StreamManager.sharedInstance.goCoder?.cameraView = self.view
             StreamManager.sharedInstance.goCoder?.cameraPreview?.start()
             stouryType = .live
-            
         }
         else {
             StreamManager.sharedInstance.goCoder?.cameraPreview?.stop()
@@ -203,11 +205,14 @@ class TSRecordViewController: UIViewController {
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                 let filePath = documentsURL.appendingPathComponent("temp")
                 self.movieFileOutput?.startRecording(toOutputFileURL: filePath as URL!, recordingDelegate: recordingDelegate)
-                
                 break
             }
+            
+            timer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(TSRecordViewController.updateCounter), userInfo: nil, repeats: true)
+            timeLabel.isHidden = false
             videoTypeSwitch.isHidden = true
             liveStreamLabel.isHidden = true
+            descriptionTextView.isHidden = true
             startStreamButton.setTitle("Stop Recording", for: .normal)
             recordingState = .recording
         }
@@ -222,7 +227,20 @@ class TSRecordViewController: UIViewController {
                self.captureSession.stopRunning()
                 break
             }
+            timer.invalidate()
         }
+    }
+    
+    func updateCounter() {
+        counter += 1
+        
+        let seconds = UInt8(counter)
+        let minutes = UInt8(counter / 60)
+        
+        let strMinutes = String(format: "%02d", minutes)
+        let strSeconds = String(format: "%02d", seconds)
+        
+        timeLabel.text = "\(strMinutes):\(strSeconds)"
     }
     
     func keyboardWillShow(notification: NSNotification) {
@@ -262,10 +280,10 @@ extension TSRecordViewController: AVCaptureFileOutputRecordingDelegate {
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
             if let videoData = NSData(contentsOf:outputFileURL) {
-                PHPhotoLibrary.shared().performChanges({
-                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
-                }) { saved, error in
-                    if saved && self.stouryType == .nonlive {
+//                PHPhotoLibrary.shared().performChanges({
+//                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
+//                }) { saved, error in
+//                    if saved && self.stouryType == .nonlive {
                         let alertController = UIAlertController(title: "Would you like to post this video?", message: nil, preferredStyle: .alert)
                         let yes = UIAlertAction(title: "YES", style: .default, handler: { (action) in
                             VideoUploadManager.sharedInstance.saveToFireBase(data: videoData)
@@ -278,10 +296,10 @@ extension TSRecordViewController: AVCaptureFileOutputRecordingDelegate {
                         alertController.addAction(yes)
                         alertController.addAction(no)
                         self.present(alertController, animated: true, completion: nil)
-                    }
+//                    }
                 }
             }
-    }
+//    }
 }
 
 extension TSRecordViewController: UITextViewDelegate {
