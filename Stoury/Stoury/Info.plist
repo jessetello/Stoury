@@ -46,6 +46,8 @@
 	<string>Use your location to find surrounding locations</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Record sound when recording stourys</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Save your storys to your library</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

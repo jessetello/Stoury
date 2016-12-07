@@ -40,7 +40,7 @@ class TSRecordViewController: UIViewController {
     
     @IBOutlet var videoTypeSwitch: UISwitch!
     var selectedPlace:GMSPlace?
-    var stouryType = StouryType.live
+    var stouryType = StouryType.nonlive
     var recordingState = RecordingState.stopped
 
     @IBOutlet var liveStreamLabel: UILabel!
@@ -107,55 +107,57 @@ class TSRecordViewController: UIViewController {
     }
     
     func nonLiveStream() {
-
-        captureSession.sessionPreset = AVCaptureSessionPresetInputPriority
+      DispatchQueue.main.async {
+        self.captureSession.sessionPreset = AVCaptureSessionPresetInputPriority
         if let backCamera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) {
             var error: NSError?
             do {
-                movieDeviceInput = try AVCaptureDeviceInput(device: backCamera)
+                self.movieDeviceInput = try AVCaptureDeviceInput(device: backCamera)
             } catch let error1 as NSError {
                 error = error1
-                movieDeviceInput = nil
+                self.movieDeviceInput = nil
                 print(error!.localizedDescription)
             }
             
-            captureSession.beginConfiguration()
+            self.captureSession.beginConfiguration()
             
-            if error == nil && captureSession.canAddInput(movieDeviceInput) {
-                captureSession.addInput(movieDeviceInput)
-                movieFileOutput = AVCaptureMovieFileOutput()
-                movieFileOutput?.maxRecordedDuration = CMTime(seconds: 180.0, preferredTimescale: CMTimeScale(30.0))
-                if captureSession.canAddOutput(movieFileOutput) {
-                    captureSession.addOutput(movieFileOutput)
+            if error == nil && self.captureSession.canAddInput(self.movieDeviceInput) {
+                self.captureSession.addInput(self.movieDeviceInput)
+                self.movieFileOutput = AVCaptureMovieFileOutput()
+                self.movieFileOutput?.maxRecordedDuration = CMTime(seconds: 300.0, preferredTimescale: CMTimeScale(30.0))
+                if self.captureSession.canAddOutput(self.movieFileOutput) {
+                    self.captureSession.addOutput(self.movieFileOutput)
                 }
             }
             
             if let audioDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio) {
                 var error: NSError?
                 do {
-                    audioDeviceInput = try AVCaptureDeviceInput(device: audioDevice)
+                    self.audioDeviceInput = try AVCaptureDeviceInput(device: audioDevice)
                 } catch let error2 as NSError {
                     error = error2
-                    audioDeviceInput = nil
+                    self.audioDeviceInput = nil
                     print(error?.description ?? "Error")
                 }
                 
-                if error == nil && captureSession.canAddInput(audioDeviceInput) {
-                    captureSession.addInput(audioDeviceInput)
+                if error == nil && self.captureSession.canAddInput(self.audioDeviceInput) {
+                    self.captureSession.addInput(self.audioDeviceInput)
                 }
             }
-            captureSession.commitConfiguration()
+            self.captureSession.commitConfiguration()
         }
-        DispatchQueue.main.async {
-            if let preview = AVCaptureVideoPreviewLayer(session: self.captureSession) {
+        
+        if let preview = AVCaptureVideoPreviewLayer(session: self.captureSession) {
                 self.nonLivePreviewLayer = preview
                 self.nonLivePreviewLayer?.frame = self.view.bounds
                 self.nonLivePreviewLayer?.position = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
                 self.nonLivePreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
                 self.view.layer.insertSublayer(self.nonLivePreviewLayer!, at: 0)
                 self.captureSession.startRunning()
-            }
         }
+        
+        }
+        
     }
     
     @IBAction func toggleRecordingType(_ sender: UISwitch) {
@@ -196,20 +198,18 @@ class TSRecordViewController: UIViewController {
                 }
                 break
             case .nonlive:
+                
                 let recordingDelegate:AVCaptureFileOutputRecordingDelegate? = self
-                
-                let videoFileOutput = AVCaptureMovieFileOutput()
-                videoFileOutput.maxRecordedDuration = CMTime(seconds: 300, preferredTimescale: 30)
-                self.captureSession.addOutput(videoFileOutput)
-                
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                 let filePath = documentsURL.appendingPathComponent("temp")
+                self.movieFileOutput?.startRecording(toOutputFileURL: filePath as URL!, recordingDelegate: recordingDelegate)
                 
-                videoFileOutput.startRecording(toOutputFileURL: filePath as URL!, recordingDelegate: recordingDelegate)
                 break
             }
-            self.videoTypeSwitch.isHidden = true
-            
+            videoTypeSwitch.isHidden = true
+            liveStreamLabel.isHidden = true
+            startStreamButton.setTitle("Stop Recording", for: .normal)
+            recordingState = .recording
         }
         else {
             switch stouryType {
@@ -257,24 +257,30 @@ class TSRecordViewController: UIViewController {
 extension TSRecordViewController: AVCaptureFileOutputRecordingDelegate {
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
-        
+        print("Recording")
     }
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
             if let videoData = NSData(contentsOf:outputFileURL) {
-                VideoUploadManager.sharedInstance.saveToFireBase(data: videoData)
                 PHPhotoLibrary.shared().performChanges({
                     PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
                 }) { saved, error in
                     if saved && self.stouryType == .nonlive {
-//                        let alertController = UIAlertController(title: "Your video was successfully saved to library", message: nil, preferredStyle: .alert)
-//                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                        alertController.addAction(defaultAction)
-//                        self.present(alertController, animated: true, completion: nil)
+                        let alertController = UIAlertController(title: "Would you like to post this video?", message: nil, preferredStyle: .alert)
+                        let yes = UIAlertAction(title: "YES", style: .default, handler: { (action) in
+                            VideoUploadManager.sharedInstance.saveToFireBase(data: videoData)
+                        })
+                        
+                        let no = UIAlertAction(title: "NO", style: .default, handler: { (action) in
+                            self.dismiss(animated: true, completion: nil)
+                        })
+
+                        alertController.addAction(yes)
+                        alertController.addAction(no)
+                        self.present(alertController, animated: true, completion: nil)
                     }
                 }
             }
-            dismiss(animated: true, completion: nil)
     }
 }
 

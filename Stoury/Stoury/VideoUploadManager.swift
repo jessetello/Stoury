@@ -20,7 +20,6 @@ class VideoUploadManager {
         // Create a reference to the file you want to upload
         let storageRef = storage.reference(forURL: "gs://stoury-c55b9.appspot.com")
         let vidRef = storageRef.child("stoury/video.MOV")
-        
         let uploadTask = vidRef.put(data as Data, metadata: nil) { metadata, error in
             if (error != nil) {
                 // an error occurred!
