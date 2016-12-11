@@ -80,7 +80,7 @@ extension TSMainViewController: UIImagePickerControllerDelegate {
             if let videoData = NSData(contentsOf: pickedVideo as URL) {
                 print(pickedVideo)
                 print(videoData)
-                VideoUploadManager.sharedInstance.saveToFireBase(data: videoData)
+//                VideoUploadManager.sharedInstance.saveToFireBase(data: videoData, title: , place: <#T##GMSPlace?#>, coordinate: <#T##CLLocationCoordinate2D#>)
             }
             self.dismiss(animated: true, completion: nil)
             

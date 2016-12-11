@@ -74,7 +74,7 @@ class StreamManager: NSObject, WZStatusCallback, AVCaptureFileOutputRecordingDel
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
         if let videoData = NSData(contentsOf:outputFileURL) {
             print(videoData)
-            VideoUploadManager.sharedInstance.saveToFireBase(data: videoData)
+            //VideoUploadManager.sharedInstance.saveToFireBase(data: videoData)
         }
     }
 }

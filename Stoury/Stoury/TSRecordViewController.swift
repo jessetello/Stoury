@@ -286,7 +286,7 @@ extension TSRecordViewController: AVCaptureFileOutputRecordingDelegate {
 //                    if saved && self.stouryType == .nonlive {
                         let alertController = UIAlertController(title: "Would you like to post this video?", message: nil, preferredStyle: .alert)
                         let yes = UIAlertAction(title: "YES", style: .default, handler: { (action) in
-                            VideoUploadManager.sharedInstance.saveToFireBase(data: videoData)
+                            VideoUploadManager.sharedInstance.saveToFireBase(data: videoData, title: self.descriptionTextView.text, place: self.selectedPlace, coordinate: LocationManager.sharedInstance.userLocation!)
                         })
                         
                         let no = UIAlertAction(title: "NO", style: .default, handler: { (action) in
