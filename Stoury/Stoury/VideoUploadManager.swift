@@ -24,24 +24,8 @@ class VideoUploadManager {
         // Create a reference to the file you want to upload
         let storageRef = DataManager.sharedInstance.storage.reference(forURL: "gs://stoury-c55b9.appspot.com")
         let vidRef = storageRef.child("/videos" + "\(title)" + "/stoury.MOV")
-        let uploadTask = vidRef.put(data as Data, metadata: nil) { [weak self] (metadata, error) in
-            if (error != nil) {
-                // an error occurred!
-                print(error!)
-            } else {
-                // Metadata contains file metadata such as size, content-type, and download URL.
-                if let data = metadata, let name = FIRAuth.auth()?.currentUser?.displayName {
-                    guard let vidUrl = data.downloadURL() else {
-                        print("missing params")
-                        return
-                    }
-                    self?.writeNewPost(userID: uid,
-                                       userName: name,
-                                       title: title, place:place!,
-                                       location:coordinate,
-                                       url:vidUrl)
-                }
-            }
+        let uploadTask = vidRef.put(data as Data, metadata: nil) { metadata, error in
+        
         }
         
         uploadTask.observe(.pause) { snapshot in
@@ -59,12 +43,26 @@ class VideoUploadManager {
                 print(percentComplete)
             }
         }
-        uploadTask.observe(.success) { snapshot in
-            // Upload completed successfully
+        uploadTask.observe(.success) { [weak self] snapshot in
+            // Metadata contains file metadata such as size, content-type, and download URL.
+            if let data = snapshot.metadata {
+                //let name = FIRAuth.auth()?.currentUser?.displayName
+                guard let vidUrl = data.downloadURL() else {
+                    print("missing params")
+                    return
+                }
+                self?.writeNewPost(userID: uid,
+                                   userName: "guy",
+                                   title: title,
+                                   placeID:"",
+                                   location:["lat":coordinate.coordinate.latitude,
+                                             "lon":coordinate.coordinate.longitude],
+                                   url:vidUrl.absoluteString)
+            }
         }
     }
     
-    func writeNewPost(userID:String, userName:String, title:String, place:GMSPlace, location:CLLocation, url:URL) {
+    func writeNewPost(userID:String, userName:String, title:String, placeID:String, location:[String:Double], url:String) {
         
         let key = DataManager.sharedInstance.ref.child("posts").childByAutoId().key
         
@@ -72,7 +70,7 @@ class VideoUploadManager {
                     "user": userName,
                     "title": title,
                     "location": location,
-                    "place": place,
+                    "placeID": placeID,
                     "url":url] as [String : Any]
         
         let childUpdates = ["/posts/\(key)": post,

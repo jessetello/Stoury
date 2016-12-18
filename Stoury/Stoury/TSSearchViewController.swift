@@ -8,10 +8,10 @@
 
 import UIKit
 
-class TSFeedViewController: UIViewController {
+class TSSearchViewController: UIViewController {
    
     @IBOutlet var tableView: UITableView!
-    var feedArray = [TSStoury]()
+    var searchArray = [TSStoury]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,19 +27,16 @@ class TSFeedViewController: UIViewController {
 }
 
 
-extension TSFeedViewController: UITableViewDataSource {
+extension TSSearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return feedArray.count
+        return searchArray.count
     }
-    
 }
 
-extension TSFeedViewController: UITableViewDelegate {
-    
-    
+extension TSSearchViewController: UITableViewDelegate {
     
 }

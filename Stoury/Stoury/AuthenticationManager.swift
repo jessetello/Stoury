@@ -18,8 +18,7 @@ class AuthenticationManager {
     
     func signIn(email: String, password: String, completion: @escaping AuthenticationHandler) {
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
-            if let authError = error {
-                print(authError)
+            if error != nil {
                 completion(false)
             }
             else {
@@ -28,13 +27,17 @@ class AuthenticationManager {
          })
     }
     
-    func signUp(email: String, password: String, completion: @escaping AuthenticationHandler) {
+    func signUp(email: String, password: String, username: String, completion: @escaping AuthenticationHandler) {
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             if let authError = error {
                 print(authError)
                 completion(false)
             }
             else {
+                //create a user object with username,email,uid
+                if let newUser = user {
+                    DataManager.sharedInstance.createUser(user: newUser, username: username)
+                }
                 completion(true)
             }
         })
@@ -47,6 +50,9 @@ class AuthenticationManager {
                 completion(false)
             }
             else {
+                if let newUser = user {
+
+                }
                 completion(true)
             }
         })
@@ -63,7 +69,8 @@ class AuthenticationManager {
                 }
         }
         catch {
-                
+            
+            
         }
     }
 }

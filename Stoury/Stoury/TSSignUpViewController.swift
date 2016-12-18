@@ -16,6 +16,7 @@ class TSSignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet var userName: UITextField!
     @IBOutlet weak var signupConstraint: NSLayoutConstraint!
     var activeField: UITextField?
 
@@ -31,12 +32,14 @@ class TSSignUpViewController: UIViewController, UITextFieldDelegate {
         emailField.underlined()
         passwordField.underlined()
         confirmPasswordField.underlined()
+        userName.underlined()
         
         firstNameField.delegate = self
         lastNameField.delegate = self
         emailField.delegate = self
         passwordField.delegate = self
         confirmPasswordField.delegate = self
+        userName.delegate = self
 
         NotificationCenter.default.addObserver(self, selector:#selector(TSSignUpViewController.keyboardWillShow(notification:)) , name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(TSSignUpViewController.keyboardWillHide(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -64,8 +67,8 @@ class TSSignUpViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signUp(_ sender: UIButton) {
         if validateSignupInfo() {
             activeField?.resignFirstResponder()
-            if let email = emailField.text, let password = passwordField.text {
-                AuthenticationManager.sharedInstance.signUp(email: email, password: password, completion: { (success) in
+            if let email = emailField.text, let password = passwordField.text, let username = userName.text {
+                AuthenticationManager.sharedInstance.signUp(email: email, password: password, username: username, completion: { (success) in
                     if success {
                         let sb = UIStoryboard(name: "Main", bundle: nil)
                         if let mainVC = sb.instantiateViewController(withIdentifier: "TSMainViewController") as? TSMainViewController {

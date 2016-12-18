@@ -24,7 +24,7 @@ enum RecordingState {
     case stopped
 }
 
-class TSRecordViewController: UIViewController {
+class TSPostViewController: UIViewController {
    //This will eventually be custom recording view
     
     @IBOutlet weak var addLocationButton: UIButton!
@@ -53,24 +53,14 @@ class TSRecordViewController: UIViewController {
     @IBOutlet var timeLabel: UILabel!
     var counter = 0
     var timer = Timer()
-//    lazy var previewLayer: AVCaptureVideoPreviewLayer? = {
-//        if let preview =  AVCaptureVideoPreviewLayer(session: self.captureSession) {
-//            preview.frame = self.view.bounds
-//            preview.position = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
-//            preview.videoGravity = AVLayerVideoGravityResizeAspectFill
-//            return preview
-//        }
-//        return nil
-//    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         nonLiveStream()
-        initializeLiveStream()
-
-        NotificationCenter.default.addObserver(self, selector:#selector(TSRecordViewController.keyboardWillShow(notification:)) , name:NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector:#selector(TSRecordViewController.keyboardWillHide(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+    
+        NotificationCenter.default.addObserver(self, selector:#selector(TSPostViewController.keyboardWillShow(notification:)) , name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(TSPostViewController.keyboardWillHide(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         descriptionTextView.textColor = UIColor.lightGray
         descriptionTextView.becomeFirstResponder()
@@ -208,12 +198,14 @@ class TSRecordViewController: UIViewController {
                 break
             }
             
-            timer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(TSRecordViewController.updateCounter), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(TSPostViewController.updateCounter), userInfo: nil, repeats: true)
             timeLabel.isHidden = false
             videoTypeSwitch.isHidden = true
             liveStreamLabel.isHidden = true
             descriptionTextView.isHidden = true
             startStreamButton.setTitle("Stop Recording", for: .normal)
+            startStreamButton.backgroundColor = UIColor.red
+            
             recordingState = .recording
         }
         else {
@@ -272,7 +264,7 @@ class TSRecordViewController: UIViewController {
     
 }
 
-extension TSRecordViewController: AVCaptureFileOutputRecordingDelegate {
+extension TSPostViewController: AVCaptureFileOutputRecordingDelegate {
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
         print("Recording")
@@ -287,6 +279,7 @@ extension TSRecordViewController: AVCaptureFileOutputRecordingDelegate {
                         let alertController = UIAlertController(title: "Would you like to post this video?", message: nil, preferredStyle: .alert)
                         let yes = UIAlertAction(title: "YES", style: .default, handler: { (action) in
                             VideoUploadManager.sharedInstance.saveToFireBase(data: videoData, title: self.descriptionTextView.text, place: self.selectedPlace, coordinate: LocationManager.sharedInstance.userLocation!)
+                                self.dismiss(animated: true, completion: nil)
                         })
                         
                         let no = UIAlertAction(title: "NO", style: .default, handler: { (action) in
@@ -302,7 +295,7 @@ extension TSRecordViewController: AVCaptureFileOutputRecordingDelegate {
 //    }
 }
 
-extension TSRecordViewController: UITextViewDelegate {
+extension TSPostViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
@@ -312,7 +305,7 @@ extension TSRecordViewController: UITextViewDelegate {
     }
 }
 
-extension TSRecordViewController: GMSAutocompleteViewControllerDelegate {
+extension TSPostViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
             selectedPlace = place

@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import FirebaseStorage
+import FirebaseAuth
 
 class DataManager {
     
@@ -27,13 +28,13 @@ class DataManager {
         })
     }
     
+    func createUser(user:FIRUser, username:String) {
+        ref.child("users/\(user.uid)/username").setValue(username)
+    }
+    
     func getUserProfile() {
         
         
     }
-    
-    func getStouryLocations() {
-        
-        
-    }
+
 }

@@ -14,6 +14,7 @@ class TSMainViewController: UITabBarController, UINavigationControllerDelegate, 
 
     let imagePicker = UIImagePickerController()
     private let sb = UIStoryboard(name: "Main", bundle: nil)
+    let homeArray = ["Near Me","Hotels","Restaurants","Vacation Rentals"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,8 @@ class TSMainViewController: UITabBarController, UINavigationControllerDelegate, 
         self.navigationItem.hidesBackButton = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(TSMainViewController.logout))
         self.delegate = self
+        
+        
         
         LocationManager.sharedInstance.getLocation()    
     }
@@ -35,7 +38,7 @@ class TSMainViewController: UITabBarController, UINavigationControllerDelegate, 
     }
     
     private func presentCamera() {
-        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Record") as? TSRecordViewController {
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Record") as? TSPostViewController {
             self.present(vc, animated: true, completion: nil)
         }
     }
