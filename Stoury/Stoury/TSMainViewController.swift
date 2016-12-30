@@ -13,8 +13,6 @@ import AVFoundation
 class TSMainViewController: UITabBarController, UINavigationControllerDelegate, UITabBarControllerDelegate {
 
     let imagePicker = UIImagePickerController()
-    private let sb = UIStoryboard(name: "Main", bundle: nil)
-    let homeArray = ["Near Me","Hotels","Restaurants","Vacation Rentals"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +20,6 @@ class TSMainViewController: UITabBarController, UINavigationControllerDelegate, 
         self.navigationItem.hidesBackButton = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(TSMainViewController.logout))
         self.delegate = self
-        
-        
         
         LocationManager.sharedInstance.getLocation()    
     }

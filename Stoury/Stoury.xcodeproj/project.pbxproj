@@ -20,7 +20,7 @@
 		911C5D5C1DB31038004C2862 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D4D1DB31038004C2862 /* AuthenticationManager.swift */; };
 		911C5D5D1DB31038004C2862 /* TSPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D4E1DB31038004C2862 /* TSPostViewController.swift */; };
 		911C5D5E1DB31038004C2862 /* TSHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D4F1DB31038004C2862 /* TSHelpers.swift */; };
-		911C5D5F1DB31038004C2862 /* TSSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D501DB31038004C2862 /* TSSearchViewController.swift */; };
+		911C5D5F1DB31038004C2862 /* TSHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D501DB31038004C2862 /* TSHomeViewController.swift */; };
 		911C5D601DB31038004C2862 /* TSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D511DB31038004C2862 /* TSUser.swift */; };
 		911C5D611DB31038004C2862 /* TSStoury.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D521DB31038004C2862 /* TSStoury.swift */; };
 		911C5D621DB31038004C2862 /* TSFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D531DB31038004C2862 /* TSFriendsViewController.swift */; };
@@ -68,7 +68,7 @@
 		911C5D4D1DB31038004C2862 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		911C5D4E1DB31038004C2862 /* TSPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSPostViewController.swift; sourceTree = "<group>"; };
 		911C5D4F1DB31038004C2862 /* TSHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSHelpers.swift; sourceTree = "<group>"; };
-		911C5D501DB31038004C2862 /* TSSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSSearchViewController.swift; sourceTree = "<group>"; };
+		911C5D501DB31038004C2862 /* TSHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSHomeViewController.swift; sourceTree = "<group>"; };
 		911C5D511DB31038004C2862 /* TSUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSUser.swift; sourceTree = "<group>"; };
 		911C5D521DB31038004C2862 /* TSStoury.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSStoury.swift; sourceTree = "<group>"; };
 		911C5D531DB31038004C2862 /* TSFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSFriendsViewController.swift; sourceTree = "<group>"; };
@@ -187,7 +187,7 @@
 			children = (
 				911C5D4A1DB31038004C2862 /* TSMainViewController.swift */,
 				911C5D4E1DB31038004C2862 /* TSPostViewController.swift */,
-				911C5D501DB31038004C2862 /* TSSearchViewController.swift */,
+				911C5D501DB31038004C2862 /* TSHomeViewController.swift */,
 				911C5D531DB31038004C2862 /* TSFriendsViewController.swift */,
 				911C5D541DB31038004C2862 /* TSStorisViewController.swift */,
 			);
@@ -362,7 +362,7 @@
 				911C5D561DB31038004C2862 /* TSSpinner.swift in Sources */,
 				91F948061DCE837E004B24F9 /* StreamManager.swift in Sources */,
 				911C5D5B1DB31038004C2862 /* VideoUploadManager.swift in Sources */,
-				911C5D5F1DB31038004C2862 /* TSSearchViewController.swift in Sources */,
+				911C5D5F1DB31038004C2862 /* TSHomeViewController.swift in Sources */,
 				911C5D5C1DB31038004C2862 /* AuthenticationManager.swift in Sources */,
 				911C5D5D1DB31038004C2862 /* TSPostViewController.swift in Sources */,
 				911C5D5E1DB31038004C2862 /* TSHelpers.swift in Sources */,
