@@ -23,7 +23,7 @@
 		911C5D5F1DB31038004C2862 /* TSHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D501DB31038004C2862 /* TSHomeViewController.swift */; };
 		911C5D601DB31038004C2862 /* TSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D511DB31038004C2862 /* TSUser.swift */; };
 		911C5D611DB31038004C2862 /* TSStoury.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D521DB31038004C2862 /* TSStoury.swift */; };
-		911C5D621DB31038004C2862 /* TSFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D531DB31038004C2862 /* TSFriendsViewController.swift */; };
+		911C5D621DB31038004C2862 /* TSMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D531DB31038004C2862 /* TSMeViewController.swift */; };
 		911C5D631DB31038004C2862 /* TSStorisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D541DB31038004C2862 /* TSStorisViewController.swift */; };
 		911C5D6B1DB31339004C2862 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 911C5D6A1DB31339004C2862 /* GoogleService-Info.plist */; };
 		9159E7D01DFE110400F71763 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159E7CF1DFE110400F71763 /* DataManager.swift */; };
@@ -71,7 +71,7 @@
 		911C5D501DB31038004C2862 /* TSHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSHomeViewController.swift; sourceTree = "<group>"; };
 		911C5D511DB31038004C2862 /* TSUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSUser.swift; sourceTree = "<group>"; };
 		911C5D521DB31038004C2862 /* TSStoury.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSStoury.swift; sourceTree = "<group>"; };
-		911C5D531DB31038004C2862 /* TSFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSFriendsViewController.swift; sourceTree = "<group>"; };
+		911C5D531DB31038004C2862 /* TSMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSMeViewController.swift; sourceTree = "<group>"; };
 		911C5D541DB31038004C2862 /* TSStorisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSStorisViewController.swift; sourceTree = "<group>"; };
 		911C5D6A1DB31339004C2862 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9159E7CF1DFE110400F71763 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 				911C5D4A1DB31038004C2862 /* TSMainViewController.swift */,
 				911C5D4E1DB31038004C2862 /* TSPostViewController.swift */,
 				911C5D501DB31038004C2862 /* TSHomeViewController.swift */,
-				911C5D531DB31038004C2862 /* TSFriendsViewController.swift */,
+				911C5D531DB31038004C2862 /* TSMeViewController.swift */,
 				911C5D541DB31038004C2862 /* TSStorisViewController.swift */,
 			);
 			name = Home;
@@ -356,7 +356,7 @@
 				9159E7D01DFE110400F71763 /* DataManager.swift in Sources */,
 				91F948081DCEB1EF004B24F9 /* LocationManager.swift in Sources */,
 				911C5D631DB31038004C2862 /* TSStorisViewController.swift in Sources */,
-				911C5D621DB31038004C2862 /* TSFriendsViewController.swift in Sources */,
+				911C5D621DB31038004C2862 /* TSMeViewController.swift in Sources */,
 				911C5D591DB31038004C2862 /* TSMainViewController.swift in Sources */,
 				91F7514E1DF9003C001DD558 /* NSData+Compression.swift in Sources */,
 				911C5D561DB31038004C2862 /* TSSpinner.swift in Sources */,

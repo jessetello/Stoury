@@ -68,7 +68,7 @@ class TSSignUpViewController: UIViewController, UITextFieldDelegate {
         if validateSignupInfo() {
             activeField?.resignFirstResponder()
             if let email = emailField.text, let password = passwordField.text, let username = userName.text {
-                AuthenticationManager.sharedInstance.signUp(email: email, password: password, username: username, completion: { (success) in
+                AuthenticationManager.sharedInstance.signUp(email: email, password: password, username: username, completion: { (success, error) in
                     if success {
                         let sb = UIStoryboard(name: "Main", bundle: nil)
                         if let mainVC = sb.instantiateViewController(withIdentifier: "TSMainViewController") as? TSMainViewController {
@@ -76,7 +76,13 @@ class TSSignUpViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                     else {
-                        
+                        DispatchQueue.main.async {
+                        let alertController = UIAlertController(title: error?.localizedDescription, message: nil, preferredStyle: .alert)
+                        let OK = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        })
+                        self.present(alertController, animated: false, completion: nil)
+                        alertController.addAction(OK)
+                    }
                     }
                 })
             }

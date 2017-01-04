@@ -13,6 +13,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import GoogleSignIn
 import GooglePlaces
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,15 +23,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
+
         GMSPlacesClient.provideAPIKey("AIzaSyDMU2suy9R7Fdf5Q1gLpfiO6BmhwJbRyIY")
+        GMSServices.provideAPIKey("AIzaSyBwMRdO0e7a1t9gFmyqF0NKixRXsdCJhOs")
+
+        UINavigationBar.appearance().isOpaque = false
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.lightGray], for: .normal)
         
         if let _ = FIRAuth.auth()?.currentUser {
             // User is signed in.
             let sb = UIStoryboard(name: "Main", bundle: nil)
             if let mainVC = sb.instantiateViewController(withIdentifier: "TSMainViewController") as? TSMainViewController {
                 let nav = UINavigationController(rootViewController: mainVC)
+                nav.navigationBar.isTranslucent = false
                 self.window?.rootViewController = nav
             }
+        } else {
+            AuthenticationManager.sharedInstance.logout()
         }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

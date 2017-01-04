@@ -7,7 +7,13 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class TSStorisViewController: UIViewController {
-
+    
+    @IBOutlet var mapView: GMSMapView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
 }

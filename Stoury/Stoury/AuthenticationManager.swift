@@ -14,15 +14,15 @@ import Firebase
 class AuthenticationManager {
     
     static let sharedInstance = AuthenticationManager()
-    typealias AuthenticationHandler = (_ success:Bool) -> Void
+    typealias AuthenticationHandler = (_ success:Bool, _ error:Error?) -> Void
     
     func signIn(email: String, password: String, completion: @escaping AuthenticationHandler) {
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
-                completion(false)
+                completion(false, error)
             }
             else {
-                completion(true)
+                completion(true, nil)
             }
          })
     }
@@ -31,14 +31,14 @@ class AuthenticationManager {
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             if let authError = error {
                 print(authError)
-                completion(false)
+                completion(false, authError)
             }
             else {
                 //create a user object with username,email,uid
                 if let newUser = user {
                     DataManager.sharedInstance.createUser(user: newUser, username: username)
                 }
-                completion(true)
+                completion(true, nil)
             }
         })
     }
@@ -47,13 +47,10 @@ class AuthenticationManager {
         FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
             if let authError = error {
                 print(authError)
-                completion(false)
+                completion(false, authError)
             }
             else {
-                if let newUser = user {
-
-                }
-                completion(true)
+                completion(true, nil)
             }
         })
     }

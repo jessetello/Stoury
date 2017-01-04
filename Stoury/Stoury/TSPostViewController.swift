@@ -278,7 +278,11 @@ extension TSPostViewController: AVCaptureFileOutputRecordingDelegate {
 //                    if saved && self.stouryType == .nonlive {
                         let alertController = UIAlertController(title: "Would you like to post this video?", message: nil, preferredStyle: .alert)
                         let yes = UIAlertAction(title: "YES", style: .default, handler: { (action) in
-                            VideoUploadManager.sharedInstance.saveToFireBase(data: videoData, title: self.descriptionTextView.text, place: self.selectedPlace, coordinate: LocationManager.sharedInstance.userLocation!)
+                            
+                            print(videoData)
+                            let compressed = NSData.compress(fileURL: outputFileURL as NSURL, action: .Compress)
+                            print(compressed)
+                            VideoUploadManager.sharedInstance.saveToFireBase(data: compressed, title: self.descriptionTextView.text, place: self.selectedPlace, coordinate: LocationManager.sharedInstance.userLocation!)
                                 self.dismiss(animated: true, completion: nil)
                         })
                         

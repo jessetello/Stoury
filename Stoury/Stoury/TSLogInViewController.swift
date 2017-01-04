@@ -22,6 +22,7 @@ class TSLogInViewController: UIViewController, UITextFieldDelegate {
         passwordField.underlined()
         emailField.delegate = self
         passwordField.delegate = self
+        
         NotificationCenter.default.addObserver(self, selector:#selector(TSLogInViewController.keyboardWillShow(notification:)) , name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(TSLogInViewController.keyboardWillHide(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         
@@ -51,7 +52,7 @@ class TSLogInViewController: UIViewController, UITextFieldDelegate {
             activeField?.resignFirstResponder()
             TSSpinner.show("Logging In...")
             if let email = emailField.text, let password = passwordField.text {
-                AuthenticationManager.sharedInstance.signIn(email: email, password: password) { (success) in
+                AuthenticationManager.sharedInstance.signIn(email: email, password: password) { (success, error) in
                     if success {
                         TSSpinner.hide()
                         self.loadMain()

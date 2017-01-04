@@ -11,17 +11,19 @@ import UIKit
 class TSHomeViewController: UIViewController {
    
     @IBOutlet var tableView: UITableView!
+    
     var searchArray = [TSStoury]()
     let homeList = ["Near Me","Hotels","Restaurants","Vacation Rentals"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
+        tableView.separatorColor = UIColor.white
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tableView.reloadData()
     }
 }
 
@@ -35,6 +37,8 @@ extension TSHomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = homeList[indexPath.item]
+        cell.textLabel?.textColor = UIColor.white
+    
         return cell
     }
 }

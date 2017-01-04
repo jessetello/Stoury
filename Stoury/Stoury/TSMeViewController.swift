@@ -8,11 +8,14 @@
 
 import UIKit
 
-class TSFriendsViewController: UIViewController {
+class TSMeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    func logout() {
+        AuthenticationManager.sharedInstance.logout()
     }
 
 }
