@@ -16,6 +16,7 @@ class DataManager {
     static let sharedInstance = DataManager()
     let ref = FIRDatabase.database().reference()
     let storage = FIRStorage.storage()
+    
     typealias DataHandler = (_ success:Bool, _ data:[TSStoury]) -> Void
 
     func getUserFeed(completion: @escaping DataHandler) {
@@ -29,12 +30,7 @@ class DataManager {
     }
     
     func createUser(user:FIRUser, username:String) {
-        ref.child("users/\(user.uid)/username").setValue(username)
+        ref.child("users").child(user.uid).setValue(["username": username])
+        //ref.child("users/\(user.uid)/username").setValue(username)
     }
-    
-    func getUserProfile() {
-        
-        
-    }
-
 }

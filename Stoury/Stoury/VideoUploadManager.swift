@@ -52,7 +52,7 @@ class VideoUploadManager {
                     return
                 }
                 self?.writeNewPost(userID: uid,
-                                   userName: "guy",
+                                   userName: (FIRAuth.auth()?.currentUser?.displayName)!,
                                    title: title,
                                    placeID:"",
                                    location:["lat":coordinate.coordinate.latitude,

@@ -14,4 +14,5 @@ struct TSUser {
     var lastName: String?
     var emailAddress: String?
     var userID: String?
+    var userName: String?
 }

@@ -34,10 +34,15 @@ class AuthenticationManager {
             }
             else {
                 //create a user object with username,email,uid
-                if let newUser = user {
-                    DataManager.sharedInstance.createUser(user: newUser, username: username)
+                if user != nil {
+                    let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
+                    changeRequest?.displayName = username
+                    changeRequest?.commitChanges() { (error) in
+                        if error == nil {
+                            completion(true, nil)
+                        }
+                    }
                 }
-                completion(true, nil)
             }
         })
     }
