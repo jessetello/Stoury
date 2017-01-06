@@ -30,7 +30,6 @@ class AuthenticationManager {
     func signUp(email: String, password: String, username: String, completion: @escaping AuthenticationHandler) {
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             if let authError = error {
-                print(authError)
                 completion(false, authError)
             }
             else {
@@ -46,7 +45,6 @@ class AuthenticationManager {
     func socialLoginWith(credential: FIRAuthCredential, completion: @escaping AuthenticationHandler)  {
         FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
             if let authError = error {
-                print(authError)
                 completion(false, authError)
             }
             else {

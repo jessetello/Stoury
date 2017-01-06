@@ -28,16 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyBwMRdO0e7a1t9gFmyqF0NKixRXsdCJhOs")
 
         UINavigationBar.appearance().isOpaque = false
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.lightGray], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: .selected)
         
         if let _ = FIRAuth.auth()?.currentUser {
             // User is signed in.
             let sb = UIStoryboard(name: "Main", bundle: nil)
             if let mainVC = sb.instantiateViewController(withIdentifier: "TSMainViewController") as? TSMainViewController {
-                let nav = UINavigationController(rootViewController: mainVC)
-                nav.navigationBar.isTranslucent = false
-                self.window?.rootViewController = nav
+                self.window?.rootViewController = mainVC
             }
         } else {
             AuthenticationManager.sharedInstance.logout()
