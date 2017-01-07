@@ -191,7 +191,7 @@
             <objects>
                 <navigationController storyboardIdentifier="Home" id="UpV-tz-cKj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" id="zOf-43-AFa"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="hRh-7j-WNA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="hRh-7j-WNA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -231,7 +231,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="er1-jv-ftd" id="Qek-mo-QHn">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.015686274510000001" green="0.22352941179999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -250,8 +249,11 @@
                                                         <constraint firstAttribute="width" constant="75" id="kXO-h1-Kyu"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xN0-E2-X1r">
-                                                    <rect key="frame" x="91" y="7" width="42" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xN0-E2-X1r">
+                                                    <rect key="frame" x="91" y="7" width="225" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="225" id="Bx4-UD-UCB"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -264,7 +266,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfD-y5-1Yh">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Rating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfD-y5-1Yh">
                                                     <rect key="frame" x="324" y="7" width="41" height="17"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -317,7 +319,7 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.015686274510000001" green="0.22352941179999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="usU-gs-Na3" firstAttribute="top" secondItem="iVo-ji-Lh7" secondAttribute="bottom" id="Ru4-zV-H7O"/>
                             <constraint firstAttribute="trailing" secondItem="iVo-ji-Lh7" secondAttribute="trailing" id="SOq-6u-d7u"/>
@@ -357,7 +359,7 @@
         <scene sceneID="DHq-s5-HlV">
             <objects>
                 <navigationController storyboardIdentifier="Welcome" automaticallyAdjustsScrollViewInsets="NO" id="6fc-fI-XBv" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="6Eb-py-OTH">
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" translucent="NO" id="6Eb-py-OTH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.015686274510000001" green="0.22352941179999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -682,7 +684,7 @@
             <objects>
                 <navigationController id="bbJ-OD-WH7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Stoury" id="NiW-7j-bDi"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Xa5-dW-eiX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Xa5-dW-eiX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -800,7 +802,7 @@
             <objects>
                 <navigationController id="5iF-oe-CMM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Me" id="lgy-PO-QHx"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="DgO-JV-4H4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="DgO-JV-4H4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

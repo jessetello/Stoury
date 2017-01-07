@@ -36,7 +36,7 @@ class TSHomeViewController: UIViewController {
 
         self.tableView.tableHeaderView = searchController.searchBar
         tableView.tableFooterView = UIView()
-        tableView.separatorColor = UIColor.white
+        tableView.separatorColor = UIColor.lightGray
         
         nearMePlaces()
 
