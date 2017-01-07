@@ -21,29 +21,29 @@ class TSHomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        LocationManager.sharedInstance.getLocation()
         self.navigationController?.navigationBar.topItem?.title = "Stoury"
-        
         searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
         searchController.searchBar.isOpaque = false
         searchController.searchBar.isTranslucent = false
-        searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.tintColor = UIColor.black
         searchController.searchBar.searchBarStyle = .minimal
         searchController.searchBar.barTintColor = UIColor.init(red: 4.0, green: 57.0, blue: 94.0, alpha: 1.0)
-        searchController.searchBar.setTextColor(color: UIColor.white)   
+        searchController.searchBar.setTextColor(color: UIColor.black)
+
         self.tableView.tableHeaderView = searchController.searchBar
-        
         tableView.tableFooterView = UIView()
         tableView.separatorColor = UIColor.white
-        LocationManager.sharedInstance.getLocation()
+        
+        nearMePlaces()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        nearMePlaces()
     }
     
     func nearMePlaces() {
@@ -53,9 +53,6 @@ class TSHomeViewController: UIViewController {
                 return
             }
             if let placeLikelihoodList = placeLikelihoodList {
-                
-                print(placeLikelihoodList.likelihoods)
-
                 for likelihood in placeLikelihoodList.likelihoods {
                     let place = likelihood.place
                     self?.likelyPlaces.append(place)
@@ -83,7 +80,7 @@ extension TSHomeViewController: UITableViewDataSource {
             
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
             cell.textLabel?.text = homeList[indexPath.item]
-            cell.textLabel?.textColor = UIColor.white
+            cell.textLabel?.textColor = UIColor.black
             return cell
             
         } else {

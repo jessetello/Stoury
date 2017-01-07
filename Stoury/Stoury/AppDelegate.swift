@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyBwMRdO0e7a1t9gFmyqF0NKixRXsdCJhOs")
 
         UINavigationBar.appearance().isOpaque = false
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
         
         if let _ = FIRAuth.auth()?.currentUser {
             // User is signed in.

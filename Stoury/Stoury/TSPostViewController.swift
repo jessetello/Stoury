@@ -63,9 +63,8 @@ class TSPostViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector:#selector(TSPostViewController.keyboardWillHide(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         descriptionTextView.textColor = UIColor.lightGray
-        descriptionTextView.becomeFirstResponder()
         descriptionTextView.delegate = self;
-        
+        descriptionTextView.becomeFirstResponder()
         startStreamButton.layer.cornerRadius = 8
     }
     
@@ -203,6 +202,7 @@ class TSPostViewController: UIViewController {
             videoTypeSwitch.isHidden = true
             liveStreamLabel.isHidden = true
             descriptionTextView.isHidden = true
+            descriptionTextView.resignFirstResponder()
             startStreamButton.setTitle("Stop Recording", for: .normal)
             startStreamButton.backgroundColor = UIColor.red
             
@@ -278,10 +278,9 @@ extension TSPostViewController: AVCaptureFileOutputRecordingDelegate {
 //                    if saved && self.stouryType == .nonlive {
                         let alertController = UIAlertController(title: "Would you like to post this video?", message: nil, preferredStyle: .alert)
                         let yes = UIAlertAction(title: "YES", style: .default, handler: { (action) in
-                            
-                            print(videoData)
+                            print(videoData.bytes)
                             let compressed = NSData.compress(fileURL: outputFileURL as NSURL, action: .Compress)
-                            print(compressed)
+                            print(compressed.bytes)
                             VideoUploadManager.sharedInstance.saveToFireBase(data: compressed, title: self.descriptionTextView.text, place: self.selectedPlace, coordinate: LocationManager.sharedInstance.userLocation!)
                                 self.dismiss(animated: true, completion: nil)
                         })
