@@ -91,6 +91,8 @@ extension TSHomeViewController: UITableViewDataSource {
             cell.ratingNum.text = String(likelyPlaces[indexPath.row].rating)
             
             DispatchQueue.main.async {
+            // get recent user storys instead
+                
             GMSPlacesClient.shared().lookUpPhotos(forPlaceID: self.likelyPlaces[indexPath.row].placeID) { (photos, error) -> Void in
                     if let error = error {
                         // TODO: handle the error.

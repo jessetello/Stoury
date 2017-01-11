@@ -28,6 +28,7 @@
 		911C5D6B1DB31339004C2862 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 911C5D6A1DB31339004C2862 /* GoogleService-Info.plist */; };
 		9159E7D01DFE110400F71763 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159E7CF1DFE110400F71763 /* DataManager.swift */; };
 		9186D2161E1F385800B256DB /* NearMeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9186D2151E1F385800B256DB /* NearMeCell.swift */; };
+		919B22EF1E22C66200627E06 /* StouryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 919B22EE1E22C66200627E06 /* StouryCell.xib */; };
 		91D088401DEE6B5E005C9702 /* TSMainFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0883F1DEE6B5E005C9702 /* TSMainFeedCell.swift */; };
 		91F7514E1DF9003C001DD558 /* NSData+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F7514D1DF9003C001DD558 /* NSData+Compression.swift */; };
 		91F948011DCE824F004B24F9 /* WowzaGoCoderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F947FF1DCE81BB004B24F9 /* WowzaGoCoderSDK.framework */; };
@@ -77,6 +78,7 @@
 		911C5D6A1DB31339004C2862 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9159E7CF1DFE110400F71763 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		9186D2151E1F385800B256DB /* NearMeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeCell.swift; sourceTree = "<group>"; };
+		919B22EE1E22C66200627E06 /* StouryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StouryCell.xib; sourceTree = "<group>"; };
 		91D0883F1DEE6B5E005C9702 /* TSMainFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSMainFeedCell.swift; sourceTree = "<group>"; };
 		91F7514D1DF9003C001DD558 /* NSData+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Compression.swift"; sourceTree = "<group>"; };
 		91F947FF1DCE81BB004B24F9 /* WowzaGoCoderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WowzaGoCoderSDK.framework; path = Stoury/WowzaGoCoderSDK.framework; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			children = (
 				911C5D3B1DB30D51004C2862 /* LaunchScreen.storyboard */,
 				911C5D461DB31038004C2862 /* Main.storyboard */,
+				919B22EE1E22C66200627E06 /* StouryCell.xib */,
 				91D0883F1DEE6B5E005C9702 /* TSMainFeedCell.swift */,
 				9186D2151E1F385800B256DB /* NearMeCell.swift */,
 			);
@@ -284,6 +287,7 @@
 				911C5D6B1DB31339004C2862 /* GoogleService-Info.plist in Resources */,
 				911C5D3A1DB30D51004C2862 /* Assets.xcassets in Resources */,
 				911C5D551DB31038004C2862 /* Main.storyboard in Resources */,
+				919B22EF1E22C66200627E06 /* StouryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

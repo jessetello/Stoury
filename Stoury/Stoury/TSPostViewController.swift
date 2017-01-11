@@ -192,7 +192,7 @@ class TSPostViewController: UIViewController {
                 
                 let recordingDelegate:AVCaptureFileOutputRecordingDelegate? = self
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                let filePath = documentsURL.appendingPathComponent("temp")
+                let filePath = documentsURL.appendingPathComponent("vid.MOV")
                 self.movieFileOutput?.startRecording(toOutputFileURL: filePath as URL!, recordingDelegate: recordingDelegate)
                 break
             }
@@ -262,6 +262,19 @@ class TSPostViewController: UIViewController {
         present(locationsVC, animated: true, completion: nil)
     }
     
+    func compressVideo(inputURL: NSURL, outputURL: NSURL, handler:@escaping (_ exportSession: AVAssetExportSession)-> Void) {
+        let urlAsset = AVURLAsset(url: inputURL as URL, options: nil)
+        print(urlAsset)
+        if let exportSession = AVAssetExportSession(asset: urlAsset, presetName: AVAssetExportPresetMediumQuality) {
+            exportSession.outputURL = outputURL as URL
+            exportSession.outputFileType = AVFileTypeQuickTimeMovie
+            exportSession.shouldOptimizeForNetworkUse = true
+            exportSession.exportAsynchronously { () -> Void in
+                handler(exportSession)
+            }
+        }
+    }
+    
 }
 
 extension TSPostViewController: AVCaptureFileOutputRecordingDelegate {
@@ -271,31 +284,41 @@ extension TSPostViewController: AVCaptureFileOutputRecordingDelegate {
     }
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
-            if let videoData = NSData(contentsOf:outputFileURL) {
-//                PHPhotoLibrary.shared().performChanges({
-//                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
-//                }) { saved, error in
-//                    if saved && self.stouryType == .nonlive {
-                        let alertController = UIAlertController(title: "Would you like to post this video?", message: nil, preferredStyle: .alert)
-                        let yes = UIAlertAction(title: "YES", style: .default, handler: { (action) in
-                            print(videoData.bytes)
-                            let compressed = NSData.compress(fileURL: outputFileURL as NSURL, action: .Compress)
-                            print(compressed.bytes)
-                            VideoUploadManager.sharedInstance.saveToFireBase(data: compressed, title: self.descriptionTextView.text, place: self.selectedPlace, coordinate: LocationManager.sharedInstance.userLocation!)
-                                self.dismiss(animated: true, completion: nil)
-                        })
+        let uploadURL = NSURL.fileURL(withPath: NSTemporaryDirectory() + NSUUID().uuidString + ".MOV")
+        self.compressVideo(inputURL: outputFileURL as NSURL, outputURL: uploadURL as NSURL) { (session) in
+            print(session.status.rawValue)
+            switch session.status {
+            case .unknown:
+                break
+            case .waiting:
+                break
+            case .completed:
+                if let compData = NSData(contentsOf: uploadURL) {
+                    let alertController = UIAlertController(title: "Would you like to post this video?", message: nil, preferredStyle: .alert)
+                    let yes = UIAlertAction(title: "YES", style: .default, handler: { (action) in
                         
-                        let no = UIAlertAction(title: "NO", style: .default, handler: { (action) in
-                            self.dismiss(animated: true, completion: nil)
-                        })
-
-                        alertController.addAction(yes)
-                        alertController.addAction(no)
-                        self.present(alertController, animated: true, completion: nil)
-//                    }
+                        VideoUploadManager.sharedInstance.saveToFireBase(data: compData, title: self.descriptionTextView.text, place: self.selectedPlace, coordinate: LocationManager.sharedInstance.userLocation!)
+                        self.dismiss(animated: true, completion: nil)
+                    })
+                    
+                    let no = UIAlertAction(title: "NO", style: .default, handler: { (action) in
+                        self.dismiss(animated: true, completion: nil)
+                    })
+                    
+                    alertController.addAction(yes)
+                    alertController.addAction(no)
+                    self.present(alertController, animated: true, completion: nil)
                 }
+                break
+            case .failed:
+                break
+            case .cancelled:
+                break
+            default:
+                break
             }
-//    }
+        }
+    }
 }
 
 extension TSPostViewController: UITextViewDelegate {
