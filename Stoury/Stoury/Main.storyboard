@@ -50,7 +50,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="paP-Ne-IsT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4364" y="-206"/>
+            <point key="canvasLocation" x="4324" y="-242"/>
         </scene>
         <!--Post View Controller-->
         <scene sceneID="s1l-DI-rbe">
@@ -172,7 +172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="azm-lp-AyI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5238" y="-206"/>
+            <point key="canvasLocation" x="5071" y="-242"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5wy-fh-GoW">
@@ -204,11 +204,11 @@
             </objects>
             <point key="canvasLocation" x="6057" y="-206"/>
         </scene>
-        <!--Home-->
+        <!--Navigation Controller-->
         <scene sceneID="UWx-nr-kKb">
             <objects>
                 <navigationController storyboardIdentifier="Home" id="UpV-tz-cKj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="zOf-43-AFa"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="zOf-43-AFa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="hRh-7j-WNA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -225,7 +225,7 @@
             </objects>
             <point key="canvasLocation" x="2791" y="-958"/>
         </scene>
-        <!--Home-->
+        <!--Home View Controller-->
         <scene sceneID="jjh-Bb-2Ur">
             <objects>
                 <viewController id="XGj-Fb-Tt6" customClass="TSHomeViewController" customModule="Stoury" customModuleProvider="target" sceneMemberID="viewController">
@@ -345,7 +345,7 @@
                             <constraint firstItem="iVo-ji-Lh7" firstAttribute="leading" secondItem="RTh-x0-MRf" secondAttribute="leading" id="y8f-Eu-s4l"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="Sq6-kn-ZYY"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="Sq6-kn-ZYY"/>
                     <navigationItem key="navigationItem" id="IeR-Rm-666"/>
                     <connections>
                         <outlet property="tableView" destination="iVo-ji-Lh7" id="Nkp-nc-Nqv"/>

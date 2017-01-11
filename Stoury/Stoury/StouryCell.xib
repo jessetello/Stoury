@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IfE-m5-1KH" id="xqw-Gm-OpB">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iqm-xM-ksA">
@@ -32,8 +32,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Walking around London" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MJ-LK-1am">
-                        <rect key="frame" x="113" y="37" width="170.5" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <rect key="frame" x="113" y="37" width="153" height="21"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -75,6 +75,15 @@
                             </button>
                         </subviews>
                     </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joe's Cafe" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6y-zy-yWM">
+                        <rect key="frame" x="276" y="27" width="91" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="TvB-Cw-RbE"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ohN-rN-iBL" firstAttribute="bottom" secondItem="gAN-Av-SrI" secondAttribute="bottom" id="5vq-AS-j0u"/>
@@ -84,12 +93,16 @@
                     <constraint firstItem="Dr0-yO-s1V" firstAttribute="leading" secondItem="iqm-xM-ksA" secondAttribute="trailing" constant="8" symbolic="YES" id="H7v-nE-7NU"/>
                     <constraint firstItem="ohN-rN-iBL" firstAttribute="leading" secondItem="iqm-xM-ksA" secondAttribute="trailing" constant="8" symbolic="YES" id="HXo-Rg-Nmj"/>
                     <constraint firstItem="Dr0-yO-s1V" firstAttribute="top" secondItem="xqw-Gm-OpB" secondAttribute="top" constant="66" id="LaC-t3-WLa"/>
+                    <constraint firstItem="b6y-zy-yWM" firstAttribute="leading" secondItem="gAN-Av-SrI" secondAttribute="leading" id="Yp3-jg-XJF"/>
                     <constraint firstItem="gAN-Av-SrI" firstAttribute="trailing" secondItem="xqw-Gm-OpB" secondAttribute="trailingMargin" id="fBt-br-ChK"/>
                     <constraint firstItem="iqm-xM-ksA" firstAttribute="leading" secondItem="xqw-Gm-OpB" secondAttribute="leading" id="jUK-77-O1e"/>
                     <constraint firstItem="5MJ-LK-1am" firstAttribute="leading" secondItem="iqm-xM-ksA" secondAttribute="trailing" constant="8" symbolic="YES" id="mOP-oA-Fj1"/>
                     <constraint firstItem="czv-H8-zgQ" firstAttribute="centerX" secondItem="xqw-Gm-OpB" secondAttribute="centerX" id="oDn-KG-Agy"/>
+                    <constraint firstItem="b6y-zy-yWM" firstAttribute="trailing" secondItem="gAN-Av-SrI" secondAttribute="trailing" id="pCS-rB-ReJ"/>
                     <constraint firstItem="Dr0-yO-s1V" firstAttribute="top" secondItem="5MJ-LK-1am" secondAttribute="bottom" constant="8" symbolic="YES" id="pDm-Ze-NNp"/>
                     <constraint firstItem="iqm-xM-ksA" firstAttribute="top" secondItem="xqw-Gm-OpB" secondAttribute="top" id="qwa-yx-5zI"/>
+                    <constraint firstItem="czv-H8-zgQ" firstAttribute="top" secondItem="b6y-zy-yWM" secondAttribute="bottom" constant="70" id="rgd-lH-nDW"/>
+                    <constraint firstItem="b6y-zy-yWM" firstAttribute="leading" secondItem="5MJ-LK-1am" secondAttribute="trailing" constant="10" id="rqp-xj-4Gs"/>
                     <constraint firstAttribute="bottomMargin" secondItem="czv-H8-zgQ" secondAttribute="bottom" constant="10" id="tlL-HB-Uug"/>
                     <constraint firstItem="czv-H8-zgQ" firstAttribute="top" secondItem="iqm-xM-ksA" secondAttribute="bottom" constant="20" id="yCV-kL-f7w"/>
                 </constraints>
