@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TSMainFeedCell: UITableViewCell {
+class StouryCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

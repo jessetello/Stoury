@@ -54,23 +54,23 @@ class VideoUploadManager {
                 self?.writeNewPost(userID: uid,
                                    userName: "JOE",//(FIRAuth.auth()?.currentUser?.displayName)!,
                                    title: title,
-                                   placeID:"",
-                                   location:["lat":coordinate.coordinate.latitude,
+                                   location:"",
+                                   coordinates:["lat":coordinate.coordinate.latitude,
                                              "lon":coordinate.coordinate.longitude],
                                    url:vidUrl.absoluteString)
             }
         }
     }
     
-    func writeNewPost(userID:String, userName:String, title:String, placeID:String, location:[String:Double], url:String) {
+    func writeNewPost(userID:String, userName:String, title:String, location:String, coordinates:[String:Double], url:String) {
         
         let key = DataManager.sharedInstance.ref.child("posts").childByAutoId().key
         
         let post = ["uid": userID,
                     "user": userName,
                     "title": title,
+                    "coordinates": coordinates,
                     "location": location,
-                    "placeID": placeID,
                     "url":url] as [String : Any]
         
         let childUpdates = ["/posts/\(key)": post,

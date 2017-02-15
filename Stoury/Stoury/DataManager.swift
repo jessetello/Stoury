@@ -17,7 +17,7 @@ class DataManager {
     let ref = FIRDatabase.database().reference()
     let storage = FIRStorage.storage()
     
-    typealias DataHandler = (_ success:Bool, _ data:[TSStoury]) -> Void
+    typealias DataHandler = (_ success:Bool, _ data:[Stoury]) -> Void
 
     func getUserFeed(completion: @escaping DataHandler) {
         ref.child("posts")
@@ -27,6 +27,12 @@ class DataManager {
                // completion(true, posts)
             }
         })
+    }
+    
+    func getRecentPosts() {
+        //search database all posts for most recent
+        
+        
     }
     
     func createUser(user:FIRUser, username:String) {

@@ -18,18 +18,19 @@
 		911C5D5A1DB31038004C2862 /* TSWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D4B1DB31038004C2862 /* TSWelcomeViewController.swift */; };
 		911C5D5B1DB31038004C2862 /* VideoUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D4C1DB31038004C2862 /* VideoUploadManager.swift */; };
 		911C5D5C1DB31038004C2862 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D4D1DB31038004C2862 /* AuthenticationManager.swift */; };
-		911C5D5D1DB31038004C2862 /* TSPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D4E1DB31038004C2862 /* TSPostViewController.swift */; };
+		911C5D5D1DB31038004C2862 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D4E1DB31038004C2862 /* RecordViewController.swift */; };
 		911C5D5E1DB31038004C2862 /* TSHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D4F1DB31038004C2862 /* TSHelpers.swift */; };
 		911C5D5F1DB31038004C2862 /* TSHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D501DB31038004C2862 /* TSHomeViewController.swift */; };
 		911C5D601DB31038004C2862 /* TSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D511DB31038004C2862 /* TSUser.swift */; };
-		911C5D611DB31038004C2862 /* TSStoury.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D521DB31038004C2862 /* TSStoury.swift */; };
+		911C5D611DB31038004C2862 /* Stoury.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D521DB31038004C2862 /* Stoury.swift */; };
 		911C5D621DB31038004C2862 /* TSMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D531DB31038004C2862 /* TSMeViewController.swift */; };
 		911C5D631DB31038004C2862 /* TSStorisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D541DB31038004C2862 /* TSStorisViewController.swift */; };
 		911C5D6B1DB31339004C2862 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 911C5D6A1DB31339004C2862 /* GoogleService-Info.plist */; };
 		9159E7D01DFE110400F71763 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159E7CF1DFE110400F71763 /* DataManager.swift */; };
+		917CDB5D1E53EC5D0035E815 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917CDB5C1E53EC5D0035E815 /* PostViewController.swift */; };
 		9186D2161E1F385800B256DB /* NearMeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9186D2151E1F385800B256DB /* NearMeCell.swift */; };
 		919B22EF1E22C66200627E06 /* StouryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 919B22EE1E22C66200627E06 /* StouryCell.xib */; };
-		91D088401DEE6B5E005C9702 /* TSMainFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0883F1DEE6B5E005C9702 /* TSMainFeedCell.swift */; };
+		91D088401DEE6B5E005C9702 /* StouryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0883F1DEE6B5E005C9702 /* StouryCell.swift */; };
 		91F7514E1DF9003C001DD558 /* NSData+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F7514D1DF9003C001DD558 /* NSData+Compression.swift */; };
 		91F948011DCE824F004B24F9 /* WowzaGoCoderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F947FF1DCE81BB004B24F9 /* WowzaGoCoderSDK.framework */; };
 		91F948021DCE824F004B24F9 /* WowzaGoCoderSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91F947FF1DCE81BB004B24F9 /* WowzaGoCoderSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -68,18 +69,19 @@
 		911C5D4B1DB31038004C2862 /* TSWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSWelcomeViewController.swift; sourceTree = "<group>"; };
 		911C5D4C1DB31038004C2862 /* VideoUploadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoUploadManager.swift; sourceTree = "<group>"; };
 		911C5D4D1DB31038004C2862 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
-		911C5D4E1DB31038004C2862 /* TSPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSPostViewController.swift; sourceTree = "<group>"; };
+		911C5D4E1DB31038004C2862 /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		911C5D4F1DB31038004C2862 /* TSHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSHelpers.swift; sourceTree = "<group>"; };
 		911C5D501DB31038004C2862 /* TSHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSHomeViewController.swift; sourceTree = "<group>"; };
 		911C5D511DB31038004C2862 /* TSUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSUser.swift; sourceTree = "<group>"; };
-		911C5D521DB31038004C2862 /* TSStoury.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSStoury.swift; sourceTree = "<group>"; };
+		911C5D521DB31038004C2862 /* Stoury.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stoury.swift; sourceTree = "<group>"; };
 		911C5D531DB31038004C2862 /* TSMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSMeViewController.swift; sourceTree = "<group>"; };
 		911C5D541DB31038004C2862 /* TSStorisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSStorisViewController.swift; sourceTree = "<group>"; };
 		911C5D6A1DB31339004C2862 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9159E7CF1DFE110400F71763 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		917CDB5C1E53EC5D0035E815 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		9186D2151E1F385800B256DB /* NearMeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeCell.swift; sourceTree = "<group>"; };
 		919B22EE1E22C66200627E06 /* StouryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StouryCell.xib; sourceTree = "<group>"; };
-		91D0883F1DEE6B5E005C9702 /* TSMainFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSMainFeedCell.swift; sourceTree = "<group>"; };
+		91D0883F1DEE6B5E005C9702 /* StouryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StouryCell.swift; sourceTree = "<group>"; };
 		91F7514D1DF9003C001DD558 /* NSData+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Compression.swift"; sourceTree = "<group>"; };
 		91F947FF1DCE81BB004B24F9 /* WowzaGoCoderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WowzaGoCoderSDK.framework; path = Stoury/WowzaGoCoderSDK.framework; sourceTree = "<group>"; };
 		91F948051DCE837E004B24F9 /* StreamManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamManager.swift; sourceTree = "<group>"; };
@@ -140,7 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				911C5D511DB31038004C2862 /* TSUser.swift */,
-				911C5D521DB31038004C2862 /* TSStoury.swift */,
+				911C5D521DB31038004C2862 /* Stoury.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -151,7 +153,7 @@
 				911C5D3B1DB30D51004C2862 /* LaunchScreen.storyboard */,
 				911C5D461DB31038004C2862 /* Main.storyboard */,
 				919B22EE1E22C66200627E06 /* StouryCell.xib */,
-				91D0883F1DEE6B5E005C9702 /* TSMainFeedCell.swift */,
+				91D0883F1DEE6B5E005C9702 /* StouryCell.swift */,
 				9186D2151E1F385800B256DB /* NearMeCell.swift */,
 			);
 			name = Views;
@@ -192,7 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				911C5D4A1DB31038004C2862 /* TSMainViewController.swift */,
-				911C5D4E1DB31038004C2862 /* TSPostViewController.swift */,
+				917CDB5C1E53EC5D0035E815 /* PostViewController.swift */,
+				911C5D4E1DB31038004C2862 /* RecordViewController.swift */,
 				911C5D501DB31038004C2862 /* TSHomeViewController.swift */,
 				911C5D531DB31038004C2862 /* TSMeViewController.swift */,
 				911C5D541DB31038004C2862 /* TSStorisViewController.swift */,
@@ -359,7 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				911C5D611DB31038004C2862 /* TSStoury.swift in Sources */,
+				911C5D611DB31038004C2862 /* Stoury.swift in Sources */,
 				9159E7D01DFE110400F71763 /* DataManager.swift in Sources */,
 				91F948081DCEB1EF004B24F9 /* LocationManager.swift in Sources */,
 				911C5D631DB31038004C2862 /* TSStorisViewController.swift in Sources */,
@@ -369,17 +372,18 @@
 				91F7514E1DF9003C001DD558 /* NSData+Compression.swift in Sources */,
 				911C5D561DB31038004C2862 /* TSSpinner.swift in Sources */,
 				91F948061DCE837E004B24F9 /* StreamManager.swift in Sources */,
+				917CDB5D1E53EC5D0035E815 /* PostViewController.swift in Sources */,
 				911C5D5B1DB31038004C2862 /* VideoUploadManager.swift in Sources */,
 				911C5D5F1DB31038004C2862 /* TSHomeViewController.swift in Sources */,
 				911C5D5C1DB31038004C2862 /* AuthenticationManager.swift in Sources */,
-				911C5D5D1DB31038004C2862 /* TSPostViewController.swift in Sources */,
+				911C5D5D1DB31038004C2862 /* RecordViewController.swift in Sources */,
 				911C5D5E1DB31038004C2862 /* TSHelpers.swift in Sources */,
 				911C5D331DB30D51004C2862 /* AppDelegate.swift in Sources */,
 				911C5D581DB31038004C2862 /* TSLogInViewController.swift in Sources */,
 				911C5D601DB31038004C2862 /* TSUser.swift in Sources */,
 				911C5D5A1DB31038004C2862 /* TSWelcomeViewController.swift in Sources */,
 				911C5D571DB31038004C2862 /* TSSignUpViewController.swift in Sources */,
-				91D088401DEE6B5E005C9702 /* TSMainFeedCell.swift in Sources */,
+				91D088401DEE6B5E005C9702 /* StouryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
