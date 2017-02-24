@@ -71,7 +71,7 @@ class TSSignUpViewController: UIViewController, UITextFieldDelegate {
                 AuthenticationManager.sharedInstance.signUp(email: email, password: password, username: username, completion: { (success, error) in
                     if success {
                         let sb = UIStoryboard(name: "Main", bundle: nil)
-                        if let mainVC = sb.instantiateViewController(withIdentifier: "TSMainViewController") as? TSMainViewController {
+                        if let mainVC = sb.instantiateViewController(withIdentifier: "TSMainViewController") as? MainViewController {
                             self.navigationController?.pushViewController(mainVC, animated: true)
                         }
                     }

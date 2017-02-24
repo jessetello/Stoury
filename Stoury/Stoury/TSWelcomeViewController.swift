@@ -41,7 +41,7 @@ class TSWelcomeViewController: UIViewController {
     }
     
     func loadMain() {
-        if let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "TSMainViewController") as? TSMainViewController {
+        if let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "TSMainViewController") as? MainViewController {
             self.navigationController?.pushViewController(mainVC, animated: true)
         }
     }

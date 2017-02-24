@@ -64,7 +64,7 @@ class VideoUploadManager {
     
     func writeNewPost(userID:String, userName:String, title:String, location:String, coordinates:[String:Double], url:String) {
         
-        let key = DataManager.sharedInstance.ref.child("posts").childByAutoId().key
+        let key = DataManager.sharedInstance.postRef.child("posts").childByAutoId().key
         
         let post = ["uid": userID,
                     "user": userName,
@@ -75,7 +75,7 @@ class VideoUploadManager {
         
         let childUpdates = ["/posts/\(key)": post,
                             "/user-posts/\(userID)/\(key)/": post]
-        DataManager.sharedInstance.ref.updateChildValues(childUpdates)
+        DataManager.sharedInstance.postRef.updateChildValues(childUpdates)
     }
     
 }

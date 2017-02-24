@@ -27,23 +27,17 @@ enum RecordingState {
 class RecordViewController: UIViewController {
    //This will eventually be custom recording view
     
-    @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var descriptionTextView: UITextView!
-
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var seperatorLine: UIView!
     @IBOutlet weak var initializingLabel: UILabel!
     @IBOutlet weak var startStreamButton: UIButton!
-    
     @IBOutlet weak var bottomViewConstraint: NSLayoutConstraint!
     
-    @IBOutlet var videoTypeSwitch: UISwitch!
     var selectedPlace:GMSPlace?
     var stouryType = StouryType.nonlive
     var recordingState = RecordingState.stopped
 
-    @IBOutlet var liveStreamLabel: UILabel!
     var captureSession = AVCaptureSession()
     var movieFileOutput: AVCaptureMovieFileOutput?
     var audioDeviceInput: AVCaptureDeviceInput?
@@ -57,14 +51,11 @@ class RecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nonLiveStream()
+        setupRecorder()
     
         NotificationCenter.default.addObserver(self, selector:#selector(RecordViewController.keyboardWillShow(notification:)) , name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(RecordViewController.keyboardWillHide(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
-        descriptionTextView.textColor = UIColor.lightGray
-        descriptionTextView.delegate = self;
-        descriptionTextView.becomeFirstResponder()
+
         startStreamButton.layer.cornerRadius = 8
     }
     
@@ -72,34 +63,7 @@ class RecordViewController: UIViewController {
         super.viewDidAppear(animated)
     }
     
-    func initializeLiveStream() {
-        DispatchQueue.main.async {
-            //StreamManager.sharedInstance.goCoder?.cameraView = self.view
-            StreamManager.sharedInstance.goCoder?.config.load(WZFrameSizePreset.preset1280x720)
-            StreamManager.sharedInstance.goCoder?.config.hostAddress = "rtmp://ec6587.entrypoint.cloud.wowza.com"
-            StreamManager.sharedInstance.goCoder?.config.portNumber = 1935
-            StreamManager.sharedInstance.goCoder?.config.streamName = "e34dad1f"
-            StreamManager.sharedInstance.goCoder?.config.applicationName = "app-a989"
-            StreamManager.sharedInstance.goCoder?.cameraPreview?.previewGravity = WZCameraPreviewGravity.resizeAspectFill
-            //StreamManager.sharedInstance.goCoder?.cameraPreview?.start()
-            
-            StreamManager.sharedInstance.initalizeBroadcast(completion: { (success) in
-                if success {
-                    self.initializingLabel.isHidden = true
-                    self.startStreamButton.isHidden = false
-                    self.videoTypeSwitch.isEnabled = true
-                    self.liveStreamLabel.textColor = UIColor.white
-                }
-                else {
-                    self.videoTypeSwitch.isEnabled = false
-                    self.initializingLabel.text = "Initialization Error"
-                }
-            })
-        }
-       //  "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/WowzaGoCoderSDK.framework/strip-frameworks.sh"
-    }
-    
-    func nonLiveStream() {
+    func setupRecorder() {
       DispatchQueue.main.async {
         self.captureSession.sessionPreset = AVCaptureSessionPresetInputPriority
         if let backCamera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) {
@@ -140,36 +104,18 @@ class RecordViewController: UIViewController {
             self.captureSession.commitConfiguration()
         }
         
-        if let preview = AVCaptureVideoPreviewLayer(session: self.captureSession) {
+            if let preview = AVCaptureVideoPreviewLayer(session: self.captureSession) {
                 self.nonLivePreviewLayer = preview
                 self.nonLivePreviewLayer?.frame = self.view.bounds
                 self.nonLivePreviewLayer?.position = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
                 self.nonLivePreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
                 self.view.layer.insertSublayer(self.nonLivePreviewLayer!, at: 0)
                 self.captureSession.startRunning()
-        }
+            }
         
         }
     }
     
-    @IBAction func toggleRecordingType(_ sender: UISwitch) {
-        
-        if sender.isOn {
-            self.captureSession.stopRunning()
-            self.nonLivePreviewLayer?.removeFromSuperlayer()
-            self.nonLivePreviewLayer = nil
-            StreamManager.sharedInstance.goCoder?.cameraView = self.view
-            StreamManager.sharedInstance.goCoder?.cameraPreview?.start()
-            stouryType = .live
-        }
-        else {
-            StreamManager.sharedInstance.goCoder?.cameraPreview?.stop()
-            StreamManager.sharedInstance.goCoder?.cameraView = nil
-            stouryType = .nonlive
-            nonLiveStream()
-        }
-    }
- 
     @IBAction func closeRecorder(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -177,48 +123,21 @@ class RecordViewController: UIViewController {
     @IBAction func startStream(_ sender: UIButton) {
        
         if recordingState == .stopped {
-            switch stouryType {
-            case .live:
-                if StreamManager.sharedInstance.goCoder?.status.state != WZState.running {
-                    descriptionTextView.resignFirstResponder()
-                    startStreamButton.titleLabel?.text = "Stop Stream"
-                    StreamManager.sharedInstance.startBroadcast()
-                }
-                else {
-                    StreamManager.sharedInstance.stopBroadCast()
-                }
-                break
-            case .nonlive:
-                
-                let recordingDelegate:AVCaptureFileOutputRecordingDelegate? = self
-                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                let filePath = documentsURL.appendingPathComponent("vid.MOV")
-                self.movieFileOutput?.startRecording(toOutputFileURL: filePath as URL!, recordingDelegate: recordingDelegate)
-                break
-            }
+           
+            let recordingDelegate:AVCaptureFileOutputRecordingDelegate? = self
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let filePath = documentsURL.appendingPathComponent("vid.MOV")
+            self.movieFileOutput?.startRecording(toOutputFileURL: filePath as URL!, recordingDelegate: recordingDelegate)
             
             timer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(RecordViewController.updateCounter), userInfo: nil, repeats: true)
             timeLabel.isHidden = false
-            videoTypeSwitch.isHidden = true
-            liveStreamLabel.isHidden = true
-            descriptionTextView.isHidden = true
-            descriptionTextView.resignFirstResponder()
             startStreamButton.setTitle("Stop Recording", for: .normal)
             startStreamButton.backgroundColor = UIColor.red
             
             recordingState = .recording
         }
         else {
-            switch stouryType {
-            case .live:
-                if StreamManager.sharedInstance.goCoder?.status.state == WZState.running {
-                    StreamManager.sharedInstance.stopBroadCast()
-                }
-                break
-            case .nonlive:
-               self.captureSession.stopRunning()
-                break
-            }
+            self.captureSession.stopRunning()
             timer.invalidate()
         }
     }
@@ -294,10 +213,14 @@ extension RecordViewController: AVCaptureFileOutputRecordingDelegate {
                 break
             case .completed:
                 if let compData = NSData(contentsOf: uploadURL) {
+                    
+                    
+                    //Push to loop of video, and ask if usr wants to keep
+                    
+                    
                     let alertController = UIAlertController(title: "Would you like to post this video?", message: nil, preferredStyle: .alert)
                     let yes = UIAlertAction(title: "YES", style: .default, handler: { (action) in
-                        
-                        VideoUploadManager.sharedInstance.saveToFireBase(data: compData, title: self.descriptionTextView.text, place: self.selectedPlace, coordinate: LocationManager.sharedInstance.userLocation!)
+                        VideoUploadManager.sharedInstance.saveToFireBase(data: compData, title:"", place: self.selectedPlace, coordinate: LocationManager.sharedInstance.userLocation!)
                         self.dismiss(animated: true, completion: nil)
                     })
                     
@@ -335,7 +258,6 @@ extension RecordViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
             selectedPlace = place
-            addLocationButton.setTitle(place.name, for: .normal)
             viewController.dismiss(animated: true, completion: nil)
     }
     

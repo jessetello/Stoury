@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let _ = FIRAuth.auth()?.currentUser {
             // User is signed in.
             let sb = UIStoryboard(name: "Main", bundle: nil)
-            if let mainVC = sb.instantiateViewController(withIdentifier: "TSMainViewController") as? TSMainViewController {
+            if let mainVC = sb.instantiateViewController(withIdentifier: "TSMainViewController") as? MainViewController {
                 self.window?.rootViewController = mainVC
             }
         } else {

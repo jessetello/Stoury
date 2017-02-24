@@ -60,6 +60,10 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
         }
     }
     
+    @IBAction func createNewPost(_ sender: UIButton) {
+        self.authorizeRecordingView()
+    }
+    
     func nearMePlaces() {
         placesClient.currentPlace(callback: { [weak self] (placeLikelihoodList, error) -> Void in
             if let error = error {

@@ -69,8 +69,7 @@ class AuthenticationManager {
                 }
         }
         catch {
-            
-            
+            print(error.localizedDescription)
         }
     }
 }
