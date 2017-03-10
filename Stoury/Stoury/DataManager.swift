@@ -16,9 +16,13 @@ class DataManager {
     static let sharedInstance = DataManager()
     
     let postRef = FIRDatabase.database().reference(withPath: "posts")
-    let userRef = FIRDatabase.database().reference(withPath: "user-posts")
-    let storage = FIRStorage.storage()
+    let userPostRef = FIRDatabase.database().reference(withPath: "user-posts")
+    let userInfoRef = FIRDatabase.database().reference(withPath: "users")
 
+    let storage = FIRStorage.storage()
+    
+    
+    
     var recentPosts = [Stoury]()
     var userPosts = [Stoury]()
     
@@ -39,7 +43,9 @@ class DataManager {
             if let posts = snapshot.value as? [String : [String : Any]] {
                 for (key, value) in posts {
                     let info = value as [String: Any]
-                    let stoury = Stoury(userID: key, userName: info[""] as? String, title:  info[""] as? String, location:  info[""] as? String, length:  info[""] as? Double, date:  info[""] as? Date, category:  info[""] as? String)
+                    print(info)
+                    let stoury = Stoury(userID: key, userName: info["user"] as? String, title:  info["title"] as? String, location:  info["location"] as? String, length:  info[""] as? Double, date:  info[""] as? Date, category:  info[""] as? String)
+                    print(stoury)
                     self.recentPosts.append(stoury)
                 }
             }
@@ -47,7 +53,10 @@ class DataManager {
     }
     
     func createUser(user:FIRUser, username:String) {
-        userRef.child("users").child(user.uid).setValue(["username": username])
+        userInfoRef.child("users").child(user.uid).setValue(["username": username])
         //ref.child("users/\(user.uid)/username").setValue(username)
     }
+    
+    
+
 }

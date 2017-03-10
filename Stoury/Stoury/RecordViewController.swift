@@ -215,12 +215,10 @@ extension RecordViewController: AVCaptureFileOutputRecordingDelegate {
                 if let compData = NSData(contentsOf: uploadURL) {
                     
                     
-                    //Push to loop of video, and ask if usr wants to keep
-                    
-                    
+                    //Push to loop of video, and ask if usr wants to keep                    
                     let alertController = UIAlertController(title: "Would you like to post this video?", message: nil, preferredStyle: .alert)
                     let yes = UIAlertAction(title: "YES", style: .default, handler: { (action) in
-                        VideoUploadManager.sharedInstance.saveToFireBase(data: compData, title:"", place: self.selectedPlace, coordinate: LocationManager.sharedInstance.userLocation!)
+                        VideoUploadManager.sharedInstance.saveToFireBase(data: compData, title:"", location: "", coordinates: LocationManager.sharedInstance.userLocation!)
                         self.dismiss(animated: true, completion: nil)
                     })
                     

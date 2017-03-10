@@ -12,11 +12,9 @@ class MainViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.hidesBackButton = true
     }
 
-    func logout() {
-        AuthenticationManager.sharedInstance.logout()
-    }
 }
 
 

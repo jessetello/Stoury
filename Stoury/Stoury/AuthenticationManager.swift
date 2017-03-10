@@ -38,9 +38,6 @@ class AuthenticationManager {
                     let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
                     changeRequest?.displayName = username
                     changeRequest?.commitChanges() { (error) in
-                        if error == nil {
-                            completion(true, nil)
-                        }
                     }
                 }
             }

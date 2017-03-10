@@ -16,14 +16,14 @@ class VideoUploadManager {
     
     static let sharedInstance = VideoUploadManager()
 
-    func saveToFireBase(data:NSData, title:String, place:GMSPlace?, coordinate:CLLocation) {
+    func saveToFireBase(data:NSData, title:String, location:String, coordinates:CLLocation) {
         guard let uid = FIRAuth.auth()?.currentUser?.uid else {
             print("Error mssing UID")
             return
         }
         // Create a reference to the file you want to upload
         let storageRef = DataManager.sharedInstance.storage.reference(forURL: "gs://stoury-c55b9.appspot.com")
-        let vidRef = storageRef.child("/videos" + "\(title)" + "/stoury.MOV")
+        let vidRef = storageRef.child("/videos" + "/\(uid)" + "/\(NSTimeIntervalSince1970)" + "/\(title).MOV")
         let uploadTask = vidRef.put(data as Data, metadata: nil) { metadata, error in
         
         }
@@ -46,17 +46,16 @@ class VideoUploadManager {
         uploadTask.observe(.success) { [weak self] snapshot in
             // Metadata contains file metadata such as size, content-type, and download URL.
             if let data = snapshot.metadata {
-                //let name = FIRAuth.auth()?.currentUser?.displayName
-                guard let vidUrl = data.downloadURL() else {
+                guard let vidUrl = data.downloadURL(), let userName = FIRAuth.auth()?.currentUser?.displayName else {
                     print("missing params")
                     return
                 }
                 self?.writeNewPost(userID: uid,
-                                   userName: "JOE",//(FIRAuth.auth()?.currentUser?.displayName)!,
+                                   userName:userName,
                                    title: title,
                                    location:"",
-                                   coordinates:["lat":coordinate.coordinate.latitude,
-                                             "lon":coordinate.coordinate.longitude],
+                                   coordinates:["lat":coordinates.coordinate.latitude,
+                                             "lon":coordinates.coordinate.longitude],
                                    url:vidUrl.absoluteString)
             }
         }

@@ -233,7 +233,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="01Z-RK-PUt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="Home" id="UpV-tz-cKj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="zOf-43-AFa"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="hRh-7j-WNA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="hRh-7j-WNA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -309,7 +309,7 @@
         <scene sceneID="DHq-s5-HlV">
             <objects>
                 <navigationController storyboardIdentifier="Welcome" automaticallyAdjustsScrollViewInsets="NO" id="6fc-fI-XBv" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" translucent="NO" id="6Eb-py-OTH">
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="6Eb-py-OTH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.015686274510000001" green="0.22352941179999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -340,10 +340,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8g-Q6-yYR">
-                                <rect key="frame" x="16" y="490" width="343" height="50"/>
+                                <rect key="frame" x="74" y="490" width="227" height="50"/>
                                 <color key="backgroundColor" red="0.015686274510000001" green="0.22352941179999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ezy-ou-Z8X"/>
+                                    <constraint firstAttribute="width" constant="227" id="qa5-76-C1U"/>
                                 </constraints>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -352,26 +353,6 @@
                                     <segue destination="Dt5-FP-pch" kind="show" id="fOb-Fh-sj5"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdQ-Gw-BwI" userLabel="Left Line View">
-                                <rect key="frame" x="16" y="464" width="148" height="1"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="4ic-JN-g1T"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b81-Ez-6A0" userLabel="Right Line View">
-                                <rect key="frame" x="211" y="464" width="148" height="1"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="HlG-OV-4Pv"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGH-0R-F1m">
-                                <rect key="frame" x="179" y="452" width="16" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G0b-W5-Vly">
                                 <rect key="frame" x="74" y="563" width="227" height="20"/>
                                 <subviews>
@@ -405,15 +386,6 @@
                                     <constraint firstItem="PPe-pb-O4F" firstAttribute="leading" secondItem="rsg-li-zUa" secondAttribute="trailing" id="wpi-cy-Aeq"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ovv-D7-RMD" userLabel="FacebookButton" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="16" y="393" width="343" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="gfk-qP-K5p"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="facebookLogin:" destination="JUt-yg-Fni" eventType="touchUpInside" id="Z2C-Mz-wul"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stoury" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6HS-IN-Eei">
                                 <rect key="frame" x="16" y="8" width="343" height="59"/>
                                 <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="50"/>
@@ -433,33 +405,18 @@
                             <constraint firstItem="G0b-W5-Vly" firstAttribute="centerX" secondItem="OK6-WP-rvQ" secondAttribute="centerX" id="0TS-4h-xpQ"/>
                             <constraint firstItem="L5C-f4-nkf" firstAttribute="top" secondItem="6HS-IN-Eei" secondAttribute="bottom" constant="3" id="6UO-2D-B5J"/>
                             <constraint firstItem="L5C-f4-nkf" firstAttribute="trailing" secondItem="6HS-IN-Eei" secondAttribute="trailing" id="9AO-vE-faL"/>
-                            <constraint firstItem="Ovv-D7-RMD" firstAttribute="leading" secondItem="sdQ-Gw-BwI" secondAttribute="leading" id="Bgp-Rb-Zk4"/>
-                            <constraint firstItem="b81-Ez-6A0" firstAttribute="trailing" secondItem="Ovv-D7-RMD" secondAttribute="trailing" id="BmA-ME-wd0"/>
-                            <constraint firstItem="l8g-Q6-yYR" firstAttribute="top" secondItem="xGH-0R-F1m" secondAttribute="bottom" constant="17" id="DNj-I7-Be3"/>
                             <constraint firstAttribute="leadingMargin" secondItem="6HS-IN-Eei" secondAttribute="leading" id="DSI-kN-JWc"/>
-                            <constraint firstItem="Ovv-D7-RMD" firstAttribute="leading" secondItem="l8g-Q6-yYR" secondAttribute="leading" id="HWo-2I-gsE"/>
-                            <constraint firstItem="l8g-Q6-yYR" firstAttribute="trailing" secondItem="Ovv-D7-RMD" secondAttribute="trailing" id="Jwy-FR-qX3"/>
-                            <constraint firstItem="Ovv-D7-RMD" firstAttribute="centerX" secondItem="OK6-WP-rvQ" secondAttribute="centerX" id="Mba-97-bt3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6HS-IN-Eei" secondAttribute="trailing" id="NzR-aR-azV"/>
-                            <constraint firstItem="b81-Ez-6A0" firstAttribute="bottom" secondItem="sdQ-Gw-BwI" secondAttribute="bottom" id="OEV-0q-AKA"/>
                             <constraint firstItem="8Av-Sd-ufL" firstAttribute="top" secondItem="G0b-W5-Vly" secondAttribute="bottom" constant="20" id="Orl-Ko-zc0"/>
                             <constraint firstItem="l8g-Q6-yYR" firstAttribute="centerX" secondItem="OK6-WP-rvQ" secondAttribute="centerX" id="Q0u-Cm-wLG"/>
                             <constraint firstItem="G0b-W5-Vly" firstAttribute="leading" secondItem="OK6-WP-rvQ" secondAttribute="leadingMargin" constant="58" id="Uvs-Pr-rd2"/>
                             <constraint firstItem="6HS-IN-Eei" firstAttribute="top" secondItem="hh1-tR-fNc" secondAttribute="bottom" constant="8" id="V1d-rh-onw"/>
-                            <constraint firstItem="b81-Ez-6A0" firstAttribute="leading" secondItem="xGH-0R-F1m" secondAttribute="trailing" constant="16" id="ZK1-NS-gOa"/>
                             <constraint firstItem="L5C-f4-nkf" firstAttribute="leading" secondItem="6HS-IN-Eei" secondAttribute="leading" id="e0b-pd-dH2"/>
-                            <constraint firstItem="b81-Ez-6A0" firstAttribute="top" secondItem="sdQ-Gw-BwI" secondAttribute="top" id="hEr-MY-g2Z"/>
-                            <constraint firstItem="G0b-W5-Vly" firstAttribute="top" secondItem="Ovv-D7-RMD" secondAttribute="bottom" constant="125" id="kje-iq-P2J"/>
-                            <constraint firstItem="sdQ-Gw-BwI" firstAttribute="trailing" secondItem="Ovv-D7-RMD" secondAttribute="trailing" constant="-195" id="lqH-Cs-uy0"/>
-                            <constraint firstItem="xGH-0R-F1m" firstAttribute="leading" secondItem="sdQ-Gw-BwI" secondAttribute="trailing" constant="15" id="mot-lT-7pH"/>
                             <constraint firstItem="G0b-W5-Vly" firstAttribute="top" secondItem="l8g-Q6-yYR" secondAttribute="bottom" constant="23" id="nRy-F0-6Cn"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="Ovv-D7-RMD" secondAttribute="leading" id="uUx-dn-Y8h"/>
-                            <constraint firstItem="l8g-Q6-yYR" firstAttribute="top" secondItem="b81-Ez-6A0" secondAttribute="bottom" constant="25" id="wRj-VT-l1B"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2jn-as-w9H"/>
                     <connections>
-                        <outlet property="facebookButton" destination="Ovv-D7-RMD" id="dtF-cj-3O4"/>
                         <outlet property="signIn" destination="PPe-pb-O4F" id="5Oi-AI-7SZ"/>
                         <outlet property="signUp" destination="l8g-Q6-yYR" id="KW8-fo-WjY"/>
                     </connections>
@@ -629,7 +586,7 @@
             <objects>
                 <navigationController id="bbJ-OD-WH7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Stoury" id="NiW-7j-bDi"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Xa5-dW-eiX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Xa5-dW-eiX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -748,7 +705,7 @@
             <objects>
                 <navigationController id="5iF-oe-CMM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Me" id="lgy-PO-QHx"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="DgO-JV-4H4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="DgO-JV-4H4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -870,7 +827,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dos-xx-p6f" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Post" id="Led-YX-eZp"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GCD-YZ-ra6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GCD-YZ-ra6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
