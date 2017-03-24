@@ -41,13 +41,14 @@ class DataManager {
         //search database all posts for most recent
         postRef.observe(FIRDataEventType.value, with: { (snapshot) in
             if let posts = snapshot.value as? [String : [String : Any]] {
-                for (key, value) in posts {
-                    let info = value as [String: Any]
-                    print(info)
-                    let stoury = Stoury(userID: key, userName: info["user"] as? String, title:  info["title"] as? String, location:  info["location"] as? String, length:  info[""] as? Double, date:  info[""] as? Date, category:  info[""] as? String)
-                    print(stoury)
-                    self.recentPosts.append(stoury)
+                if let postsArray = posts["posts"] {
+                    for (key, value) in postsArray {
+                        print(key)
+                        print(value)
+//                        self.recentPosts.append(stoury)
+                    }
                 }
+                
             }
         })
     }

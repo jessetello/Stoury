@@ -46,12 +46,12 @@ class VideoUploadManager {
         uploadTask.observe(.success) { [weak self] snapshot in
             // Metadata contains file metadata such as size, content-type, and download URL.
             if let data = snapshot.metadata {
-                guard let vidUrl = data.downloadURL(), let userName = FIRAuth.auth()?.currentUser?.displayName else {
+                guard let vidUrl = data.downloadURL() else {
                     print("missing params")
                     return
                 }
                 self?.writeNewPost(userID: uid,
-                                   userName:userName,
+                                   userName:"TESTY",
                                    title: title,
                                    location:"",
                                    coordinates:["lat":coordinates.coordinate.latitude,

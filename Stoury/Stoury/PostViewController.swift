@@ -24,6 +24,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
         super.viewDidLoad()
         LocationManager.sharedInstance.getLocation()
         self.imagePicker.delegate = self
+        self.nearMePlaces()
         // Do any additional setup after loading the view.
     }
     

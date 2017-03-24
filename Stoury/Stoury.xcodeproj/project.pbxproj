@@ -259,7 +259,7 @@
 					911C5D2E1DB30D51004C2862 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = Q78JZ9X2RG;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -509,6 +509,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jt.Stoury;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "10e17218-cdf0-400a-b503-76b9eead81b9";
+				PROVISIONING_PROFILE_SPECIFIER = "Jesse Dev";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -528,6 +530,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jt.Stoury;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "10e17218-cdf0-400a-b503-76b9eead81b9";
+				PROVISIONING_PROFILE_SPECIFIER = "Jesse Dev";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
