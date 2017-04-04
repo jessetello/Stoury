@@ -63,7 +63,7 @@ class VideoUploadManager {
     }
     
     func writeNewPost(userID:String, userName:String, title:String, location:String, coordinates:[String:Double], url:String) {
-        
+        print(userName)
         let key = DataManager.sharedInstance.postRef.child("posts").childByAutoId().key
         
         let post = ["uid": userID,
