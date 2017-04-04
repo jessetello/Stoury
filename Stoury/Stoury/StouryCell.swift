@@ -10,6 +10,13 @@ import UIKit
 
 class StouryCell: UITableViewCell {
 
+    @IBOutlet var videoImage: UIImageView!
+    @IBOutlet var videoLength: UILabel!
+    @IBOutlet var title: UILabel!
+    @IBOutlet var userName: UILabel!
+    @IBOutlet var stateOrCountry: UILabel!
+    @IBOutlet var location: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

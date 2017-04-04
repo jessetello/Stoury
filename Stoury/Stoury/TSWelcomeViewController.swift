@@ -24,22 +24,6 @@ class TSWelcomeViewController: UIViewController {
         signUp.layer.cornerRadius = 4
     }
 
-    @IBAction func facebookLogin(_ sender: FBSDKLoginButton) {
-        let facebookLogin = FBSDKLoginManager()
-        facebookLogin.logIn(withReadPermissions: ["email","public_profile","user_friends"], from: self) { loginResult, error in
-            let cred = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-            AuthenticationManager.sharedInstance.socialLoginWith(credential: cred, completion: { (success, error) in
-                if success {
-                   self.loadMain()
-                }
-                else {
-                    
-                    
-                }
-            })
-        }
-    }
-    
     func loadMain() {
         if let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "TSMainViewController") as? MainViewController {
             self.navigationController?.pushViewController(mainVC, animated: true)

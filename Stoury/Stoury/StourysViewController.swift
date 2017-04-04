@@ -20,7 +20,7 @@ class StourysViewController: UIViewController {
     }
     
     func getUsersStourys() {
-        DataManager.sharedInstance.getUserFeed { success, stourys in
+        DataManager.sharedInstance.getUserFeed { success in
             
             
             

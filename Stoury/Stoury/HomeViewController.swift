@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
    
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var loader: UIActivityIndicatorView!
     
     var recentStourys = [Stoury]()
     let homeList = ["Restaurants","Bars","Hotels", "Nightlife", "Coffee & Tea"]
@@ -32,11 +33,12 @@ class HomeViewController: UIViewController {
         searchController.searchBar.setTextColor(color: UIColor.black)
 
         self.tableView.tableHeaderView = searchController.searchBar
-        tableView.tableFooterView = UIView()
-        tableView.separatorColor = UIColor.lightGray
-        tableView.register(UINib(nibName: "StouryCell", bundle: nil), forCellReuseIdentifier: "StouryCell")
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.tableFooterView = UIView()
+        self.tableView.separatorColor = UIColor.lightGray
+        self.tableView.register(UINib(nibName: "StouryCell", bundle: nil), forCellReuseIdentifier: "StouryCell")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(HomeViewController.logout))
-
         getRecentStourys()
     }
     
@@ -49,9 +51,13 @@ class HomeViewController: UIViewController {
     }
     
     func getRecentStourys() {
-        
-        DataManager.sharedInstance.getRecentPosts { (success, stourys) in
-            
+        self.loader.hidesWhenStopped = true
+        self.loader.startAnimating()
+        DataManager.sharedInstance.getRecentPosts { success in
+            if success {
+                self.tableView.reloadData()
+            }
+            self.loader.stopAnimating()
         }
     }
 
@@ -60,12 +66,18 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recentStourys.count
+        return DataManager.sharedInstance.recentPosts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "StouryCell", for: indexPath) as! StouryCell
-        
+        let stoury = DataManager.sharedInstance.recentPosts[indexPath.row]
+        cell.title.text = stoury.title
+        if let loc = stoury.location {
+            cell.location.text = loc
+        }
+        cell.userName.text = stoury.userName
+        cell.videoLength.text = "\(stoury.length ?? 00.00)"
         return cell
     }
     
@@ -73,6 +85,9 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 165.0
+    }
 }
 
 extension HomeViewController: UISearchResultsUpdating {

@@ -50,8 +50,9 @@ class VideoUploadManager {
                     print("missing params")
                     return
                 }
+                
                 self?.writeNewPost(userID: uid,
-                                   userName:"TESTY",
+                                   userName:(FIRAuth.auth()?.currentUser?.displayName) ?? "Unknown",
                                    title: title,
                                    location:"",
                                    coordinates:["lat":coordinates.coordinate.latitude,

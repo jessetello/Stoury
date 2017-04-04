@@ -36,21 +36,14 @@ class AuthenticationManager {
                 //create a user object with username,email,uid
                 if user != nil {
                     let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
-                    changeRequest?.displayName = username
-                    changeRequest?.commitChanges() { (error) in
+                        changeRequest?.displayName = username
+                        changeRequest?.commitChanges() { (error) in
+                            if error != nil {
+                                completion(false, error)
+                            }
+                            completion(true, nil)
                     }
                 }
-            }
-        })
-    }
-    
-    func socialLoginWith(credential: FIRAuthCredential, completion: @escaping AuthenticationHandler)  {
-        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
-            if let authError = error {
-                completion(false, authError)
-            }
-            else {
-                completion(true, nil)
             }
         })
     }

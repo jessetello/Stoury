@@ -21,34 +21,44 @@ class DataManager {
 
     let storage = FIRStorage.storage()
     
-    
-    
     var recentPosts = [Stoury]()
     var userPosts = [Stoury]()
     
-    typealias DataHandler = (_ success:Bool, _ data:[Stoury]) -> Void
+    typealias DataHandler = (_ success:Bool) -> Void
 
     func getUserFeed(completion: @escaping DataHandler) {
-//        userRef.observe(FIRDataEventType.value, with: { (snapshot) in
-//            if let userPosts = snapshot.value {
-//                print(posts)
-//                completion(true, posts)
-//            }
-//        })
-    }
-    
-    func getRecentPosts(completion: @escaping DataHandler) {
-        //search database all posts for most recent
-        postRef.observe(FIRDataEventType.value, with: { (snapshot) in
+        userPostRef.observe(FIRDataEventType.value, with: { (snapshot) in
             if let posts = snapshot.value as? [String : [String : Any]] {
                 if let postsArray = posts["posts"] {
                     for (key, value) in postsArray {
                         print(key)
                         print(value)
-//                        self.recentPosts.append(stoury)
+                        if let dict = value as? [String:Any] {
+                            let stoury = Stoury(userID: dict["uid"] as? String, userName: "", title: dict["title"] as? String, location: dict["location"] as? String, length: 02.00, date: Date.init(), category: "Test")
+                            self.recentPosts.append(stoury)
+                        }
                     }
                 }
-                
+            }
+            completion(true)
+        })
+    }
+    
+    func getRecentPosts(completion: @escaping DataHandler) {
+        //search database all posts for most recent
+        self.recentPosts.removeAll()
+        postRef.observe(FIRDataEventType.value, with: { (snapshot) in
+            if let posts = snapshot.value as? [String : [String : Any]] {
+                if let postsArray = posts["posts"] {
+                    for (_, value) in postsArray {
+                        if let dict = value as? [String:Any] {
+                            let stoury = Stoury(userID: dict["uid"] as? String, userName: "", title: dict["title"] as? String, location: dict["location"] as? String, length: 02.00, date: Date.init(), category: "Test")
+                            self.recentPosts.append(stoury)
+                        }
+                    }
+                    
+                }
+               completion(true)
             }
         })
     }
