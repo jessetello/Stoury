@@ -33,15 +33,13 @@ enum LZFSEAction: Int {
 }
 
 extension NSData {
-    class func compress(fileURL: NSURL, action: LZFSEAction) -> NSData {
-
-        let data: NSData = NSData(contentsOf: fileURL as URL)!
+      class func compress(data: NSData, action: LZFSEAction) -> NSData {
         
         let sourceBuffer = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: (data as NSData).length)
-        let sourceBufferSize: Int = data.length
+        let sourceBufferSize = (data as NSData).length
 
-        let destinationBuffer: UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: sourceBufferSize)
-        let destinationBufferSize: Int = sourceBufferSize
+        let destinationBuffer = UnsafeMutablePointer<UInt8>.allocate(capacity: sourceBufferSize)
+        let destinationBufferSize: Int = sourceBufferSize * 2
         
         var status: Int
         switch action {

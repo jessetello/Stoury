@@ -21,6 +21,7 @@ class VideoUploadManager {
             print("Error mssing UID")
             return
         }
+        
         // Create a reference to the file you want to upload
         let storageRef = DataManager.sharedInstance.storage.reference(forURL: "gs://stoury-c55b9.appspot.com")
         let vidRef = storageRef.child("/videos" + "/\(uid)" + "/\(NSTimeIntervalSince1970)" + "/\(title).MOV")

@@ -53,7 +53,9 @@ class ReviewViewController: UIViewController {
             catch {
                 
             }
-            VideoUploadManager.sharedInstance.saveToFireBase(data: data, title:postTitle.text ?? "", location: location.text ?? "Unknown", coordinates: LocationManager.sharedInstance.userLocation!, length: videoDuration)
+            
+            let compressed = NSData.compress(data: data, action: .Compress)
+            VideoUploadManager.sharedInstance.saveToFireBase(data: compressed, title:postTitle.text ?? "", location: location.text ?? "Unknown", coordinates: LocationManager.sharedInstance.userLocation!, length: videoDuration)
         }
     }
     
