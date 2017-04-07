@@ -16,15 +16,19 @@ class ReviewViewController: UIViewController {
     var filePath: URL?
     let avPlayer = AVPlayer()
 
+    @IBOutlet weak var overlay: UIView!
     @IBOutlet weak var location: UITextField!
     @IBOutlet weak var postTitle: UITextField!
     
+    @IBOutlet weak var discardButton: UIButton!
+    @IBOutlet weak var postButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        location.underlined()
-        postTitle.underlined()
+        //location.underlined()
+       //postTitle.underlined()
         avPlayerLayer.player = avPlayer
-        self.view.layer.insertSublayer(avPlayerLayer, at: 0)
+        self.view.layer.addSublayer(avPlayerLayer)
         if let path = filePath {
             let playerItem = AVPlayerItem(url: path)
             avPlayer.replaceCurrentItem(with: playerItem)

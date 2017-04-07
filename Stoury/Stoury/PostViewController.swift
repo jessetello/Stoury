@@ -14,6 +14,7 @@ import GooglePlaces
 class PostViewController: UIViewController, UINavigationControllerDelegate, UITabBarControllerDelegate  {
 
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var tableView: UITableView!
     let imagePicker = UIImagePickerController()
     var likelyPlaces = [GMSPlace]()
@@ -66,7 +67,10 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
     }
     
     func nearMePlaces() {
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.startAnimating()
         placesClient.currentPlace(callback: { [weak self] (placeLikelihoodList, error) -> Void in
+            self?.activityIndicator.stopAnimating()
             if let error = error {
                 print("Pick Place error: \(error.localizedDescription)")
                 return
