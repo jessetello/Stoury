@@ -16,4 +16,5 @@ struct Stoury {
     var length: Double?
     var date: Date?
     var category: String?
+    var url: String?
 }

@@ -213,27 +213,10 @@ extension RecordViewController: AVCaptureFileOutputRecordingDelegate {
                 break
             case .completed:
                 if let compData = NSData(contentsOf: uploadURL) {
-                    
-                    
                     let reviewController = ReviewViewController()
                     reviewController.videoData = compData
+                    reviewController.filePath = outputFileURL
                     self.present(reviewController, animated: true, completion: nil)
-
-                    
-//                    //Push to loop of video, and ask if usr wants to keep
-//                    let alertController = UIAlertController(title: "Would you like to post this video?", message: nil, preferredStyle: .alert)
-//                    let yes = UIAlertAction(title: "YES", style: .default, handler: { (action) in
-//                        VideoUploadManager.sharedInstance.saveToFireBase(data: compData, title:"", location: "", coordinates: LocationManager.sharedInstance.userLocation!)
-//                        self.dismiss(animated: true, completion: nil)
-//                    })
-//                    
-//                    let no = UIAlertAction(title: "NO", style: .default, handler: { (action) in
-//                        self.dismiss(animated: true, completion: nil)
-//                    })
-//                    
-//                    alertController.addAction(yes)
-//                    alertController.addAction(no)
-//                    self.present(alertController, animated: true, completion: nil)
                 }
                 break
             case .failed:

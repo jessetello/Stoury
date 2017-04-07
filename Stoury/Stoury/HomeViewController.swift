@@ -54,10 +54,12 @@ class HomeViewController: UIViewController {
         self.loader.hidesWhenStopped = true
         self.loader.startAnimating()
         DataManager.sharedInstance.getRecentPosts { success in
-            if success {
-                self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.loader.stopAnimating()
+                if success {
+                    self.tableView.reloadData()
+                }
             }
-            self.loader.stopAnimating()
         }
     }
 
@@ -73,11 +75,10 @@ extension HomeViewController: UITableViewDataSource {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "StouryCell", for: indexPath) as! StouryCell
         let stoury = DataManager.sharedInstance.recentPosts[indexPath.row]
         cell.title.text = stoury.title
-        if let loc = stoury.location {
-            cell.location.text = loc
-        }
+        cell.location.text = stoury.location ?? "Unknown"
         cell.userName.text = stoury.userName
         cell.videoLength.text = "\(stoury.length ?? 00.00)"
+        cell.videoImage.image = UIImage(named: "CategoryTravel")
         return cell
     }
     

@@ -56,7 +56,7 @@ extension UIImageView {
     }
 }
 
-public extension UISearchBar {
+extension UISearchBar {
     
     public func setTextColor(color: UIColor) {
         let svs = subviews.flatMap { $0.subviews }

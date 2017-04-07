@@ -36,7 +36,6 @@
 		91F7514E1DF9003C001DD558 /* NSData+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F7514D1DF9003C001DD558 /* NSData+Compression.swift */; };
 		91F948011DCE824F004B24F9 /* WowzaGoCoderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F947FF1DCE81BB004B24F9 /* WowzaGoCoderSDK.framework */; };
 		91F948021DCE824F004B24F9 /* WowzaGoCoderSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91F947FF1DCE81BB004B24F9 /* WowzaGoCoderSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		91F948061DCE837E004B24F9 /* StreamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F948051DCE837E004B24F9 /* StreamManager.swift */; };
 		91F948081DCEB1EF004B24F9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F948071DCEB1EF004B24F9 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +84,6 @@
 		91D0883F1DEE6B5E005C9702 /* StouryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StouryCell.swift; sourceTree = "<group>"; };
 		91F7514D1DF9003C001DD558 /* NSData+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Compression.swift"; sourceTree = "<group>"; };
 		91F947FF1DCE81BB004B24F9 /* WowzaGoCoderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WowzaGoCoderSDK.framework; path = Stoury/WowzaGoCoderSDK.framework; sourceTree = "<group>"; };
-		91F948051DCE837E004B24F9 /* StreamManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamManager.swift; sourceTree = "<group>"; };
 		91F948071DCEB1EF004B24F9 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		9492B818B190D281AE1654C3 /* Pods_Stoury.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stoury.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEC7510F51825E9E8555BFF9 /* Pods-Stoury.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stoury.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stoury/Pods-Stoury.release.xcconfig"; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 			children = (
 				911C5D4C1DB31038004C2862 /* VideoUploadManager.swift */,
 				911C5D4D1DB31038004C2862 /* AuthenticationManager.swift */,
-				91F948051DCE837E004B24F9 /* StreamManager.swift */,
 				91F948071DCEB1EF004B24F9 /* LocationManager.swift */,
 				9159E7CF1DFE110400F71763 /* DataManager.swift */,
 			);
@@ -376,7 +373,6 @@
 				911C5D591DB31038004C2862 /* MainViewController.swift in Sources */,
 				91F7514E1DF9003C001DD558 /* NSData+Compression.swift in Sources */,
 				911C5D561DB31038004C2862 /* TSSpinner.swift in Sources */,
-				91F948061DCE837E004B24F9 /* StreamManager.swift in Sources */,
 				917CDB5D1E53EC5D0035E815 /* PostViewController.swift in Sources */,
 				911C5D5B1DB31038004C2862 /* VideoUploadManager.swift in Sources */,
 				911C5D5F1DB31038004C2862 /* HomeViewController.swift in Sources */,

@@ -16,7 +16,7 @@ class VideoUploadManager {
     
     static let sharedInstance = VideoUploadManager()
 
-    func saveToFireBase(data:NSData, title:String, location:String, coordinates:CLLocation) {
+    func saveToFireBase(data:NSData, title:String, location:String, coordinates:CLLocation, length:Double) {
         guard let uid = FIRAuth.auth()?.currentUser?.uid else {
             print("Error mssing UID")
             return
@@ -54,21 +54,22 @@ class VideoUploadManager {
                 self?.writeNewPost(userID: uid,
                                    userName:(FIRAuth.auth()?.currentUser?.displayName) ?? "Unknown",
                                    title: title,
-                                   location:"",
+                                   location:location,
                                    coordinates:["lat":coordinates.coordinate.latitude,
                                              "lon":coordinates.coordinate.longitude],
-                                   url:vidUrl.absoluteString)
+                                   url:vidUrl.absoluteString,
+                                   length: length)
             }
         }
     }
     
-    func writeNewPost(userID:String, userName:String, title:String, location:String, coordinates:[String:Double], url:String) {
-        print(userName)
+    func writeNewPost(userID:String, userName:String, title:String, location:String, coordinates:[String:Double], url:String, length:Double) {
         let key = DataManager.sharedInstance.postRef.child("posts").childByAutoId().key
         
         let post = ["uid": userID,
                     "user": userName,
                     "title": title,
+                    "length" : length,
                     "coordinates": coordinates,
                     "location": location,
                     "url":url] as [String : Any]
