@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '681BE6E3D02A43F9BA63777AC435C8FD'
-               BlueprintName = 'GTMSessionFetcher'
+               BlueprintIdentifier = '0F3B36547C3C2CC3060475E614BCBF32'
+               BlueprintName = 'BRYXBanner'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'GTMSessionFetcher.framework'>
+               BuildableName = 'BRYXBanner.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

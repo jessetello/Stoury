@@ -30,7 +30,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
     }
     
     private func presentCamera() {
-        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Record") as? RecordViewController {
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecordNav") as? UINavigationController {
             self.present(vc, animated: true, completion: nil)
         }
     }

@@ -5,6 +5,7 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - BRYXBanner (0.7.2)
   - FBSDKCoreKit (4.19.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.19.0):
@@ -73,6 +74,7 @@ PODS:
     - GTMSessionFetcher/Core (= 1.1.8)
 
 DEPENDENCIES:
+  - BRYXBanner
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase
@@ -87,6 +89,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  BRYXBanner: ed407a56c53f2add0aaa16f810062eac48d802cf
   FBSDKCoreKit: 894b2b6eda6a4c8c4204e92e59cc355709ef045c
   FBSDKLoginKit: 83ca4d8f12a2022570af9fd6aacf27f6b425b99f
   Firebase: 5bc34d7b5ff5792e3386c8b28dc6265deeab0da4
@@ -104,6 +107,6 @@ SPEC CHECKSUMS:
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
 
-PODFILE CHECKSUM: 2f13cafb503d2800944df085c44ccdbf4378984e
+PODFILE CHECKSUM: 0f3b9cd41c8b83df7b107a50e536c29c81aa82c8
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0

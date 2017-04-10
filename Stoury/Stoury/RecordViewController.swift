@@ -33,7 +33,8 @@ class RecordViewController: UIViewController {
     @IBOutlet weak var initializingLabel: UILabel!
     @IBOutlet weak var startStreamButton: UIButton!
     @IBOutlet weak var bottomViewConstraint: NSLayoutConstraint!
-    
+    @IBOutlet var timeLabel: UILabel!
+
     var selectedPlace:GMSPlace?
     var stouryType = StouryType.nonlive
     var recordingState = RecordingState.stopped
@@ -44,9 +45,11 @@ class RecordViewController: UIViewController {
     var movieDeviceInput: AVCaptureDeviceInput?
     var nonLivePreviewLayer: AVCaptureVideoPreviewLayer?
     
-    @IBOutlet var timeLabel: UILabel!
     var counter = 0
     var timer = Timer()
+    
+    var video: NSData?
+    var filePath: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -181,15 +184,12 @@ class RecordViewController: UIViewController {
         present(locationsVC, animated: true, completion: nil)
     }
     
-    func compressVideo(inputURL: NSURL, outputURL: NSURL, handler:@escaping (_ exportSession: AVAssetExportSession)-> Void) {
-        let urlAsset = AVURLAsset(url: inputURL as URL, options: nil)
-        print(urlAsset)
-        if let exportSession = AVAssetExportSession(asset: urlAsset, presetName: AVAssetExportPresetMediumQuality) {
-            exportSession.outputURL = outputURL as URL
-            exportSession.outputFileType = AVFileTypeQuickTimeMovie
-            exportSession.shouldOptimizeForNetworkUse = true
-            exportSession.exportAsynchronously { () -> Void in
-                handler(exportSession)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Review" {
+            DispatchQueue.main.async {
+                if let review = segue.destination as? ReviewViewController {
+                    review.filePath = self.filePath
+                }
             }
         }
     }
@@ -199,36 +199,15 @@ class RecordViewController: UIViewController {
 extension RecordViewController: AVCaptureFileOutputRecordingDelegate {
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
-        print("Recording")
+   
     }
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
-        let uploadURL = NSURL.fileURL(withPath: NSTemporaryDirectory() + NSUUID().uuidString + ".MOV")
-        self.compressVideo(inputURL: outputFileURL as NSURL, outputURL: uploadURL as NSURL) { (session) in
-            print(session.status.rawValue)
-            switch session.status {
-            case .unknown:
-                break
-            case .waiting:
-                break
-            case .completed:
-                if let compData = NSData(contentsOf: uploadURL) {
-                    let reviewController = ReviewViewController()
-                    reviewController.videoData = compData
-                    reviewController.filePath = outputFileURL
-                    self.present(reviewController, animated: true, completion: nil)
-                }
-                break
-            case .failed:
-                break
-            case .cancelled:
-                break
-            default:
-                break
-            }
-        }
+            self.filePath = outputFileURL
+            self.performSegue(withIdentifier: "Review", sender: self)
     }
 }
+
 
 extension RecordViewController: UITextViewDelegate {
     

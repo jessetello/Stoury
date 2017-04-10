@@ -27,12 +27,12 @@ class TSSignUpViewController: UIViewController, UITextFieldDelegate {
     
     func setUp() {
         
-        firstNameField.underlined()
-        lastNameField.underlined()
-        emailField.underlined()
-        passwordField.underlined()
-        confirmPasswordField.underlined()
-        userName.underlined()
+        firstNameField.underlined(color: .black)
+        lastNameField.underlined(color: .black)
+        emailField.underlined(color: .black)
+        passwordField.underlined(color: .black)
+        confirmPasswordField.underlined(color: .black)
+        userName.underlined(color: .black)
         
         firstNameField.delegate = self
         lastNameField.delegate = self

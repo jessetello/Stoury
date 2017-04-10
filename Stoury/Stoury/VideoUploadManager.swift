@@ -42,6 +42,7 @@ class VideoUploadManager {
             if let progress = snapshot.progress {
                 let percentComplete = 100.0 * Double(progress.completedUnitCount) / Double(progress.totalUnitCount)
                 print(percentComplete)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UploadComplete"), object: nil)
             }
         }
         uploadTask.observe(.success) { [weak self] snapshot in

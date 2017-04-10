@@ -39,7 +39,7 @@ extension NSData {
         let sourceBufferSize = (data as NSData).length
 
         let destinationBuffer = UnsafeMutablePointer<UInt8>.allocate(capacity: sourceBufferSize)
-        let destinationBufferSize: Int = sourceBufferSize * 2
+        let destinationBufferSize: Int = sourceBufferSize
         
         var status: Int
         switch action {

@@ -18,8 +18,8 @@ class TSLogInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailField.underlined()
-        passwordField.underlined()
+        emailField.underlined(color: .black)
+        passwordField.underlined(color: .black)
         emailField.delegate = self
         passwordField.delegate = self
         

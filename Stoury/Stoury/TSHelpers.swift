@@ -10,13 +10,13 @@ import UIKit
 import Foundation
 
 extension UITextField {
-    func underlined(){
+    func underlined(color:UIColor){
         self.borderStyle = .none
 
         let border = CALayer()
         let width = CGFloat(1.0)
 
-        border.borderColor = UIColor.black.cgColor
+        border.borderColor = color.cgColor
         self.borderStyle = .none
         border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
         border.borderWidth = width

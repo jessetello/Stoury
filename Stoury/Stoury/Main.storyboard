@@ -256,6 +256,7 @@
                             <constraint firstItem="Hrl-Ky-W0W" firstAttribute="top" secondItem="1ox-nO-wdr" secondAttribute="bottom" id="g4h-w3-YN0"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="6Fz-CX-doD"/>
                     <connections>
                         <outlet property="bottomView" destination="1ox-nO-wdr" id="mn7-jz-TNd"/>
                         <outlet property="bottomViewConstraint" destination="g4h-w3-YN0" id="Lta-Ai-phu"/>
@@ -264,11 +265,12 @@
                         <outlet property="seperatorLine" destination="3t1-qq-b0L" id="WD6-6N-8Pn"/>
                         <outlet property="startStreamButton" destination="AAc-De-Ppu" id="Pt2-ka-Nx1"/>
                         <outlet property="timeLabel" destination="arr-ss-rop" id="TYs-jb-Y5S"/>
+                        <segue destination="fJz-ro-y7a" kind="show" identifier="Review" id="UgQ-S3-tDm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="azm-lp-AyI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5090" y="379"/>
+            <point key="canvasLocation" x="6681.1594202898559" y="350.54347826086962"/>
         </scene>
         <!--Review View Controller-->
         <scene sceneID="KCS-ge-DF1">
@@ -292,7 +294,9 @@
                                             <constraint firstAttribute="height" constant="30" id="MAE-GO-trb"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                        <state key="normal" title="Post"/>
+                                        <state key="normal" title="Post">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="post:" destination="fJz-ro-y7a" eventType="touchUpInside" id="UNc-r6-N6H"/>
                                         </connections>
@@ -304,7 +308,9 @@
                                             <constraint firstAttribute="height" constant="30" id="7aB-Pm-Rle"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                        <state key="normal" title="Discard"/>
+                                        <state key="normal" title="Discard">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Post Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hcd-iz-i0v">
                                         <rect key="frame" x="20" y="17" width="374" height="30"/>
@@ -315,7 +321,7 @@
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -328,7 +334,7 @@
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -364,14 +370,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZSS-Wh-oh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5779.7101449275369" y="377.44565217391306"/>
+            <point key="canvasLocation" x="7513.04347826087" y="350.54347826086962"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UWx-nr-kKb">
             <objects>
                 <navigationController storyboardIdentifier="Home" id="UpV-tz-cKj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="zOf-43-AFa"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="hRh-7j-WNA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="hRh-7j-WNA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -454,7 +460,7 @@
         <scene sceneID="DHq-s5-HlV">
             <objects>
                 <navigationController storyboardIdentifier="Welcome" automaticallyAdjustsScrollViewInsets="NO" id="6fc-fI-XBv" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" translucent="NO" id="6Eb-py-OTH">
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="6Eb-py-OTH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.015686274510000001" green="0.22352941179999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -768,7 +774,7 @@
             <objects>
                 <navigationController id="bbJ-OD-WH7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Stoury" image="StouryTab" id="NiW-7j-bDi"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Xa5-dW-eiX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Xa5-dW-eiX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -887,7 +893,7 @@
             <objects>
                 <navigationController id="5iF-oe-CMM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Me" image="MeTab" id="lgy-PO-QHx"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="DgO-JV-4H4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="DgO-JV-4H4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1020,7 +1026,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dos-xx-p6f" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Post" image="PostTab" id="Led-YX-eZp"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GCD-YZ-ra6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GCD-YZ-ra6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1032,6 +1038,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ox-3t-Bji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3001" y="-65"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="P1r-jX-b9P">
+            <objects>
+                <navigationController storyboardIdentifier="RecordNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="7Sc-or-QtB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" misplaced="YES" id="94a-yv-ggH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="QFJ-zv-dmm" kind="relationship" relationship="rootViewController" id="nwP-9n-Jck"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e4d-ee-hWt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5773.913043478261" y="350.54347826086962"/>
         </scene>
     </scenes>
     <resources>
