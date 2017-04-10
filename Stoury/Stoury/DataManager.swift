@@ -27,6 +27,7 @@ class DataManager {
     typealias DataHandler = (_ success:Bool) -> Void
 
     func getUserFeed(completion: @escaping DataHandler) {
+        self.userPosts.removeAll()
         userPostRef.observe(FIRDataEventType.value, with: { (snapshot) in
             if let posts = snapshot.value as? [String : [String : Any]] {
                     for (_, value) in posts {
@@ -40,7 +41,6 @@ class DataManager {
     }
     
     func getRecentPosts(completion: @escaping DataHandler) {
-        //search database all posts for most recent
         self.recentPosts.removeAll()
         postRef.observe(FIRDataEventType.value, with: { (snapshot) in
             if let posts = snapshot.value as? [String : [String : Any]] {

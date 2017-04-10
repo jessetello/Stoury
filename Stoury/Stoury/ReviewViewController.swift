@@ -21,7 +21,6 @@ class ReviewViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var location: UITextField!
     @IBOutlet weak var postTitle: UITextField!
     
-    @IBOutlet weak var discardButton: UIButton!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var addLocationButton: UIButton!
     
@@ -57,7 +56,6 @@ class ReviewViewController: UIViewController, UITextFieldDelegate {
     @IBAction func closeReview(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
- 
     
     @IBAction func post(_ sender: UIButton) {
         if let file = filePath {
@@ -74,6 +72,11 @@ class ReviewViewController: UIViewController, UITextFieldDelegate {
             self.dismiss(animated: true, completion: nil)
         }
     }
+    
+    @IBAction func replay(_ sender: UIButton) {
+        avPlayer.seek(to: CMTime(seconds: 0, preferredTimescale: 1))
+    }
+    
     
     @IBAction func addLocation(_ sender: UIButton) {
         let locationsVC = GMSAutocompleteViewController()

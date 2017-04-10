@@ -302,7 +302,7 @@
                                             <action selector="post:" destination="fJz-ro-y7a" eventType="touchUpInside" id="UNc-r6-N6H"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVP-wc-Mbn">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVP-wc-Mbn" userLabel="Replay Button">
                                         <rect key="frame" x="248" y="665" width="80" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="6jG-yj-HW2"/>
@@ -312,6 +312,9 @@
                                         <state key="normal" title="Replay">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="replay:" destination="fJz-ro-y7a" eventType="touchUpInside" id="q2I-Hf-QoB"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Stoury Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hcd-iz-i0v">
                                         <rect key="frame" x="20" y="62" width="386" height="30"/>
@@ -382,7 +385,6 @@
                     </view>
                     <connections>
                         <outlet property="addLocationButton" destination="0ri-Yc-HgL" id="MEl-Up-8HF"/>
-                        <outlet property="discardButton" destination="DVP-wc-Mbn" id="qUn-kT-pbT"/>
                         <outlet property="location" destination="H8l-FS-Sr9" id="m7J-xa-3Ka"/>
                         <outlet property="overlay" destination="R2q-a7-AKR" id="jes-Xa-Oh5"/>
                         <outlet property="postButton" destination="6Ur-cL-EqD" id="IdJ-Lf-R6j"/>
@@ -812,6 +814,9 @@
                                     <segment title="Map"/>
                                 </segments>
                                 <color key="tintColor" red="0.015686274510000001" green="0.22352941179999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="listMapChange:" destination="7Yk-LK-ebv" eventType="valueChanged" id="9O5-wr-4aR"/>
+                                </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YAS-0i-me9" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="44" width="414" height="579"/>
@@ -844,6 +849,7 @@
                     <tabBarItem key="tabBarItem" title="Stoury" image="StouryTab" id="YLJ-bJ-OCb"/>
                     <navigationItem key="navigationItem" id="SFf-af-NJV"/>
                     <connections>
+                        <outlet property="listMapControl" destination="DYM-xB-7Xk" id="fTY-gb-mnn"/>
                         <outlet property="loader" destination="i9O-fU-Quo" id="iuO-nz-Sea"/>
                         <outlet property="mapView" destination="YAS-0i-me9" id="uHh-W8-ptm"/>
                         <outlet property="tableView" destination="7Hf-Mz-v2C" id="aTE-o9-POx"/>
@@ -853,11 +859,11 @@
             </objects>
             <point key="canvasLocation" x="3423" y="731"/>
         </scene>
-        <!--Me-->
+        <!--Profile-->
         <scene sceneID="o2g-JW-cIX">
             <objects>
                 <navigationController id="5iF-oe-CMM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Me" image="MeTab" id="lgy-PO-QHx"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="MeTab" id="lgy-PO-QHx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="DgO-JV-4H4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

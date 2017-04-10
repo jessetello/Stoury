@@ -16,6 +16,7 @@ class StourysViewController: UIViewController {
     @IBOutlet var mapView: GMSMapView!
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var loader: UIActivityIndicatorView!
+    @IBOutlet weak var listMapControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,13 @@ class StourysViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func listMapChange(_ sender: UISegmentedControl) {
+        
+        
+        
+    }
+    
 }
 
 extension StourysViewController: UITableViewDataSource {
