@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import FirebaseAuth
+class MeViewController: UITableViewController {
 
-class MeViewController: UIViewController {
-
+    
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        userName.text = FIRAuth.auth()?.currentUser?.displayName
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(MeViewController.logout))
     }
     
     func logout() {

@@ -40,18 +40,13 @@ class HomeViewController: UIViewController {
         self.tableView.tableFooterView = UIView()
         self.tableView.separatorColor = UIColor.lightGray
         self.tableView.register(UINib(nibName: "StouryCell", bundle: nil), forCellReuseIdentifier: "StouryCell")
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(HomeViewController.logout))
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         getRecentStourys()
     }
-    
-    func logout() {
-        AuthenticationManager.sharedInstance.logout()
-    }
-    
+
     func getRecentStourys() {
         self.loader.hidesWhenStopped = true
         self.loader.startAnimating()
