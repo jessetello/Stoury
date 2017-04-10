@@ -16,7 +16,7 @@ class DataManager {
     static let sharedInstance = DataManager()
     
     let postRef = FIRDatabase.database().reference(withPath: "posts")
-    let userPostRef = FIRDatabase.database().reference(withPath: "user-posts")
+    let userPostRef = FIRDatabase.database().reference(withPath: "posts").child("user-posts/\(FIRAuth.auth()?.currentUser?.uid ?? "")")
     let userInfoRef = FIRDatabase.database().reference(withPath: "users")
 
     let storage = FIRStorage.storage()
@@ -29,17 +29,12 @@ class DataManager {
     func getUserFeed(completion: @escaping DataHandler) {
         userPostRef.observe(FIRDataEventType.value, with: { (snapshot) in
             if let posts = snapshot.value as? [String : [String : Any]] {
-                if let postsArray = posts["posts"] {
-                    for (key, value) in postsArray {
-                        print(key)
-                        print(value)
-                        if let dict = value as? [String:Any] {
-                            let stoury = Stoury(userID: dict["uid"] as? String, userName: "", title: dict["title"] as? String, location: dict["location"] as? String, stateOrCountry: dict["countryOrState"] as? String, length: 02.00, date: Date.init(), category: "Test", url: dict["url"] as? String)
-                            self.recentPosts.append(stoury)
-                        }
+                    for (_, value) in posts {
+                            let stoury = Stoury(userID: value["uid"] as? String, userName: value["user"] as? String, title: value["title"] as? String, location: value["location"] as? String, stateOrCountry: value["countryOrState"] as? String, length: value["length"] as? Double, created: 0, category: "Travel", url: value["url"] as? String)
+                            self.userPosts.append(stoury)
                     }
-                }
             }
+            self.userPosts.sort { $0.created > $1.created }
             completion(true)
         })
     }
@@ -52,12 +47,12 @@ class DataManager {
                 if let postsArray = posts["posts"] {
                     for (_, value) in postsArray {
                         if let dict = value as? [String:Any] {
-                            print(dict)
-                            let stoury = Stoury(userID: dict["uid"] as? String, userName: dict["user"] as? String, title: dict["title"] as? String, location: dict["location"] as? String, stateOrCountry: dict["countryOrState"] as? String, length: dict["length"] as? Double , date: Date.init(), category: "Test", url: dict["url"] as? String)
+                            let stoury = Stoury(userID: dict["uid"] as? String, userName: dict["user"] as? String, title: dict["title"] as? String, location: dict["location"] as? String, stateOrCountry: dict["countryOrState"] as? String, length: dict["length"] as? Double, created: 0, category: "Travel", url: dict["url"] as? String)
                             self.recentPosts.append(stoury)
                         }
                     }
                 }
+                self.recentPosts.sort { $0.created > $1.created }
                completion(true)
             }
         })

@@ -74,6 +74,7 @@ class VideoUploadManager {
                     "coordinates": coordinates,
                     "location": location,
                     "stateOrCountry" : stateOrCountry,
+                    "created":NSDate().timeIntervalSince1970,
                     "url":url] as [String : Any]
         
         let childUpdates = ["/posts/\(key)": post,

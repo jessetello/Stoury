@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class HomeViewController: UIViewController {
    
@@ -92,6 +94,19 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 138.5
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      
+        let stouryURL = URL(string: DataManager.sharedInstance.recentPosts[indexPath.row].url!)
+        let player = AVPlayer(url: stouryURL!)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.view.frame = self.view.bounds
+        playerViewController.player = player
+        self.present(playerViewController, animated: true) {
+            playerViewController.player!.play()
+        }
+
     }
 }
 

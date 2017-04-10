@@ -61,8 +61,8 @@ class ReviewViewController: UIViewController, UITextFieldDelegate {
             let videoDuration = CMTimeGetSeconds(asset.duration)
             do {
                 let dataToCompress = try NSData(contentsOf: file, options: .alwaysMapped)
-                let compressed = NSData.compress(data:dataToCompress, action: .Compress)
-                VideoUploadManager.sharedInstance.saveToFireBase(data: compressed, title:postTitle.text ?? "", location: selectedPlace?.name ?? "",  stateOrCountry:selectedPlace?.formattedAddress ?? "", coordinates: LocationManager.sharedInstance.userLocation!, length: videoDuration)
+//                let compressed = NSData.compress(data:dataToCompress, action: .Compress)
+                VideoUploadManager.sharedInstance.saveToFireBase(data: dataToCompress, title:postTitle.text ?? "", location: selectedPlace?.name ?? "",  stateOrCountry:selectedPlace?.formattedAddress ?? "", coordinates: LocationManager.sharedInstance.userLocation!, length: videoDuration)
             }
             catch {
                 

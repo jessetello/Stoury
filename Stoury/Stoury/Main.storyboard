@@ -326,7 +326,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Post Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hcd-iz-i0v">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Post Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hcd-iz-i0v">
                                         <rect key="frame" x="20" y="62" width="386" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <nil key="textColor"/>
@@ -411,7 +411,7 @@
             <objects>
                 <navigationController storyboardIdentifier="Home" id="UpV-tz-cKj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="zOf-43-AFa"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="hRh-7j-WNA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="hRh-7j-WNA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -472,29 +472,11 @@
             </objects>
             <point key="canvasLocation" x="3529" y="-958"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="5B3-RW-In5">
-            <objects>
-                <viewController id="fgY-bH-MOp" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hTW-J5-Dn1"/>
-                        <viewControllerLayoutGuide type="bottom" id="jTy-x5-PR4"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="gaa-A9-JPq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XRv-4g-gAX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4279" y="-959"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="DHq-s5-HlV">
             <objects>
                 <navigationController storyboardIdentifier="Welcome" automaticallyAdjustsScrollViewInsets="NO" id="6fc-fI-XBv" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" translucent="NO" id="6Eb-py-OTH">
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="6Eb-py-OTH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.015686274510000001" green="0.22352941179999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -808,7 +790,7 @@
             <objects>
                 <navigationController id="bbJ-OD-WH7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Stoury" image="StouryTab" id="NiW-7j-bDi"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Xa5-dW-eiX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Xa5-dW-eiX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -851,51 +833,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Hf-Mz-v2C">
                                 <rect key="frame" x="0.0" y="44" width="414" height="579"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="125" id="36P-AK-e2D" customClass="TSMainFeedCell" customModule="Stoury" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="125"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="36P-AK-e2D" id="tC4-yC-RXg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="124.66666666666667"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AsW-R0-s8d">
-                                                    <rect key="frame" x="0.0" y="0.0" width="105" height="99"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9:33" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1g-v7-cb0">
-                                                    <rect key="frame" x="113" y="8" width="36" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Walking around London" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IfV-Mp-xfw">
-                                                    <rect key="frame" x="113" y="37" width="180" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Telljes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1J-qG-lbb">
-                                                    <rect key="frame" x="113" y="66" width="48" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="London, U.K." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pn4-cx-eKv">
-                                                    <rect key="frame" x="276" y="8" width="91" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="i9O-fU-Quo">
+                                <rect key="frame" x="0.0" y="323" width="414" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -907,13 +848,16 @@
                             <constraint firstAttribute="trailing" secondItem="7Hf-Mz-v2C" secondAttribute="trailing" id="fCY-Y4-xUP"/>
                             <constraint firstItem="DYM-xB-7Xk" firstAttribute="centerX" secondItem="C7y-gO-efA" secondAttribute="centerX" id="gRY-PO-lyK"/>
                             <constraint firstAttribute="trailing" secondItem="YAS-0i-me9" secondAttribute="trailing" id="jst-kF-Kgp"/>
+                            <constraint firstItem="i9O-fU-Quo" firstAttribute="centerX" secondItem="7Hf-Mz-v2C" secondAttribute="centerX" id="pel-r1-AS0"/>
                             <constraint firstItem="YAS-0i-me9" firstAttribute="leading" secondItem="C7y-gO-efA" secondAttribute="leading" id="tLf-57-tZp"/>
                             <constraint firstItem="7Hf-Mz-v2C" firstAttribute="top" secondItem="DYM-xB-7Xk" secondAttribute="bottom" constant="8" id="zCG-4A-Miz"/>
+                            <constraint firstItem="i9O-fU-Quo" firstAttribute="centerY" secondItem="7Hf-Mz-v2C" secondAttribute="centerY" id="zgK-vB-qOg"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Stoury" image="StouryTab" id="YLJ-bJ-OCb"/>
                     <navigationItem key="navigationItem" id="SFf-af-NJV"/>
                     <connections>
+                        <outlet property="loader" destination="i9O-fU-Quo" id="iuO-nz-Sea"/>
                         <outlet property="mapView" destination="YAS-0i-me9" id="uHh-W8-ptm"/>
                         <outlet property="tableView" destination="7Hf-Mz-v2C" id="aTE-o9-POx"/>
                     </connections>
@@ -927,7 +871,7 @@
             <objects>
                 <navigationController id="5iF-oe-CMM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Me" image="MeTab" id="lgy-PO-QHx"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="DgO-JV-4H4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="DgO-JV-4H4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1060,7 +1004,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dos-xx-p6f" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Post" image="PostTab" id="Led-YX-eZp"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GCD-YZ-ra6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GCD-YZ-ra6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1078,7 +1022,7 @@
             <objects>
                 <navigationController storyboardIdentifier="RecordNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="7Sc-or-QtB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" id="94a-yv-ggH">
+                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" misplaced="YES" id="94a-yv-ggH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
