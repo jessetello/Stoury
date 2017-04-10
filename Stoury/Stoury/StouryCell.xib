@@ -123,6 +123,7 @@
                 <outlet property="add" destination="Xp8-nD-p89" id="u1i-R9-pNo"/>
                 <outlet property="comment" destination="kPw-yd-Yfs" id="Zhv-Tc-T7q"/>
                 <outlet property="location" destination="b6y-zy-yWM" id="PwZ-iN-YZg"/>
+                <outlet property="moreButton" destination="TVh-Ma-501" id="8hr-cu-bKx"/>
                 <outlet property="stateOrCountry" destination="gAN-Av-SrI" id="2YT-tX-sQR"/>
                 <outlet property="title" destination="5MJ-LK-1am" id="IRY-Ni-IgE"/>
                 <outlet property="userName" destination="Dr0-yO-s1V" id="AL9-zN-smZ"/>

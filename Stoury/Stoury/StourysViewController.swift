@@ -66,6 +66,7 @@ extension StourysViewController: UITableViewDataSource {
         cell.location.text = stoury.location ?? "Unknown"
         cell.stateOrCountry.text = stoury.stateOrCountry ?? ""
         cell.userName.text = stoury.userName
+        cell.moreButton.isHidden = true
         
         let minutes = Int(stoury.length ?? 00.00) / 60 % 60
         let seconds = Int(stoury.length ?? 00.00) % 60

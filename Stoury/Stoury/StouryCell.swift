@@ -19,6 +19,7 @@ class StouryCell: UITableViewCell {
     
     @IBOutlet weak var comment: UIButton!
     @IBOutlet weak var add: UIButton!
+    @IBOutlet weak var moreButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

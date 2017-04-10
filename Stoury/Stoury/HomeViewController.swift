@@ -59,6 +59,19 @@ class HomeViewController: UIViewController {
             }
         }
     }
+    
+    func more() {
+        let actionSheetController = UIAlertController(title: "Report this Post", message: nil, preferredStyle: .actionSheet)
+        
+        let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+        }
+        
+        let flagActionButton = UIAlertAction(title: "Flag as Inappropriate", style: .default) { action -> Void in
+        }
+        actionSheetController.addAction(cancelActionButton)
+        actionSheetController.addAction(flagActionButton)
+        self.present(actionSheetController, animated: true, completion: nil)
+    }
 
 }
 
@@ -75,7 +88,7 @@ extension HomeViewController: UITableViewDataSource {
         cell.location.text = stoury.location ?? "Unknown"
         cell.stateOrCountry.text = stoury.stateOrCountry ?? ""
         cell.userName.text = stoury.userName
-        
+        cell.moreButton.addTarget(self, action: #selector(HomeViewController.more), for: .allTouchEvents)
         let minutes = Int(stoury.length ?? 00.00) / 60 % 60
         let seconds = Int(stoury.length ?? 00.00) % 60
         cell.videoLength.text = String(format:"%02i:%02i", minutes, seconds)
