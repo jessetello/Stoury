@@ -20,6 +20,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
     let imagePicker = UIImagePickerController()
     var likelyPlaces = [GMSPlace]()
     var recentStourys = [Stoury]()
+    var selectedPlace: GMSPlace?
     let placesClient = GMSPlacesClient()
     
     override func viewDidLoad() {
@@ -34,6 +35,10 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
     
     private func presentCamera() {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecordNav") as? UINavigationController {
+            if selectedPlace != nil {
+                let rc = vc.childViewControllers[0] as? RecordViewController
+                rc?.selectedPlace = selectedPlace
+            }
             self.present(vc, animated: true, completion: nil)
         }
     }
@@ -67,6 +72,13 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
     
     @IBAction func createNewPost(_ sender: UIButton) {
         self.authorizeRecordingView()
+    }
+
+    @IBAction func createStouryFromList(_ sender: UIButton) {
+            let cell = sender.superview?.superview
+            let indexPath = self.tableView.indexPath(for: cell as! UITableViewCell)
+            selectedPlace = self.likelyPlaces[(indexPath?.row)!]
+            self.authorizeRecordingView()
     }
     
     func nearMePlaces() {

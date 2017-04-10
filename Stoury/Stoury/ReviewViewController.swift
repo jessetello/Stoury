@@ -42,7 +42,11 @@ class ReviewViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         avPlayer.play()
+        if selectedPlace != nil {
+            self.addLocationButton.setTitle(selectedPlace?.name, for: .normal)
+        }
         self.view.bringSubview(toFront: self.overlay)
+        
     }
     
     override func viewWillLayoutSubviews() {

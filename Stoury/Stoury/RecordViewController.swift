@@ -12,6 +12,7 @@ import WowzaGoCoderSDK
 import Firebase
 import FirebaseAuth
 import Photos
+import GooglePlaces
 
 enum StouryType {
     case live
@@ -33,6 +34,7 @@ class RecordViewController: UIViewController {
     @IBOutlet weak var startStreamButton: UIButton!
     @IBOutlet weak var bottomViewConstraint: NSLayoutConstraint!
     @IBOutlet var timeLabel: UILabel!
+    var selectedPlace:GMSPlace?
 
     var stouryType = StouryType.nonlive
     var recordingState = RecordingState.stopped
@@ -180,6 +182,7 @@ class RecordViewController: UIViewController {
         if segue.identifier == "Review" {
             DispatchQueue.main.async {
                 if let review = segue.destination as? ReviewViewController {
+                    review.selectedPlace = self.selectedPlace
                     review.filePath = self.filePath
                 }
             }

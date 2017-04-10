@@ -60,9 +60,6 @@ class DataManager {
     
     func createUser(user:FIRUser, username:String) {
         userInfoRef.child("users").child(user.uid).setValue(["username": username])
-        //ref.child("users/\(user.uid)/username").setValue(username)
     }
     
-    
-
 }
