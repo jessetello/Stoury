@@ -9,7 +9,6 @@
 import UIKit
 import AVFoundation
 import WowzaGoCoderSDK
-import GooglePlacePicker
 import Firebase
 import FirebaseAuth
 import Photos
@@ -35,7 +34,6 @@ class RecordViewController: UIViewController {
     @IBOutlet weak var bottomViewConstraint: NSLayoutConstraint!
     @IBOutlet var timeLabel: UILabel!
 
-    var selectedPlace:GMSPlace?
     var stouryType = StouryType.nonlive
     var recordingState = RecordingState.stopped
 
@@ -178,12 +176,6 @@ class RecordViewController: UIViewController {
         })
     }
     
-    @IBAction func showLocationPicker(_ sender: UIButton) {
-        let locationsVC = GMSAutocompleteViewController()
-        locationsVC.delegate = self
-        present(locationsVC, animated: true, completion: nil)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Review" {
             DispatchQueue.main.async {
@@ -218,20 +210,3 @@ extension RecordViewController: UITextViewDelegate {
         }
     }
 }
-
-extension RecordViewController: GMSAutocompleteViewControllerDelegate {
-    
-    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-            selectedPlace = place
-            viewController.dismiss(animated: true, completion: nil)
-    }
-    
-    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-        
-    }
-    
-    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        viewController.dismiss(animated: true, completion: nil)
-    }
-}
-

@@ -16,7 +16,7 @@ class VideoUploadManager {
     
     static let sharedInstance = VideoUploadManager()
 
-    func saveToFireBase(data:NSData, title:String, location:String, coordinates:CLLocation, length:Double) {
+    func saveToFireBase(data:NSData, title:String, location:String, stateOrCountry: String?, coordinates:CLLocation, length:Double) {
         guard let uid = FIRAuth.auth()?.currentUser?.uid else {
             print("Error mssing UID")
             return
@@ -42,7 +42,6 @@ class VideoUploadManager {
             if let progress = snapshot.progress {
                 let percentComplete = 100.0 * Double(progress.completedUnitCount) / Double(progress.totalUnitCount)
                 print(percentComplete)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UploadComplete"), object: nil)
             }
         }
         uploadTask.observe(.success) { [weak self] snapshot in
@@ -52,11 +51,11 @@ class VideoUploadManager {
                     print("missing params")
                     return
                 }
-                
                 self?.writeNewPost(userID: uid,
                                    userName:(FIRAuth.auth()?.currentUser?.displayName) ?? "Unknown",
                                    title: title,
                                    location:location,
+                                   stateOrCountry: stateOrCountry ?? "",
                                    coordinates:["lat":coordinates.coordinate.latitude,
                                              "lon":coordinates.coordinate.longitude],
                                    url:vidUrl.absoluteString,
@@ -65,7 +64,7 @@ class VideoUploadManager {
         }
     }
     
-    func writeNewPost(userID:String, userName:String, title:String, location:String, coordinates:[String:Double], url:String, length:Double) {
+    func writeNewPost(userID:String, userName:String, title:String, location:String, stateOrCountry:String, coordinates:[String:Double], url:String, length:Double) {
         let key = DataManager.sharedInstance.postRef.child("posts").childByAutoId().key
         
         let post = ["uid": userID,
@@ -74,11 +73,13 @@ class VideoUploadManager {
                     "length" : length,
                     "coordinates": coordinates,
                     "location": location,
+                    "stateOrCountry" : stateOrCountry,
                     "url":url] as [String : Any]
         
         let childUpdates = ["/posts/\(key)": post,
                             "/user-posts/\(userID)/\(key)/": post]
         DataManager.sharedInstance.postRef.updateChildValues(childUpdates)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UploadComplete"), object: nil)
     }
     
 }

@@ -13,6 +13,7 @@ struct Stoury {
     var userName: String?
     var title: String?
     var location: String??
+    var stateOrCountry: String??
     var length: Double?
     var date: Date?
     var category: String?

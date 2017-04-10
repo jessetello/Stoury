@@ -34,7 +34,7 @@ class DataManager {
                         print(key)
                         print(value)
                         if let dict = value as? [String:Any] {
-                            let stoury = Stoury(userID: dict["uid"] as? String, userName: "", title: dict["title"] as? String, location: dict["location"] as? String, length: 02.00, date: Date.init(), category: "Test", url: dict["url"] as? String)
+                            let stoury = Stoury(userID: dict["uid"] as? String, userName: "", title: dict["title"] as? String, location: dict["location"] as? String, stateOrCountry: dict["countryOrState"] as? String, length: 02.00, date: Date.init(), category: "Test", url: dict["url"] as? String)
                             self.recentPosts.append(stoury)
                         }
                     }
@@ -53,7 +53,7 @@ class DataManager {
                     for (_, value) in postsArray {
                         if let dict = value as? [String:Any] {
                             print(dict)
-                            let stoury = Stoury(userID: dict["uid"] as? String, userName: dict["user"] as? String, title: dict["title"] as? String, location: dict["location"] as? String, length: dict["length"] as? Double , date: Date.init(), category: "Test", url: dict["url"] as? String)
+                            let stoury = Stoury(userID: dict["uid"] as? String, userName: dict["user"] as? String, title: dict["title"] as? String, location: dict["location"] as? String, stateOrCountry: dict["countryOrState"] as? String, length: dict["length"] as? Double , date: Date.init(), category: "Test", url: dict["url"] as? String)
                             self.recentPosts.append(stoury)
                         }
                     }

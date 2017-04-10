@@ -39,11 +39,11 @@ class HomeViewController: UIViewController {
         self.tableView.separatorColor = UIColor.lightGray
         self.tableView.register(UINib(nibName: "StouryCell", bundle: nil), forCellReuseIdentifier: "StouryCell")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(HomeViewController.logout))
-        getRecentStourys()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        getRecentStourys()
     }
     
     func logout() {
@@ -76,9 +76,13 @@ extension HomeViewController: UITableViewDataSource {
         let stoury = DataManager.sharedInstance.recentPosts[indexPath.row]
         cell.title.text = stoury.title
         cell.location.text = stoury.location ?? "Unknown"
+        cell.stateOrCountry.text = stoury.stateOrCountry ?? ""
         cell.userName.text = stoury.userName
-        cell.videoLength.text = "\(stoury.length ?? 00.00)"
-        cell.videoImage.image = UIImage(named: "CategoryTravel")
+        
+        let minutes = Int(stoury.length ?? 00.00) / 60 % 60
+        let seconds = Int(stoury.length ?? 00.00) % 60
+        cell.videoLength.text = String(format:"%02i:%02i", minutes, seconds)
+        cell.videoImage.image = UIImage(named: "PlaceHolder")
         return cell
     }
     
@@ -87,7 +91,7 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 165.0
+        return 138.5
     }
 }
 

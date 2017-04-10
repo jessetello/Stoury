@@ -8,12 +8,14 @@
 
 import UIKit
 import AVFoundation
+import GooglePlacePicker
 
-class ReviewViewController: UIViewController {
+class ReviewViewController: UIViewController, UITextFieldDelegate {
 
     var avPlayerLayer = AVPlayerLayer()
     var filePath: URL?
     let avPlayer = AVPlayer()
+    var selectedPlace:GMSPlace?
 
     @IBOutlet weak var overlay: UIView!
     @IBOutlet weak var location: UITextField!
@@ -21,9 +23,12 @@ class ReviewViewController: UIViewController {
     
     @IBOutlet weak var discardButton: UIButton!
     @IBOutlet weak var postButton: UIButton!
+    @IBOutlet weak var addLocationButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        location.delegate = self
+        postTitle.delegate = self
         location.underlined(color: .lightGray)
         postTitle.underlined(color: .lightGray)
         avPlayerLayer.player = avPlayer
@@ -45,6 +50,11 @@ class ReviewViewController: UIViewController {
         avPlayerLayer.frame = view.bounds
     }
     
+    @IBAction func closeReview(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+ 
+    
     @IBAction func post(_ sender: UIButton) {
         if let file = filePath {
             let asset = AVURLAsset(url: file)
@@ -52,13 +62,25 @@ class ReviewViewController: UIViewController {
             do {
                 let dataToCompress = try NSData(contentsOf: file, options: .alwaysMapped)
                 let compressed = NSData.compress(data:dataToCompress, action: .Compress)
-                VideoUploadManager.sharedInstance.saveToFireBase(data: compressed, title:postTitle.text ?? "", location: location.text ?? "Unknown", coordinates: LocationManager.sharedInstance.userLocation!, length: videoDuration)
+                VideoUploadManager.sharedInstance.saveToFireBase(data: compressed, title:postTitle.text ?? "", location: selectedPlace?.name ?? "",  stateOrCountry:selectedPlace?.formattedAddress ?? "", coordinates: LocationManager.sharedInstance.userLocation!, length: videoDuration)
             }
             catch {
                 
             }
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func addLocation(_ sender: UIButton) {
+        let locationsVC = GMSAutocompleteViewController()
+        locationsVC.delegate = self
+        present(locationsVC, animated: true, completion: nil)
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     func coverImageConvert() {
@@ -72,4 +94,22 @@ class ReviewViewController: UIViewController {
 //        }
     }
     
+}
+
+
+extension ReviewViewController: GMSAutocompleteViewControllerDelegate {
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        selectedPlace = place
+        self.addLocationButton.setTitle(place.name, for: .normal)
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        
+    }
+    
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
 }

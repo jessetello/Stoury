@@ -13,6 +13,7 @@ import GooglePlaces
 
 class PostViewController: UIViewController, UINavigationControllerDelegate, UITabBarControllerDelegate  {
 
+    @IBOutlet weak var createPostButton: UIButton!
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var tableView: UITableView!
@@ -25,6 +26,8 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
         super.viewDidLoad()
         LocationManager.sharedInstance.getLocation()
         self.imagePicker.delegate = self
+        self.createPostButton.layer.cornerRadius = 4
+        self.tableView.tableFooterView = UIView()
         self.nearMePlaces()
         // Do any additional setup after loading the view.
     }
