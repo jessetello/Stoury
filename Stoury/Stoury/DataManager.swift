@@ -18,7 +18,6 @@ class DataManager {
     let postRef = FIRDatabase.database().reference(withPath: "posts")
     let userPostRef = FIRDatabase.database().reference(withPath: "posts").child("user-posts/\(FIRAuth.auth()?.currentUser?.uid ?? "")")
     let userInfoRef = FIRDatabase.database().reference(withPath: "users")
-
     let storage = FIRStorage.storage()
     
     var recentPosts = [Stoury]()

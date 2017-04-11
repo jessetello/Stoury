@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stoury/DataManager.swift"
-            timestampString = "513550751.149267"
+            timestampString = "513637734.4417"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "getUserFeed(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stoury/DataManager.swift"
-            timestampString = "513550751.149267"
+            timestampString = "513637734.4417"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "getUserFeed(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stoury/DataManager.swift"
-            timestampString = "513636901.616232"
+            timestampString = "513637734.4417"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "checkUserNames(username:)"
             landmarkType = "7">
             <Locations>
@@ -90,11 +90,11 @@
                   moduleName = "Stoury"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jessetello/Stoury/Stoury/Stoury/Stoury/DataManager.swift"
-                  timestampString = "513637047.543093"
+                  timestampString = "513637735.618008"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
                   offsetFromSymbolStart = "295">
                </Location>
                <Location
@@ -105,11 +105,11 @@
                   moduleName = "Stoury"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jessetello/Stoury/Stoury/Stoury/Stoury/DataManager.swift"
-                  timestampString = "513637047.545986"
+                  timestampString = "513637735.621324"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
                   offsetFromSymbolStart = "460">
                </Location>
             </Locations>
