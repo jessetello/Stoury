@@ -59,7 +59,14 @@ class DataManager {
     }
     
     func createUser(user:FIRUser, username:String) {
-        userInfoRef.child("users").child(user.uid).setValue(["username": username])
+        userInfoRef.child("user-names").childByAutoId().setValue(username)
     }
     
+    func checkUserNames(username:String) {
+       let found = userInfoRef.child("user-names").queryEqual(toValue: username)
+        print(found)
+//        userInfoRef.child("user-names").observeSingleEvent(of: .value, with: { (snapshot) in
+//            print(snapshot)
+//        })
+    }
 }

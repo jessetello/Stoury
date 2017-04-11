@@ -28,20 +28,24 @@ class AuthenticationManager {
     }
     
     func signUp(email: String, password: String, username: String, completion: @escaping AuthenticationHandler) {
+        DataManager.sharedInstance.checkUserNames(username: username)
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             if let authError = error {
                 completion(false, authError)
             }
             else {
                 //create a user object with username,email,uid
-                if user != nil {
+                if let user = user {
                     let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
                         changeRequest?.displayName = username
                         changeRequest?.commitChanges() { (error) in
                             if error != nil {
                                 completion(false, error)
+                            } else {
+                                
+                                DataManager.sharedInstance.createUser(user: user, username: username)
+                                completion(true, nil)
                             }
-                            completion(true, nil)
                     }
                 }
             }
