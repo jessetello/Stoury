@@ -20,12 +20,13 @@ class StourysViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mapView.delegate = self
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView()
         self.tableView.separatorColor = UIColor.lightGray
         self.tableView.register(UINib(nibName: "StouryCell", bundle: nil), forCellReuseIdentifier: "StouryCell")
-        self.navigationController?.navigationItem.title = "My Stourys"
+        self.navigationController?.navigationBar.topItem?.title = "Stourys"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -126,10 +127,6 @@ extension StourysViewController: UITableViewDelegate {
 }
 
 extension StourysViewController: GMSMapViewDelegate {
-    
-    func mapViewSnapshotReady(_ mapView: GMSMapView) {
-        <#code#>
-    }
     
 }
 

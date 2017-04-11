@@ -18,6 +18,7 @@ class MeViewController: UITableViewController {
         super.viewDidLoad()
         userName.text = FIRAuth.auth()?.currentUser?.displayName
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(MeViewController.logout))
+        self.navigationController?.navigationBar.topItem?.title = "Profile"
     }
     
     func logout() {

@@ -30,6 +30,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
         self.createPostButton.layer.cornerRadius = 4
         self.tableView.tableFooterView = UIView()
         self.nearMePlaces()
+        self.navigationController?.navigationBar.topItem?.title = "Post"
         // Do any additional setup after loading the view.
     }
     

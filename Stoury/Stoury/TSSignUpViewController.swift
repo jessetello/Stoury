@@ -10,6 +10,7 @@ import UIKit
 
 class TSSignUpViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var termsAndConditions: UISwitch!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
@@ -60,6 +61,11 @@ class TSSignUpViewController: UIViewController, UITextFieldDelegate {
                 return false
             }
         }
+        
+        if !termsAndConditions.isOn {
+            return false
+        }
+        
         return true
     }
 
@@ -93,6 +99,13 @@ class TSSignUpViewController: UIViewController, UITextFieldDelegate {
             
         
         }
+    }
+    
+    
+    @IBAction func terms(_ sender: UIButton) {
+        
+        
+        
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
