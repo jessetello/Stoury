@@ -25,6 +25,7 @@ class StourysViewController: UIViewController {
         self.tableView.tableFooterView = UIView()
         self.tableView.separatorColor = UIColor.lightGray
         self.tableView.register(UINib(nibName: "StouryCell", bundle: nil), forCellReuseIdentifier: "StouryCell")
+        self.navigationController?.navigationItem.title = "My Stourys"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,6 +41,25 @@ class StourysViewController: UIViewController {
                 self.loader.stopAnimating()
                 if success {
                     self.tableView.reloadData()
+                    self.configureMap()
+                }
+            }
+        }
+    }
+    
+    func configureMap() {
+        if let lat = LocationManager.sharedInstance.locationManager.location?.coordinate.latitude, let long = LocationManager.sharedInstance.locationManager.location?.coordinate.longitude {
+            let camera = GMSCameraPosition.camera(withLatitude:lat,
+                                                  longitude:long,
+                                                  zoom: 15)
+            mapView.camera = camera
+            for stoury in DataManager.sharedInstance.userPosts {
+                if let lat =  stoury.coordinates?["lat"], let lon = stoury.coordinates?["lon"] {
+                    let position = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                    let marker = GMSMarker(position: position)
+                    marker.title = stoury.title
+                    marker.map = mapView
+                    marker.appearAnimation = GMSMarkerAnimation.pop
                 }
             }
         }
@@ -47,8 +67,16 @@ class StourysViewController: UIViewController {
     
     @IBAction func listMapChange(_ sender: UISegmentedControl) {
         
-        
-        
+        switch sender.selectedSegmentIndex {
+        case 0:
+            self.mapView.isHidden = true
+            self.tableView.isHidden = false
+        case 1:
+            self.mapView.isHidden = false
+            self.tableView.isHidden = true
+        default:
+            break;
+        }
     }
     
 }
@@ -93,6 +121,14 @@ extension StourysViewController: UITableViewDelegate {
             playerViewController.player!.play()
         }
         
+    }
+    
+}
+
+extension StourysViewController: GMSMapViewDelegate {
+    
+    func mapViewSnapshotReady(_ mapView: GMSMapView) {
+        <#code#>
     }
     
 }

@@ -67,46 +67,46 @@ class RecordViewController: UIViewController {
     }
     
     func setupRecorder() {
-      DispatchQueue.main.async {
-        self.captureSession.sessionPreset = AVCaptureSessionPresetInputPriority
-        if let backCamera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) {
-            var error: NSError?
-            do {
-                self.movieDeviceInput = try AVCaptureDeviceInput(device: backCamera)
-            } catch let error1 as NSError {
-                error = error1
-                self.movieDeviceInput = nil
-                print(error!.localizedDescription)
-            }
-            
-            self.captureSession.beginConfiguration()
-            
-            if error == nil && self.captureSession.canAddInput(self.movieDeviceInput) {
-                self.captureSession.addInput(self.movieDeviceInput)
-                self.movieFileOutput = AVCaptureMovieFileOutput()
-                self.movieFileOutput?.maxRecordedDuration = CMTime(seconds: 300.0, preferredTimescale: CMTimeScale(30.0))
-                if self.captureSession.canAddOutput(self.movieFileOutput) {
-                    self.captureSession.addOutput(self.movieFileOutput)
-                }
-            }
-            
-            if let audioDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio) {
+        DispatchQueue.main.async {
+            self.captureSession.sessionPreset = AVCaptureSessionPresetInputPriority
+            if let backCamera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) {
                 var error: NSError?
                 do {
-                    self.audioDeviceInput = try AVCaptureDeviceInput(device: audioDevice)
-                } catch let error2 as NSError {
-                    error = error2
-                    self.audioDeviceInput = nil
-                    print(error?.description ?? "Error")
+                    self.movieDeviceInput = try AVCaptureDeviceInput(device: backCamera)
+                } catch let error1 as NSError {
+                    error = error1
+                    self.movieDeviceInput = nil
+                    print(error!.localizedDescription)
                 }
                 
-                if error == nil && self.captureSession.canAddInput(self.audioDeviceInput) {
-                    self.captureSession.addInput(self.audioDeviceInput)
+                self.captureSession.beginConfiguration()
+                
+                if error == nil && self.captureSession.canAddInput(self.movieDeviceInput) {
+                    self.captureSession.addInput(self.movieDeviceInput)
+                    self.movieFileOutput = AVCaptureMovieFileOutput()
+                    self.movieFileOutput?.maxRecordedDuration = CMTime(seconds: 300.0, preferredTimescale: CMTimeScale(30.0))
+                    if self.captureSession.canAddOutput(self.movieFileOutput) {
+                        self.captureSession.addOutput(self.movieFileOutput)
+                    }
                 }
+                
+                if let audioDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio) {
+                    var error: NSError?
+                    do {
+                        self.audioDeviceInput = try AVCaptureDeviceInput(device: audioDevice)
+                    } catch let error2 as NSError {
+                        error = error2
+                        self.audioDeviceInput = nil
+                        print(error?.description ?? "Error")
+                    }
+                    
+                    if error == nil && self.captureSession.canAddInput(self.audioDeviceInput) {
+                        self.captureSession.addInput(self.audioDeviceInput)
+                    }
+                }
+                self.captureSession.commitConfiguration()
             }
-            self.captureSession.commitConfiguration()
-        }
-        
+            
             if let preview = AVCaptureVideoPreviewLayer(session: self.captureSession) {
                 self.nonLivePreviewLayer = preview
                 self.nonLivePreviewLayer?.frame = self.view.bounds
@@ -115,7 +115,7 @@ class RecordViewController: UIViewController {
                 self.view.layer.insertSublayer(self.nonLivePreviewLayer!, at: 0)
                 self.captureSession.startRunning()
             }
-        
+            
         }
     }
     
@@ -140,6 +140,7 @@ class RecordViewController: UIViewController {
             recordingState = .recording
         }
         else {
+            recordingState = .stopped
             self.captureSession.stopRunning()
             timer.invalidate()
         }
@@ -189,6 +190,21 @@ class RecordViewController: UIViewController {
         }
     }
     
+    func reloadView() {
+        self.counter = 0
+        self.nonLivePreviewLayer?.removeFromSuperlayer()
+        for input in self.captureSession.inputs {
+            self.captureSession.removeInput(input as! AVCaptureInput)
+        }
+        for output in self.captureSession.outputs {
+            self.captureSession.removeOutput(output as! AVCaptureOutput)
+        }
+        self.timeLabel.text = "00:00"
+        startStreamButton.setTitle("Record", for: .normal)
+        startStreamButton.backgroundColor = UIColor(red: 4.0/255, green: 57.0/255, blue: 94.0/255, alpha: 1.0)
+        self.setupRecorder()
+    }
+    
 }
 
 extension RecordViewController: AVCaptureFileOutputRecordingDelegate {
@@ -198,8 +214,18 @@ extension RecordViewController: AVCaptureFileOutputRecordingDelegate {
     }
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
+        if counter < 5 {
+            let alertController = UIAlertController(title: "Stoury Length", message: "Stourys must be longer than 5 seconds", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                self.reloadView()
+            })
+            alertController.addAction(ok)
+            self.present(alertController, animated: true, completion: nil)
+        }
+        else {
             self.filePath = outputFileURL
             self.performSegue(withIdentifier: "Review", sender: self)
+        }
     }
 }
 

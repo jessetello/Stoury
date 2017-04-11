@@ -64,9 +64,13 @@ class HomeViewController: UIViewController {
         let actionSheetController = UIAlertController(title: "Report this Post", message: nil, preferredStyle: .actionSheet)
         
         let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+       
+        
         }
         
         let flagActionButton = UIAlertAction(title: "Flag as Inappropriate", style: .default) { action -> Void in
+            // send post with "flag" and possibly email?
+            actionSheetController.dismiss(animated: true, completion: nil)
         }
         actionSheetController.addAction(cancelActionButton)
         actionSheetController.addAction(flagActionButton)
