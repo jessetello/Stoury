@@ -18,6 +18,7 @@ class DataManager {
     let postRef = FIRDatabase.database().reference(withPath: "posts").child("posts")
     let userPostRef = FIRDatabase.database().reference(withPath: "posts").child("user-posts/\(FIRAuth.auth()?.currentUser?.uid ?? "")")
     let userInfoRef = FIRDatabase.database().reference(withPath: "users")
+    
     let storage = FIRStorage.storage()
     
     var recentPosts = [Stoury]()
@@ -75,11 +76,15 @@ class DataManager {
         userInfoRef.child("user-names").childByAutoId().setValue(username)
     }
     
-    func checkUserNames(username:String) {
-       let found = userInfoRef.child("user-names").queryEqual(toValue: username)
-        print(found)
-//        userInfoRef.child("user-names").observeSingleEvent(of: .value, with: { (snapshot) in
+    func checkUserNames(username:String, completion:@escaping DataHandler) {
+        userInfoRef.child("user-names").queryOrdered(byChild: "name").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { (snapshot) in
+            print(snapshot)
+            completion(true)
+
+        })
+//        userInfoRef.child("user-names").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { (snapshot) in
 //            print(snapshot)
+//            completion(true)
 //        })
     }
 }

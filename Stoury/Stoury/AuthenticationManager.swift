@@ -28,7 +28,6 @@ class AuthenticationManager {
     }
     
     func signUp(email: String, password: String, username: String, completion: @escaping AuthenticationHandler) {
-        DataManager.sharedInstance.checkUserNames(username: username)
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             if let authError = error {
                 completion(false, authError)
