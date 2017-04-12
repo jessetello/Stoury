@@ -41,7 +41,7 @@ class DataManager {
     
     func getRecentPosts(completion: @escaping DataHandler) {
         self.recentPosts.removeAll()
-        postRef.observe(FIRDataEventType.value, with: { (snapshot) in
+        postRef.queryLimited(toLast: 2).observe(FIRDataEventType.value, with: { (snapshot) in
             if let posts = snapshot.value as? [String : [String : Any]] {
                 if let postsArray = posts["posts"] {
                     for (_, value) in postsArray {
@@ -52,9 +52,25 @@ class DataManager {
                     }
                 }
                 self.recentPosts.sort { $0.created > $1.created }
-               completion(true)
+                completion(true)
             }
         })
+        
+        
+//        postRef.observe(FIRDataEventType.value, with: { (snapshot) in
+//            if let posts = snapshot.value as? [String : [String : Any]] {
+//                if let postsArray = posts["posts"] {
+//                    for (_, value) in postsArray {
+//                        if let dict = value as? [String:Any] {
+//                            let stoury = Stoury(userID: dict["uid"] as? String, userName: dict["user"] as? String, title: dict["title"] as? String, location: dict["location"] as? String, coordinates: dict["coordinates"] as? [String:Double], stateOrCountry: dict["countryOrState"] as? String, length: dict["length"] as? Double, created: 0, category: "Travel", url: dict["url"] as? String)
+//                            self.recentPosts.append(stoury)
+//                        }
+//                    }
+//                }
+//                self.recentPosts.sort { $0.created > $1.created }
+//               completion(true)
+//            }
+//        })
     }
     
     func createUser(user:FIRUser, username:String) {
