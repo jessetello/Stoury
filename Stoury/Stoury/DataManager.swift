@@ -15,7 +15,7 @@ class DataManager {
     
     static let sharedInstance = DataManager()
     
-    let postRef = FIRDatabase.database().reference(withPath: "posts")
+    let postRef = FIRDatabase.database().reference(withPath: "posts").child("posts")
     let userPostRef = FIRDatabase.database().reference(withPath: "posts").child("user-posts/\(FIRAuth.auth()?.currentUser?.uid ?? "")")
     let userInfoRef = FIRDatabase.database().reference(withPath: "users")
     let storage = FIRStorage.storage()
@@ -41,6 +41,20 @@ class DataManager {
     
     func getRecentPosts(completion: @escaping DataHandler) {
         self.recentPosts.removeAll()
+        postRef.queryLimited(toFirst: 25).observe(FIRDataEventType.value, with: { (snapshot) in
+            if let posts = snapshot.value as? [String : [String : Any]] {
+                for (_, value) in posts {
+                    let stoury = Stoury(userID: value["uid"] as? String, userName: value["user"] as? String, title: value["title"] as? String, location: value["location"] as? String, coordinates: value["coordinates"] as? [String:Double], stateOrCountry: value["countryOrState"] as? String, length: value["length"] as? Double, created: 0, category: "Travel", url: value["url"] as? String)
+                    self.recentPosts.append(stoury)
+                }
+            }
+            self.recentPosts.sort { $0.created > $1.created }
+            completion(true)
+            
+        })
+    }
+    
+    func getAllPosts(completion: @escaping DataHandler) {
         postRef.queryLimited(toLast: 2).observe(FIRDataEventType.value, with: { (snapshot) in
             if let posts = snapshot.value as? [String : [String : Any]] {
                 if let postsArray = posts["posts"] {
@@ -55,22 +69,6 @@ class DataManager {
                 completion(true)
             }
         })
-        
-        
-//        postRef.observe(FIRDataEventType.value, with: { (snapshot) in
-//            if let posts = snapshot.value as? [String : [String : Any]] {
-//                if let postsArray = posts["posts"] {
-//                    for (_, value) in postsArray {
-//                        if let dict = value as? [String:Any] {
-//                            let stoury = Stoury(userID: dict["uid"] as? String, userName: dict["user"] as? String, title: dict["title"] as? String, location: dict["location"] as? String, coordinates: dict["coordinates"] as? [String:Double], stateOrCountry: dict["countryOrState"] as? String, length: dict["length"] as? Double, created: 0, category: "Travel", url: dict["url"] as? String)
-//                            self.recentPosts.append(stoury)
-//                        }
-//                    }
-//                }
-//                self.recentPosts.sort { $0.created > $1.created }
-//               completion(true)
-//            }
-//        })
     }
     
     func createUser(user:FIRUser, username:String) {

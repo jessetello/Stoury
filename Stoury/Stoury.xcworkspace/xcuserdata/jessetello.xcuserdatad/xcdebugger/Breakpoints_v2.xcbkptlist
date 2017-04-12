@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stoury/DataManager.swift"
-            timestampString = "513713754.368082"
+            timestampString = "513716602.429562"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "checkUserNames(username:)"
             landmarkType = "7">
          </BreakpointContent>
