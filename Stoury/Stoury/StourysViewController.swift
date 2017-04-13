@@ -17,6 +17,7 @@ class StourysViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet weak var listMapControl: UISegmentedControl!
+    @IBOutlet weak var noStourysLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,9 @@ class StourysViewController: UIViewController {
                 if success {
                     self.tableView.reloadData()
                     self.configureMap()
+                    if DataManager.sharedInstance.userPosts.count == 0 {
+                        self.noStourysLabel.isHidden = false
+                    }
                 }
             }
         }

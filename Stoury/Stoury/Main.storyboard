@@ -29,7 +29,7 @@
                                     <constraint firstAttribute="height" constant="50" id="aGX-Nw-lML"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                <state key="normal" title="Create Post">
+                                <state key="normal" title="Create Stoury">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -400,7 +400,7 @@
             <objects>
                 <navigationController storyboardIdentifier="Home" id="UpV-tz-cKj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="zOf-43-AFa"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="hRh-7j-WNA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="hRh-7j-WNA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -465,7 +465,7 @@
         <scene sceneID="DHq-s5-HlV">
             <objects>
                 <navigationController storyboardIdentifier="Welcome" automaticallyAdjustsScrollViewInsets="NO" id="6fc-fI-XBv" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" translucent="NO" id="6Eb-py-OTH">
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="6Eb-py-OTH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.015686274510000001" green="0.22352941179999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -796,7 +796,7 @@
         <scene sceneID="sW8-DA-19s">
             <objects>
                 <navigationController navigationBarHidden="YES" id="boQ-7c-Ec2" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bsr-Pk-xXq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bsr-Pk-xXq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -893,7 +893,7 @@
             <objects>
                 <navigationController id="bbJ-OD-WH7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Stourys" image="StouryTab" id="NiW-7j-bDi"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Xa5-dW-eiX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Xa5-dW-eiX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -927,7 +927,7 @@
                                     <segment title="List"/>
                                     <segment title="Map"/>
                                 </segments>
-                                <color key="tintColor" red="0.048131011920000001" green="0.39357040850000002" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.015686274510000001" green="0.22352941179999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="listMapChange:" destination="7Yk-LK-ebv" eventType="valueChanged" id="9O5-wr-4aR"/>
                                 </connections>
@@ -940,13 +940,20 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="579"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="i9O-fU-Quo">
-                                <rect key="frame" x="0.0" y="323" width="414" height="20"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="i9O-fU-Quo">
+                                <rect key="frame" x="197" y="323" width="20" height="20"/>
                             </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have not created any Stourys" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3W-eJ-2Vo">
+                                <rect key="frame" x="55.333333333333343" y="322.33333333333331" width="303.66666666666663" height="22.333333333333371"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="19"/>
+                                <color key="textColor" red="0.015686274510000001" green="0.22352941179999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Pcq-2n-duB" firstAttribute="top" secondItem="YAS-0i-me9" secondAttribute="bottom" id="7ap-e3-emP"/>
+                            <constraint firstItem="W3W-eJ-2Vo" firstAttribute="centerX" secondItem="7Hf-Mz-v2C" secondAttribute="centerX" id="8xo-Eg-U1I"/>
                             <constraint firstItem="Pcq-2n-duB" firstAttribute="top" secondItem="7Hf-Mz-v2C" secondAttribute="bottom" id="GW3-Zd-hjy"/>
                             <constraint firstItem="DYM-xB-7Xk" firstAttribute="top" secondItem="dcO-ae-A4V" secondAttribute="bottom" constant="8" id="KaZ-Yd-cWi"/>
                             <constraint firstItem="YAS-0i-me9" firstAttribute="top" secondItem="DYM-xB-7Xk" secondAttribute="bottom" constant="8" id="WQv-1u-c08"/>
@@ -955,6 +962,7 @@
                             <constraint firstItem="DYM-xB-7Xk" firstAttribute="centerX" secondItem="C7y-gO-efA" secondAttribute="centerX" id="gRY-PO-lyK"/>
                             <constraint firstAttribute="trailing" secondItem="YAS-0i-me9" secondAttribute="trailing" id="jst-kF-Kgp"/>
                             <constraint firstItem="i9O-fU-Quo" firstAttribute="centerX" secondItem="7Hf-Mz-v2C" secondAttribute="centerX" id="pel-r1-AS0"/>
+                            <constraint firstItem="W3W-eJ-2Vo" firstAttribute="centerY" secondItem="7Hf-Mz-v2C" secondAttribute="centerY" id="sZz-mc-90t"/>
                             <constraint firstItem="YAS-0i-me9" firstAttribute="leading" secondItem="C7y-gO-efA" secondAttribute="leading" id="tLf-57-tZp"/>
                             <constraint firstItem="7Hf-Mz-v2C" firstAttribute="top" secondItem="DYM-xB-7Xk" secondAttribute="bottom" constant="8" id="zCG-4A-Miz"/>
                             <constraint firstItem="i9O-fU-Quo" firstAttribute="centerY" secondItem="7Hf-Mz-v2C" secondAttribute="centerY" id="zgK-vB-qOg"/>
@@ -966,19 +974,20 @@
                         <outlet property="listMapControl" destination="DYM-xB-7Xk" id="fTY-gb-mnn"/>
                         <outlet property="loader" destination="i9O-fU-Quo" id="iuO-nz-Sea"/>
                         <outlet property="mapView" destination="YAS-0i-me9" id="uHh-W8-ptm"/>
+                        <outlet property="noStourysLabel" destination="W3W-eJ-2Vo" id="NKw-QZ-2fl"/>
                         <outlet property="tableView" destination="7Hf-Mz-v2C" id="aTE-o9-POx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Glw-ez-zGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3423" y="731"/>
+            <point key="canvasLocation" x="3421.739130434783" y="730.43478260869574"/>
         </scene>
         <!--Profile-->
         <scene sceneID="o2g-JW-cIX">
             <objects>
                 <navigationController id="5iF-oe-CMM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="MeTab" id="lgy-PO-QHx"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="DgO-JV-4H4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="DgO-JV-4H4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1181,7 +1190,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dos-xx-p6f" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Post" image="PostTab" id="Led-YX-eZp"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GCD-YZ-ra6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GCD-YZ-ra6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1199,7 +1208,7 @@
             <objects>
                 <navigationController storyboardIdentifier="RecordNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="7Sc-or-QtB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" id="94a-yv-ggH">
+                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" misplaced="YES" id="94a-yv-ggH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
