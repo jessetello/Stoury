@@ -89,6 +89,6 @@ class DataManager {
     }
     
     func flagStouryPost(stoury:Stoury) {
-        postRef.child("flaggedPosts").childByAutoId().setValue(["stouryID":stoury.id,"userName":stoury.userName,"userID":stoury.userID,"videoURL":stoury.url])
+        newPostRef.child("flaggedPosts").childByAutoId().setValue(["stouryID":stoury.id,"userName":stoury.userName,"userID":stoury.userID,"videoURL":stoury.url])
     }
 }
