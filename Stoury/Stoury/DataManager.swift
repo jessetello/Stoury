@@ -14,12 +14,10 @@ import FirebaseAuth
 class DataManager {
     
     static let sharedInstance = DataManager()
-    
+    let newPostRef = FIRDatabase.database().reference(withPath: "posts")
     let postRef = FIRDatabase.database().reference(withPath: "posts").child("posts")
     let userPostRef = FIRDatabase.database().reference(withPath: "posts").child("user-posts/\(FIRAuth.auth()?.currentUser?.uid ?? "")")
     let userInfoRef = FIRDatabase.database().reference(withPath: "users")
-    
-    let flaggedRef = FIRDatabase.database().reference(withPath: "flaggedPosts")
     
     let storage = FIRStorage.storage()
     
@@ -74,23 +72,23 @@ class DataManager {
         })
     }
     
-    func createUser(user:FIRUser, username:String) {
-        userInfoRef.child("user-names").childByAutoId().setValue(username)
+    func createUser(user:FIRUser, userName:String) {
+        let key = self.userInfoRef.child("user-names").child(userName).key
+        self.userInfoRef.updateChildValues(["user-names/\(key)":""])
     }
     
-    func checkUserNames(username:String, completion:@escaping DataHandler) {
-        userInfoRef.child("user-names").queryOrdered(byChild: "name").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { (snapshot) in
-            print(snapshot)
-            completion(true)
-
+    func checkUserNames(userName:String, completion:@escaping DataHandler) {
+        userInfoRef.child("user-names").observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.hasChild(userName) {
+                completion(false)
+            }
+            else {
+                completion(true)
+            }
         })
-//        userInfoRef.child("user-names").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { (snapshot) in
-//            print(snapshot)
-//            completion(true)
-//        })
     }
     
     func flagStouryPost(stoury:Stoury) {
-        flaggedRef.childByAutoId().setValue(["stouryID":stoury.id,"username":stoury.userName,"videoURL":stoury.url])
+        postRef.child("flaggedPosts").childByAutoId().setValue(["stouryID":stoury.id,"userName":stoury.userName,"userID":stoury.userID,"videoURL":stoury.url])
     }
 }

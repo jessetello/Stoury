@@ -41,8 +41,7 @@ class AuthenticationManager {
                             if error != nil {
                                 completion(false, error)
                             } else {
-                                
-                                DataManager.sharedInstance.createUser(user: user, username: username)
+                                DataManager.sharedInstance.createUser(user: user, userName: username)
                                 completion(true, nil)
                             }
                     }

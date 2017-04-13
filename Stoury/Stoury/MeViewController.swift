@@ -9,7 +9,6 @@
 import UIKit
 import FirebaseAuth
 class MeViewController: UITableViewController {
-
     
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!

@@ -75,24 +75,34 @@ class TSSignUpViewController: UIViewController, UITextFieldDelegate {
             activeField?.resignFirstResponder()
             if let email = emailField.text, let password = passwordField.text, let username = userName.text {
                 TSSpinner.show("Signing Up...")
-                AuthenticationManager.sharedInstance.signUp(email: email, password: password, username: username, completion: { (success, error) in
-                    TSSpinner.hide()
-                    if success {
-                        let sb = UIStoryboard(name: "Main", bundle: nil)
-                        if let mainVC = sb.instantiateViewController(withIdentifier: "TSMainViewController") as? MainViewController {
-                            self.navigationController?.pushViewController(mainVC, animated: true)
-                        }
+                DataManager.sharedInstance.checkUserNames(userName: username) { (success) in
+                    if !success {
+                        TSSpinner.hide()
+                        let nameExist = UIAlertController(title: "User Name Exists", message: "That username already exists please select another name", preferredStyle: .alert)
+                        nameExist.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        self.present(nameExist, animated: true, completion: nil)
                     }
                     else {
-                        DispatchQueue.main.async {
-                            let alertController = UIAlertController(title: error?.localizedDescription, message: nil, preferredStyle: .alert)
-                            let OK = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                            })
-                            self.present(alertController, animated: false, completion: nil)
-                            alertController.addAction(OK)
-                        }
+                        AuthenticationManager.sharedInstance.signUp(email: email, password: password, username: username, completion: { (success, error) in
+                            TSSpinner.hide()
+                            if success {
+                                let sb = UIStoryboard(name: "Main", bundle: nil)
+                                if let mainVC = sb.instantiateViewController(withIdentifier: "TSMainViewController") as? MainViewController {
+                                    self.navigationController?.pushViewController(mainVC, animated: true)
+                                }
+                            }
+                            else {
+                                DispatchQueue.main.async {
+                                    let alertController = UIAlertController(title: error?.localizedDescription, message: nil, preferredStyle: .alert)
+                                    let OK = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                                    })
+                                    self.present(alertController, animated: false, completion: nil)
+                                    alertController.addAction(OK)
+                                }
+                            }
+                        })
                     }
-                })
+                }
             }
         }
         else {

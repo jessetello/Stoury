@@ -65,8 +65,7 @@ class VideoUploadManager {
     }
     
     func writeNewPost(userID:String, userName:String, title:String, location:String, stateOrCountry:String, coordinates:[String:Double], url:String, length:Double) {
-        let key = DataManager.sharedInstance.postRef.child("posts").childByAutoId().key
-        
+        let key = DataManager.sharedInstance.newPostRef.childByAutoId().key
         let post = ["uid": userID,
                     "user": userName,
                     "title": title,
@@ -79,7 +78,7 @@ class VideoUploadManager {
         
         let childUpdates = ["/posts/\(key)": post,
                             "/user-posts/\(userID)/\(key)/": post]
-        DataManager.sharedInstance.postRef.updateChildValues(childUpdates)
+        DataManager.sharedInstance.newPostRef.updateChildValues(childUpdates)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UploadComplete"), object: nil)
     }
     
