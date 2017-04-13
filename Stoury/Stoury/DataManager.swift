@@ -19,6 +19,8 @@ class DataManager {
     let userPostRef = FIRDatabase.database().reference(withPath: "posts").child("user-posts/\(FIRAuth.auth()?.currentUser?.uid ?? "")")
     let userInfoRef = FIRDatabase.database().reference(withPath: "users")
     
+    let flaggedRef = FIRDatabase.database().reference(withPath: "flaggedPosts")
+    
     let storage = FIRStorage.storage()
     
     var recentPosts = [Stoury]()
@@ -30,8 +32,8 @@ class DataManager {
         self.userPosts.removeAll()
         userPostRef.observe(FIRDataEventType.value, with: { (snapshot) in
             if let posts = snapshot.value as? [String : [String : Any]] {
-                    for (_, value) in posts {
-                        let stoury = Stoury(userID: value["uid"] as? String, userName: value["user"] as? String, title: value["title"] as? String, location: value["location"] as? String, coordinates: value["coordinates"] as? [String:Double], stateOrCountry: value["countryOrState"] as? String, length: value["length"] as? Double, created: 0, category: "Travel", url: value["url"] as? String)
+                    for (key, value) in posts {
+                        let stoury = Stoury(userID: value["uid"] as? String, userName: value["user"] as? String, title: value["title"] as? String, location: value["location"] as? String, coordinates: value["coordinates"] as? [String:Double], stateOrCountry: value["countryOrState"] as? String, length: value["length"] as? Double, created: 0, category: "Travel", url: value["url"] as? String, id: key )
                             self.userPosts.append(stoury)
                     }
             }
@@ -44,8 +46,8 @@ class DataManager {
         self.recentPosts.removeAll()
         postRef.queryLimited(toFirst: 25).observe(FIRDataEventType.value, with: { (snapshot) in
             if let posts = snapshot.value as? [String : [String : Any]] {
-                for (_, value) in posts {
-                    let stoury = Stoury(userID: value["uid"] as? String, userName: value["user"] as? String, title: value["title"] as? String, location: value["location"] as? String, coordinates: value["coordinates"] as? [String:Double], stateOrCountry: value["countryOrState"] as? String, length: value["length"] as? Double, created: 0, category: "Travel", url: value["url"] as? String)
+                for (key, value) in posts {
+                    let stoury = Stoury(userID: value["uid"] as? String, userName: value["user"] as? String, title: value["title"] as? String, location: value["location"] as? String, coordinates: value["coordinates"] as? [String:Double], stateOrCountry: value["countryOrState"] as? String, length: value["length"] as? Double, created: 0, category: "Travel", url: value["url"] as? String, id: key )
                     self.recentPosts.append(stoury)
                 }
             }
@@ -59,9 +61,9 @@ class DataManager {
         postRef.queryLimited(toLast: 2).observe(FIRDataEventType.value, with: { (snapshot) in
             if let posts = snapshot.value as? [String : [String : Any]] {
                 if let postsArray = posts["posts"] {
-                    for (_, value) in postsArray {
+                    for (key, value) in postsArray {
                         if let dict = value as? [String:Any] {
-                            let stoury = Stoury(userID: dict["uid"] as? String, userName: dict["user"] as? String, title: dict["title"] as? String, location: dict["location"] as? String, coordinates: dict["coordinates"] as? [String:Double], stateOrCountry: dict["countryOrState"] as? String, length: dict["length"] as? Double, created: 0, category: "Travel", url: dict["url"] as? String)
+                            let stoury = Stoury(userID: dict["uid"] as? String, userName: dict["user"] as? String, title: dict["title"] as? String, location: dict["location"] as? String, coordinates: dict["coordinates"] as? [String:Double], stateOrCountry: dict["countryOrState"] as? String, length: dict["length"] as? Double, created: 0, category: "Travel", url: dict["url"] as? String, id: key )
                             self.recentPosts.append(stoury)
                         }
                     }
@@ -86,5 +88,9 @@ class DataManager {
 //            print(snapshot)
 //            completion(true)
 //        })
+    }
+    
+    func flagStouryPost(stoury:Stoury) {
+        flaggedRef.childByAutoId().setValue(["stouryID":stoury.id,"username":stoury.userName,"videoURL":stoury.url])
     }
 }

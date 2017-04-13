@@ -60,9 +60,8 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func more() {
+    func moreClicked(sender: UIButton) {
         let actionSheetController = UIAlertController(title: "Report this Post", message: nil, preferredStyle: .actionSheet)
-        
         let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
        
         
@@ -71,12 +70,18 @@ class HomeViewController: UIViewController {
         let flagActionButton = UIAlertAction(title: "Flag as Inappropriate", style: .default) { action -> Void in
             // send post with "flag" and possibly email?
             actionSheetController.dismiss(animated: true, completion: nil)
+            let confirmController = UIAlertController(title: "Flag Content", message: "Are you sure you want to flag this content?", preferredStyle: .alert)
+            confirmController.addAction(UIAlertAction(title: "YES", style: .default, handler: { (action) in
+                let flagged = DataManager.sharedInstance.recentPosts[sender.tag]
+                DataManager.sharedInstance.flagStouryPost(stoury: flagged)
+            }))
+            confirmController.addAction(UIAlertAction(title: "NO", style: .cancel, handler: nil))
+            self.present(confirmController, animated: true, completion: nil)
         }
         actionSheetController.addAction(cancelActionButton)
         actionSheetController.addAction(flagActionButton)
         self.present(actionSheetController, animated: true, completion: nil)
     }
-
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -92,11 +97,12 @@ extension HomeViewController: UITableViewDataSource {
         cell.location.text = stoury.location ?? "Unknown"
         cell.stateOrCountry.text = stoury.stateOrCountry ?? ""
         cell.userName.text = stoury.userName
-        cell.moreButton.addTarget(self, action: #selector(HomeViewController.more), for: .allTouchEvents)
+        cell.moreButton.addTarget(self, action: #selector(HomeViewController.moreClicked(sender:)), for: .allTouchEvents)
         let minutes = Int(stoury.length ?? 00.00) / 60 % 60
         let seconds = Int(stoury.length ?? 00.00) % 60
         cell.videoLength.text = String(format:"%02i:%02i", minutes, seconds)
         cell.videoImage.image = UIImage(named: "PlaceHolder")
+        cell.tag = indexPath.row
         return cell
     }
     

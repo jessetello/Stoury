@@ -19,4 +19,5 @@ struct Stoury {
     var created: Double
     var category: String?
     var url: String?
+    var id: String?
 }
