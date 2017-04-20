@@ -73,7 +73,6 @@
 		919B22EE1E22C66200627E06 /* StouryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StouryCell.xib; sourceTree = "<group>"; };
 		91D0883F1DEE6B5E005C9702 /* StouryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StouryCell.swift; sourceTree = "<group>"; };
 		91F7514D1DF9003C001DD558 /* NSData+Compression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Compression.swift"; sourceTree = "<group>"; };
-		91F947FF1DCE81BB004B24F9 /* WowzaGoCoderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WowzaGoCoderSDK.framework; path = Stoury/WowzaGoCoderSDK.framework; sourceTree = "<group>"; };
 		91F948071DCEB1EF004B24F9 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		9492B818B190D281AE1654C3 /* Pods_Stoury.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stoury.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEC7510F51825E9E8555BFF9 /* Pods-Stoury.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stoury.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stoury/Pods-Stoury.release.xcconfig"; sourceTree = "<group>"; };
@@ -207,7 +206,6 @@
 		D25E4F6748EB52767EB3A258 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				91F947FF1DCE81BB004B24F9 /* WowzaGoCoderSDK.framework */,
 				9492B818B190D281AE1654C3 /* Pods_Stoury.framework */,
 			);
 			name = Frameworks;
