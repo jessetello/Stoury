@@ -8,7 +8,6 @@
 
 import UIKit
 import AVFoundation
-import WowzaGoCoderSDK
 import Firebase
 import FirebaseAuth
 import Photos

@@ -37,24 +37,8 @@
 		919B22EF1E22C66200627E06 /* StouryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 919B22EE1E22C66200627E06 /* StouryCell.xib */; };
 		91D088401DEE6B5E005C9702 /* StouryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0883F1DEE6B5E005C9702 /* StouryCell.swift */; };
 		91F7514E1DF9003C001DD558 /* NSData+Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F7514D1DF9003C001DD558 /* NSData+Compression.swift */; };
-		91F948011DCE824F004B24F9 /* WowzaGoCoderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F947FF1DCE81BB004B24F9 /* WowzaGoCoderSDK.framework */; };
-		91F948021DCE824F004B24F9 /* WowzaGoCoderSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91F947FF1DCE81BB004B24F9 /* WowzaGoCoderSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		91F948081DCEB1EF004B24F9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F948071DCEB1EF004B24F9 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		91F948031DCE824F004B24F9 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				91F948021DCE824F004B24F9 /* WowzaGoCoderSDK.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3802115713C93BAE1627D746 /* Pods-Stoury.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stoury.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stoury/Pods-Stoury.debug.xcconfig"; sourceTree = "<group>"; };
@@ -100,7 +84,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91F948011DCE824F004B24F9 /* WowzaGoCoderSDK.framework in Frameworks */,
 				7C4C0FA3391D879E976CDBD0 /* Pods_Stoury.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,7 +224,6 @@
 				911C5D2B1DB30D51004C2862 /* Sources */,
 				911C5D2C1DB30D51004C2862 /* Frameworks */,
 				911C5D2D1DB30D51004C2862 /* Resources */,
-				91F948031DCE824F004B24F9 /* Embed Frameworks */,
 				91F948041DCE82B0004B24F9 /* ShellScript */,
 				FEF1DDD6D0997B19A6FDFA03 /* [CP] Embed Pods Frameworks */,
 				CCE5E4DE6A10DC70832A276E /* [CP] Copy Pods Resources */,
@@ -532,7 +514,7 @@
 			baseConfigurationReference = BEC7510F51825E9E8555BFF9 /* Pods-Stoury.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = Q78JZ9X2RG;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -542,8 +524,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jt.Stoury;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "10e17218-cdf0-400a-b503-76b9eead81b9";
-				PROVISIONING_PROFILE_SPECIFIER = "Jesse Dev";
+				PROVISIONING_PROFILE = "0efb0295-704f-45d2-846a-7a6a6c8d9561";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: com.jt.Stoury";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
