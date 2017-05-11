@@ -94,7 +94,7 @@ extension StourysViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "StouryCell", for: indexPath) as! StouryCell
-        let stoury = DataManager.sharedInstance.recentPosts[indexPath.row]
+        let stoury = DataManager.sharedInstance.userPosts[indexPath.row]
         cell.title.text = stoury.title
         cell.location.text = stoury.location ?? "Unknown"
         cell.stateOrCountry.text = stoury.stateOrCountry ?? ""

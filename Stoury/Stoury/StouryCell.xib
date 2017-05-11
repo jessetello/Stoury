@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -63,17 +63,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xp8-nD-p89">
-                        <rect key="frame" x="196" y="103" width="75" height="27"/>
-                        <color key="backgroundColor" red="0.0" green="0.50588235290000005" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="75" id="uTs-Oq-QhH"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
-                        <state key="normal" title="Add">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TVh-Ma-501">
                         <rect key="frame" x="342" y="105" width="25" height="25"/>
                         <constraints>
@@ -83,7 +72,7 @@
                         <state key="normal" backgroundImage="More"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPw-yd-Yfs">
-                        <rect key="frame" x="113" y="103" width="75" height="27"/>
+                        <rect key="frame" x="150" y="103" width="75" height="27"/>
                         <color key="backgroundColor" red="0.0" green="0.50588235290000005" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="75" id="Sw2-pa-F28"/>
@@ -92,21 +81,22 @@
                         <state key="normal" title="Comment">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="addComment:" destination="IfE-m5-1KH" eventType="touchUpInside" id="ZD6-7f-yXY"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="TVh-Ma-501" secondAttribute="trailing" id="3Wq-zw-mK7"/>
                     <constraint firstItem="ohN-rN-iBL" firstAttribute="bottom" secondItem="gAN-Av-SrI" secondAttribute="bottom" id="5vq-AS-j0u"/>
                     <constraint firstItem="5MJ-LK-1am" firstAttribute="top" secondItem="ohN-rN-iBL" secondAttribute="bottom" constant="-1.5" id="8pQ-BS-TXN"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Xp8-nD-p89" secondAttribute="bottom" constant="0.5" id="CSF-d9-0JP"/>
                     <constraint firstItem="ohN-rN-iBL" firstAttribute="top" secondItem="xqw-Gm-OpB" secondAttribute="topMargin" id="E6u-Qh-1fl"/>
                     <constraint firstItem="ohN-rN-iBL" firstAttribute="top" secondItem="gAN-Av-SrI" secondAttribute="top" id="EmG-nV-keh"/>
                     <constraint firstItem="Dr0-yO-s1V" firstAttribute="leading" secondItem="iqm-xM-ksA" secondAttribute="trailing" constant="8" symbolic="YES" id="H7v-nE-7NU"/>
                     <constraint firstItem="ohN-rN-iBL" firstAttribute="leading" secondItem="iqm-xM-ksA" secondAttribute="trailing" constant="8" symbolic="YES" id="HXo-Rg-Nmj"/>
                     <constraint firstAttribute="bottomMargin" secondItem="kPw-yd-Yfs" secondAttribute="bottom" constant="0.5" id="Hp3-V7-U4G"/>
-                    <constraint firstItem="Xp8-nD-p89" firstAttribute="leading" secondItem="kPw-yd-Yfs" secondAttribute="trailing" constant="8" id="ToT-hc-9jm"/>
                     <constraint firstItem="b6y-zy-yWM" firstAttribute="leading" secondItem="gAN-Av-SrI" secondAttribute="leading" constant="62" id="Yp3-jg-XJF"/>
-                    <constraint firstItem="kPw-yd-Yfs" firstAttribute="leading" secondItem="Dr0-yO-s1V" secondAttribute="leading" id="bL5-1k-6nF"/>
+                    <constraint firstItem="kPw-yd-Yfs" firstAttribute="leading" secondItem="Dr0-yO-s1V" secondAttribute="leading" constant="37" id="bL5-1k-6nF"/>
                     <constraint firstAttribute="bottomMargin" secondItem="TVh-Ma-501" secondAttribute="bottom" constant="0.5" id="dgj-Ud-J9n"/>
                     <constraint firstItem="gAN-Av-SrI" firstAttribute="trailing" secondItem="xqw-Gm-OpB" secondAttribute="trailingMargin" id="fBt-br-ChK"/>
                     <constraint firstItem="iqm-xM-ksA" firstAttribute="leading" secondItem="xqw-Gm-OpB" secondAttribute="leading" id="jUK-77-O1e"/>
@@ -119,7 +109,6 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="add" destination="Xp8-nD-p89" id="u1i-R9-pNo"/>
                 <outlet property="comment" destination="kPw-yd-Yfs" id="Zhv-Tc-T7q"/>
                 <outlet property="location" destination="b6y-zy-yWM" id="PwZ-iN-YZg"/>
                 <outlet property="moreButton" destination="TVh-Ma-501" id="8hr-cu-bKx"/>

@@ -11,7 +11,11 @@ import AVKit
 import AVFoundation
 import GooglePlaces
 
-class PostViewController: UIViewController, UINavigationControllerDelegate, UITabBarControllerDelegate  {
+protocol StouryCreationDelegate: class {
+    func addStouryComment()
+}
+
+class PostViewController: UIViewController, UINavigationControllerDelegate, UITabBarControllerDelegate {
 
     @IBOutlet weak var createPostButton: UIButton!
 
@@ -31,10 +35,11 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
         self.tableView.tableFooterView = UIView()
         self.nearMePlaces()
         self.navigationController?.navigationBar.topItem?.title = "Post"
-        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(PostViewController.presentCamera), name: NSNotification.Name(rawValue: "PresentCamera"), object: nil)
+
     }
     
-    private func presentCamera() {
+    func presentCamera() {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecordNav") as? UINavigationController {
             if selectedPlace != nil {
                 let rc = vc.childViewControllers[0] as? RecordViewController
@@ -99,6 +104,10 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
                 self?.tableView.reloadData()
             }
         })
+    }
+    
+    func addStouryComment() {
+        self.presentCamera()
     }
 }
 
@@ -180,4 +189,5 @@ extension PostViewController: UIImagePickerControllerDelegate {
         })
     }
 }
+
 
