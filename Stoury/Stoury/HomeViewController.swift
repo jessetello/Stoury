@@ -103,6 +103,9 @@ extension HomeViewController: UITableViewDataSource {
         cell.videoLength.text = String(format:"%02i:%02i", minutes, seconds)
         cell.videoImage.image = UIImage(named: "PlaceHolder")
         cell.tag = indexPath.row
+        if let sid = stoury.id {
+            cell.stouryID = sid
+        }
         return cell
     }
     

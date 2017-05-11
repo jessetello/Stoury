@@ -19,6 +19,7 @@ class StouryCell: UITableViewCell {
     
     @IBOutlet weak var comment: UIButton!
     @IBOutlet weak var moreButton: UIButton!
+    var stouryID = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +34,7 @@ class StouryCell: UITableViewCell {
     }
     
     @IBAction func addComment(_ sender: UIButton) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PresentCamera"), object: nil)
+        NotificationCenter.default.post(name:  NSNotification.Name(rawValue: "PresentCamera"), object: nil, userInfo: ["stouryID":stouryID])
     }
 
 }

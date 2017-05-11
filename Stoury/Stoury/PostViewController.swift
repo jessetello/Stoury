@@ -35,7 +35,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
         self.tableView.tableFooterView = UIView()
         self.nearMePlaces()
         self.navigationController?.navigationBar.topItem?.title = "Post"
-        NotificationCenter.default.addObserver(self, selector: #selector(PostViewController.presentCamera), name: NSNotification.Name(rawValue: "PresentCamera"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PostViewController.AddToExistingStoury(notification:)), name: NSNotification.Name(rawValue: "PresentCamera"), object: nil)
 
     }
     
@@ -47,6 +47,10 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
             }
             self.present(vc, animated: true, completion: nil)
         }
+    }
+    
+    func AddToExistingStoury(notification: Notification) {
+        
     }
     
     private func authorizeRecordingView() {
