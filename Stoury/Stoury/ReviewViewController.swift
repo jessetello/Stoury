@@ -14,6 +14,7 @@ class ReviewViewController: UIViewController, UITextFieldDelegate {
 
     var avPlayerLayer = AVPlayerLayer()
     var filePath: URL?
+    var existingID:String?
     let avPlayer = AVPlayer()
     var selectedPlace:GMSPlace?
 
@@ -23,6 +24,7 @@ class ReviewViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var addLocationButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

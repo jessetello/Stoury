@@ -23,6 +23,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
     @IBOutlet var tableView: UITableView!
     let imagePicker = UIImagePickerController()
     var likelyPlaces = [GMSPlace]()
+    var existingStouryID:String?
     var recentStourys = [Stoury]()
     var selectedPlace: GMSPlace?
     let placesClient = GMSPlacesClient()
@@ -41,16 +42,21 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
     
     func presentCamera() {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecordNav") as? UINavigationController {
+            let rc = vc.childViewControllers[0] as? RecordViewController
             if selectedPlace != nil {
-                let rc = vc.childViewControllers[0] as? RecordViewController
                 rc?.selectedPlace = selectedPlace
+            } else if existingStouryID != nil {
+                rc?.existingID = existingStouryID
             }
             self.present(vc, animated: true, completion: nil)
         }
     }
     
     func AddToExistingStoury(notification: Notification) {
-        
+        if let exist = notification.userInfo?["stouryID"] as? String {
+            existingStouryID = exist
+            self.presentCamera()
+        }
     }
     
     private func authorizeRecordingView() {
