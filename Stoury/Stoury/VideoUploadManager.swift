@@ -79,7 +79,7 @@ class VideoUploadManager {
                     "created":NSDate().timeIntervalSince1970,
                     "url":url] as [String : Any]
        
-        let  childUpdates = ["/posts/\(existing ?? key)": post,
+        let  childUpdates = ["/posts/\(existing ?? key)": [key:post],
                                 "/user-posts/\(userID)/\(key)/": post]
         
         DataManager.sharedInstance.newPostRef.updateChildValues(childUpdates)
