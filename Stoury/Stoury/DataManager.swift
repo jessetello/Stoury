@@ -56,24 +56,7 @@ class DataManager {
             
         })
     }
-    
-//    func getAllPosts(completion: @escaping DataHandler) {
-//        postRef.queryLimited(toLast: 2).observe(FIRDataEventType.value, with: { (snapshot) in
-//            if let posts = snapshot.value as? [String : [String : Any]] {
-//                if let postsArray = posts["posts"] {
-//                    for (key, value) in postsArray {
-//                        if let dict = value as? [String:Any] {
-//                            let stoury = Stoury(userID: dict["uid"] as? String, userName: dict["user"] as? String, title: dict["title"] as? String, location: dict["location"] as? String, coordinates: dict["coordinates"] as? [String:Double], stateOrCountry: dict["countryOrState"] as? String, length: dict["length"] as? Double, created: 0, category: "Travel", url: dict["url"] as? String, id: key )
-//                            self.recentPosts.append(stoury)
-//                        }
-//                    }
-//                }
-//                self.recentPosts.sort { $0.created > $1.created }
-//                completion(true)
-//            }
-//        })
-//    }
-    
+
     func createUser(user:FIRUser, userName:String) {
         let key = self.userInfoRef.child("user-names").child(userName).key
         self.userInfoRef.updateChildValues(["user-names/\(key)":""])
