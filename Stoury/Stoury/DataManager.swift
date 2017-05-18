@@ -44,6 +44,7 @@ class DataManager {
     func getRecentPosts(completion: @escaping DataHandler) {
         self.recentPosts.removeAll()
         postRef.queryLimited(toFirst: 25).observe(FIRDataEventType.value, with: { (snapshot) in
+            self.recentPosts.removeAll()
             if let posts = snapshot.value as? [String : [String : Any]] {
                 for (key, value) in posts {
                     let stoury = Stoury(userID: value["uid"] as? String, userName: value["user"] as? String, title: value["title"] as? String, location: value["location"] as? String, coordinates: value["coordinates"] as? [String:Double], stateOrCountry: value["countryOrState"] as? String, length: value["length"] as? Double, created: 0, category: "Travel", url: value["url"] as? String, id: key )
