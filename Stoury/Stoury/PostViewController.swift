@@ -37,7 +37,6 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
         self.nearMePlaces()
         self.navigationController?.navigationBar.topItem?.title = "Post"
         NotificationCenter.default.addObserver(self, selector: #selector(PostViewController.AddToExistingStoury(notification:)), name: NSNotification.Name(rawValue: "PresentCamera"), object: nil)
-
     }
     
     func presentCamera() {

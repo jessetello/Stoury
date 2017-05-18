@@ -78,11 +78,14 @@ class VideoUploadManager {
                     "stateOrCountry" : stateOrCountry,
                     "created":NSDate().timeIntervalSince1970,
                     "url":url] as [String : Any]
-       
-        let childUpdates = ["/posts/\(existing ?? key)": [key:post],
-                                "/user-posts/\(userID)/\(key)/": post]
         
-        DataManager.sharedInstance.newPostRef.updateChildValues(childUpdates)
+        if let exist = existing {
+            DataManager.sharedInstance.postRef.child(exist).updateChildValues(["comments/\(key)":post])
+        } else {
+            let childUpdates = ["/posts/\(key)": post,
+                                "/user-posts/\(userID)/\(key)/": post]
+            DataManager.sharedInstance.newPostRef.updateChildValues(childUpdates)
+        }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UploadComplete"), object: nil)
     }
 }

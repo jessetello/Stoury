@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Stoury/PostViewController.swift"
-            timestampString = "516216379.011393"
+            timestampString = "516812245.771321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "authorizeRecordingView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -22,16 +22,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Stoury/DataManager.swift"
-            timestampString = "516211728.430543"
+            filePath = "Stoury/StouryCell.swift"
+            timestampString = "516811350.085915"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "getUserFeed(completion:)"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "addComment(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
