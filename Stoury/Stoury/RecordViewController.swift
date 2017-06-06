@@ -8,7 +8,6 @@
 
 import UIKit
 import AVFoundation
-import WowzaGoCoderSDK
 import Firebase
 import FirebaseAuth
 import Photos
@@ -50,6 +49,7 @@ class RecordViewController: UIViewController {
     
     var video: NSData?
     var filePath: URL?
+    var existingID: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -185,6 +185,9 @@ class RecordViewController: UIViewController {
                 if let review = segue.destination as? ReviewViewController {
                     review.selectedPlace = self.selectedPlace
                     review.filePath = self.filePath
+                    if let existing = self.existingID {
+                        review.existingID = existing
+                    }
                 }
             }
         }

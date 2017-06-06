@@ -25,7 +25,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
             endingLineNumber = "76"
-            landmarkName = "nearMePlaces()"
+            landmarkName = "authorizeRecordingView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,7 +41,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "54"
             endingLineNumber = "54"
-            landmarkName = "saveToFireBase(data:title:location:coordinates:)"
+            landmarkName = "saveToFireBase(data:title:location:stateOrCountry:coordinates:length:existing:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,7 +89,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
             endingLineNumber = "67"
-            landmarkName = "writeNewPost(userID:userName:title:location:coordinates:url:)"
+            landmarkName = "saveToFireBase(data:title:location:stateOrCountry:coordinates:length:existing:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,7 +105,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
             endingLineNumber = "76"
-            landmarkName = "writeNewPost(userID:userName:title:location:coordinates:url:)"
+            landmarkName = "writeNewPost(userID:userName:title:location:stateOrCountry:coordinates:url:length:existing:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -121,7 +121,87 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
             endingLineNumber = "66"
-            landmarkName = "writeNewPost(userID:userName:title:location:coordinates:url:)"
+            landmarkName = "saveToFireBase(data:title:location:stateOrCountry:coordinates:length:existing:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed and Exploded, Arg[2] = Owned To Guaranteed and Exploded, Arg[3] = Owned To Guaranteed, Arg[4] = Owned To Guaranteed, Arg[6] = Owned To Guaranteed&gt; of Stoury.VideoUploadManager.saveToFireBase (data : __ObjC.NSData, title : Swift.String, location : Swift.String, stateOrCountry : Swift.Optional&lt;Swift.String&gt;, coordinates : __ObjC.CLLocation, length : Swift.Double, existing : Swift.Optional&lt;Swift.String&gt;) -&gt; ()"
+                  moduleName = "Stoury"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jessetellojr/Stoury/Stoury/Stoury/VideoUploadManager.swift"
+                  timestampString = "518407192.637729"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "2723">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed, Arg[2] = Owned To Guaranteed and Exploded, Arg[3] = Owned To Guaranteed and Exploded, Arg[4] = Owned To Guaranteed and Exploded, Arg[5] = Owned To Guaranteed, Arg[6] = Owned To Guaranteed, Arg[8] = Owned To Guaranteed&gt; of Stoury.VideoUploadManager.(saveToFireBase (data : __ObjC.NSData, title : Swift.String, location : Swift.String, stateOrCountry : Swift.Optional&lt;Swift.String&gt;, coordinates : __ObjC.CLLocation, length : Swift.Double, existing : Swift.Optional&lt;Swift.String&gt;) -&gt; ()).(closure #5)"
+                  moduleName = "Stoury"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jessetellojr/Stoury/Stoury/Stoury/VideoUploadManager.swift"
+                  timestampString = "518407192.639847"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "1760">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stoury/DataManager.swift"
+            timestampString = "518406780.725781"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "getRecentPosts(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stoury/DataManager.swift"
+            timestampString = "518406780.725781"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "getRecentPosts(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stoury/DataManager.swift"
+            timestampString = "518406780.725781"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "getRecentPosts(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

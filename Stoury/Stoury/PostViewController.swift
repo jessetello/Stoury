@@ -11,7 +11,11 @@ import AVKit
 import AVFoundation
 import GooglePlaces
 
-class PostViewController: UIViewController, UINavigationControllerDelegate, UITabBarControllerDelegate  {
+protocol StouryCreationDelegate: class {
+    func addStouryComment()
+}
+
+class PostViewController: UIViewController, UINavigationControllerDelegate, UITabBarControllerDelegate {
 
     @IBOutlet weak var createPostButton: UIButton!
 
@@ -19,6 +23,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
     @IBOutlet var tableView: UITableView!
     let imagePicker = UIImagePickerController()
     var likelyPlaces = [GMSPlace]()
+    var existingStouryID:String?
     var recentStourys = [Stoury]()
     var selectedPlace: GMSPlace?
     let placesClient = GMSPlacesClient()
@@ -31,16 +36,25 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
         self.tableView.tableFooterView = UIView()
         self.nearMePlaces()
         self.navigationController?.navigationBar.topItem?.title = "Post"
-        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(PostViewController.AddToExistingStoury(notification:)), name: NSNotification.Name(rawValue: "PresentCamera"), object: nil)
     }
     
-    private func presentCamera() {
+    func presentCamera() {
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecordNav") as? UINavigationController {
+            let rc = vc.childViewControllers[0] as? RecordViewController
             if selectedPlace != nil {
-                let rc = vc.childViewControllers[0] as? RecordViewController
                 rc?.selectedPlace = selectedPlace
+            } else if existingStouryID != nil {
+                rc?.existingID = existingStouryID
             }
             self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    func AddToExistingStoury(notification: Notification) {
+        if let exist = notification.userInfo?["stouryID"] as? String {
+            existingStouryID = exist
+            self.presentCamera()
         }
     }
     
@@ -99,6 +113,10 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UITa
                 self?.tableView.reloadData()
             }
         })
+    }
+    
+    func addStouryComment() {
+        self.presentCamera()
     }
 }
 
@@ -180,4 +198,5 @@ extension PostViewController: UIImagePickerControllerDelegate {
         })
     }
 }
+
 

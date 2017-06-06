@@ -16,7 +16,7 @@ class VideoUploadManager {
     
     static let sharedInstance = VideoUploadManager()
 
-    func saveToFireBase(data:NSData, title:String, location:String, stateOrCountry: String?, coordinates:CLLocation, length:Double) {
+    func saveToFireBase(data:NSData, title:String, location:String, stateOrCountry: String?, coordinates:CLLocation, length:Double, existing:String?) {
         guard let uid = FIRAuth.auth()?.currentUser?.uid else {
             print("Error mssing UID")
             return
@@ -44,6 +44,7 @@ class VideoUploadManager {
                 print(percentComplete)
             }
         }
+        
         uploadTask.observe(.success) { [weak self] snapshot in
             // Metadata contains file metadata such as size, content-type, and download URL.
             if let data = snapshot.metadata {
@@ -59,12 +60,14 @@ class VideoUploadManager {
                                    coordinates:["lat":coordinates.coordinate.latitude,
                                              "lon":coordinates.coordinate.longitude],
                                    url:vidUrl.absoluteString,
-                                   length: length)
+                                   length: length,
+                                   existing:existing)
             }
         }
     }
     
-    func writeNewPost(userID:String, userName:String, title:String, location:String, stateOrCountry:String, coordinates:[String:Double], url:String, length:Double) {
+    func writeNewPost(userID:String, userName:String, title:String, location:String, stateOrCountry:String, coordinates:[String:Double], url:String, length:Double, existing:String?) {
+
         let key = DataManager.sharedInstance.newPostRef.childByAutoId().key
         let post = ["uid": userID,
                     "user": userName,
@@ -76,10 +79,13 @@ class VideoUploadManager {
                     "created":NSDate().timeIntervalSince1970,
                     "url":url] as [String : Any]
         
-        let childUpdates = ["/posts/\(key)": post,
-                            "/user-posts/\(userID)/\(key)/": post]
-        DataManager.sharedInstance.newPostRef.updateChildValues(childUpdates)
+        if let exist = existing {
+            DataManager.sharedInstance.postRef.child(exist).updateChildValues(["comments/\(key)":post])
+        } else {
+            let childUpdates = ["/posts/\(key)": post,
+                                "/user-posts/\(userID)/\(key)/": post]
+            DataManager.sharedInstance.newPostRef.updateChildValues(childUpdates)
+        }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UploadComplete"), object: nil)
     }
-    
 }

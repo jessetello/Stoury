@@ -17,21 +17,25 @@ class StouryCell: UITableViewCell {
     @IBOutlet var stateOrCountry: UILabel!
     @IBOutlet var location: UILabel!
     
+    @IBOutlet var comments: UILabel!
     @IBOutlet weak var comment: UIButton!
-    @IBOutlet weak var add: UIButton!
     @IBOutlet weak var moreButton: UIButton!
+    var stouryID = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         self.comment.layer.cornerRadius = 2
-        self.add.layer.cornerRadius = 2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @IBAction func addComment(_ sender: UIButton) {
+        NotificationCenter.default.post(name:  NSNotification.Name(rawValue: "PresentCamera"), object: nil, userInfo: ["stouryID":stouryID])
     }
 
 }
