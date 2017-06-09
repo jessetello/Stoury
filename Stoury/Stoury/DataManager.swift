@@ -32,8 +32,15 @@ class DataManager {
             if let posts = snapshot.value as? [String : [String : Any]] {
                 print(posts)
                     for (key, value) in posts {
-                        let stoury = Stoury(userID: value["uid"] as? String, userName: value["user"] as? String, title: value["title"] as? String, location: value["location"] as? String, coordinates: value["coordinates"] as? [String:Double], stateOrCountry: value["countryOrState"] as? String, length: value["length"] as? Double, created: 0, category: "Travel", url: value["url"] as? String, id: key )
-                            self.userPosts.append(stoury)
+                        var comments = [Stoury]()
+                        if let commentValue = value["comments"] as? [String : [String : Any]] {
+                            for (commentKey, commentValue) in commentValue {
+                                let com = Stoury(userID: commentValue["uid"] as? String, userName: commentValue["user"] as? String, title: commentValue["title"] as? String, location: commentValue["location"] as? String, coordinates: commentValue["coordinates"] as? [String:Double], stateOrCountry: commentValue["countryOrState"] as? String, length: commentValue["length"] as? Double, created: 0, category: "Travel", url: commentValue["url"] as? String, id: commentKey, comments: nil)
+                                comments.append(com)
+                            }
+                        }
+                        let stoury = Stoury(userID: value["uid"] as? String, userName: value["user"] as? String, title: value["title"] as? String, location: value["location"] as? String, coordinates: value["coordinates"] as? [String:Double], stateOrCountry: value["countryOrState"] as? String, length: value["length"] as? Double, created: 0, category: "Travel", url: value["url"] as? String, id: key, comments: nil)
+                        self.userPosts.append(stoury)
                     }
             }
             self.userPosts.sort { $0.created > $1.created }
@@ -47,7 +54,14 @@ class DataManager {
             self.recentPosts.removeAll()
             if let posts = snapshot.value as? [String : [String : Any]] {
                 for (key, value) in posts {
-                    let stoury = Stoury(userID: value["uid"] as? String, userName: value["user"] as? String, title: value["title"] as? String, location: value["location"] as? String, coordinates: value["coordinates"] as? [String:Double], stateOrCountry: value["countryOrState"] as? String, length: value["length"] as? Double, created: 0, category: "Travel", url: value["url"] as? String, id: key )
+                    var comments = [Stoury]()
+                    if let commentValue = value["comments"] as? [String : [String : Any]] {
+                        for (commentKey, commentValue) in commentValue {
+                            let com = Stoury(userID: commentValue["uid"] as? String, userName: commentValue["user"] as? String, title: commentValue["title"] as? String, location: commentValue["location"] as? String, coordinates: commentValue["coordinates"] as? [String:Double], stateOrCountry: commentValue["countryOrState"] as? String, length: commentValue["length"] as? Double, created: 0, category: "Travel", url: commentValue["url"] as? String, id: commentKey, comments: nil)
+                                comments.append(com)
+                        }
+                    }
+                    let stoury = Stoury(userID: value["uid"] as? String, userName: value["user"] as? String, title: value["title"] as? String, location: value["location"] as? String, coordinates: value["coordinates"] as? [String:Double], stateOrCountry: value["countryOrState"] as? String, length: value["length"] as? Double, created: 0, category: "Travel", url: value["url"] as? String, id: key, comments: comments)
                     self.recentPosts.append(stoury)
                 }
             }

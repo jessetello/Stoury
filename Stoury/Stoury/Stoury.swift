@@ -20,4 +20,5 @@ struct Stoury {
     var category: String?
     var url: String?
     var id: String?
+    var comments: [Stoury]?
 }

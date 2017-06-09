@@ -106,6 +106,10 @@ extension HomeViewController: UITableViewDataSource {
         if let sid = stoury.id {
             cell.stouryID = sid
         }
+        
+        if let coms = stoury.comments?.count, coms > 0 {
+                cell.comments.text = "\(coms) comments"
+        }
         return cell
     }
     

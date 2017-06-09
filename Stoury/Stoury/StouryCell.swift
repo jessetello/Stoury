@@ -17,6 +17,7 @@ class StouryCell: UITableViewCell {
     @IBOutlet var stateOrCountry: UILabel!
     @IBOutlet var location: UILabel!
     
+    @IBOutlet var comments: UILabel!
     @IBOutlet weak var comment: UIButton!
     @IBOutlet weak var moreButton: UIButton!
     var stouryID = ""

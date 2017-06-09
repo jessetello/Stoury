@@ -85,6 +85,19 @@
                             <action selector="addComment:" destination="IfE-m5-1KH" eventType="touchUpInside" id="ZD6-7f-yXY"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Mi-Gn-xNS">
+                        <rect key="frame" x="253" y="71" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18Y-IH-Rb2">
+                        <rect key="frame" x="8" y="109" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" name="KannadaSangamMN" family="Kannada Sangam MN" pointSize="17"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="TVh-Ma-501" secondAttribute="trailing" id="3Wq-zw-mK7"/>
@@ -95,6 +108,7 @@
                     <constraint firstItem="Dr0-yO-s1V" firstAttribute="leading" secondItem="iqm-xM-ksA" secondAttribute="trailing" constant="8" symbolic="YES" id="H7v-nE-7NU"/>
                     <constraint firstItem="ohN-rN-iBL" firstAttribute="leading" secondItem="iqm-xM-ksA" secondAttribute="trailing" constant="8" symbolic="YES" id="HXo-Rg-Nmj"/>
                     <constraint firstAttribute="bottomMargin" secondItem="kPw-yd-Yfs" secondAttribute="bottom" constant="0.5" id="Hp3-V7-U4G"/>
+                    <constraint firstItem="18Y-IH-Rb2" firstAttribute="leading" secondItem="xqw-Gm-OpB" secondAttribute="leading" constant="8" id="XPC-Io-mFX"/>
                     <constraint firstItem="b6y-zy-yWM" firstAttribute="leading" secondItem="gAN-Av-SrI" secondAttribute="leading" constant="62" id="Yp3-jg-XJF"/>
                     <constraint firstAttribute="bottomMargin" secondItem="TVh-Ma-501" secondAttribute="bottom" constant="0.5" id="dgj-Ud-J9n"/>
                     <constraint firstItem="gAN-Av-SrI" firstAttribute="trailing" secondItem="xqw-Gm-OpB" secondAttribute="trailingMargin" id="fBt-br-ChK"/>
@@ -105,11 +119,13 @@
                     <constraint firstItem="Dr0-yO-s1V" firstAttribute="top" secondItem="5MJ-LK-1am" secondAttribute="bottom" constant="8" id="pDm-Ze-NNp"/>
                     <constraint firstItem="iqm-xM-ksA" firstAttribute="top" secondItem="xqw-Gm-OpB" secondAttribute="top" id="qwa-yx-5zI"/>
                     <constraint firstItem="b6y-zy-yWM" firstAttribute="top" secondItem="gAN-Av-SrI" secondAttribute="bottom" constant="0.5" id="tPr-kd-wCP"/>
+                    <constraint firstItem="18Y-IH-Rb2" firstAttribute="top" secondItem="iqm-xM-ksA" secondAttribute="bottom" constant="10" id="x3d-DE-3s0"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="comment" destination="kPw-yd-Yfs" id="Zhv-Tc-T7q"/>
+                <outlet property="comments" destination="18Y-IH-Rb2" id="I8a-zO-gDd"/>
                 <outlet property="location" destination="b6y-zy-yWM" id="PwZ-iN-YZg"/>
                 <outlet property="moreButton" destination="TVh-Ma-501" id="8hr-cu-bKx"/>
                 <outlet property="stateOrCountry" destination="gAN-Av-SrI" id="2YT-tX-sQR"/>
