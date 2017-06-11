@@ -31,6 +31,7 @@
 		911C5D6B1DB31339004C2862 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 911C5D6A1DB31339004C2862 /* GoogleService-Info.plist */; };
 		912691551E93FDC400052DE7 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912691541E93FDC400052DE7 /* ReviewViewController.swift */; };
 		9159E7D01DFE110400F71763 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9159E7CF1DFE110400F71763 /* DataManager.swift */; };
+		915E9A081EEDA6E50031ED0C /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915E9A071EEDA6E50031ED0C /* CameraViewModel.swift */; };
 		917CDB5D1E53EC5D0035E815 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917CDB5C1E53EC5D0035E815 /* PostViewController.swift */; };
 		9182D0EE1E590DC200F83EE4 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911C5D4E1DB31038004C2862 /* RecordViewController.swift */; };
 		9186D2161E1F385800B256DB /* NearMeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9186D2151E1F385800B256DB /* NearMeCell.swift */; };
@@ -70,6 +71,7 @@
 		911C5D6A1DB31339004C2862 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		912691541E93FDC400052DE7 /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		9159E7CF1DFE110400F71763 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		915E9A071EEDA6E50031ED0C /* CameraViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		917CDB5C1E53EC5D0035E815 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		9186D2151E1F385800B256DB /* NearMeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeCell.swift; sourceTree = "<group>"; };
 		919B22EE1E22C66200627E06 /* StouryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StouryCell.xib; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				911C5D4D1DB31038004C2862 /* AuthenticationManager.swift */,
 				91F948071DCEB1EF004B24F9 /* LocationManager.swift */,
 				9159E7CF1DFE110400F71763 /* DataManager.swift */,
+				915E9A071EEDA6E50031ED0C /* CameraViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				9159E7D01DFE110400F71763 /* DataManager.swift in Sources */,
 				91F948081DCEB1EF004B24F9 /* LocationManager.swift in Sources */,
 				911C5D631DB31038004C2862 /* StourysViewController.swift in Sources */,
+				915E9A081EEDA6E50031ED0C /* CameraViewModel.swift in Sources */,
 				911C5D621DB31038004C2862 /* MeViewController.swift in Sources */,
 				9182D0EE1E590DC200F83EE4 /* RecordViewController.swift in Sources */,
 				9186D2161E1F385800B256DB /* NearMeCell.swift in Sources */,
