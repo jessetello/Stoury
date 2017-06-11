@@ -400,7 +400,7 @@
             <objects>
                 <navigationController storyboardIdentifier="Home" id="UpV-tz-cKj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="zOf-43-AFa"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="hRh-7j-WNA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="hRh-7j-WNA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -455,17 +455,17 @@
                     <connections>
                         <outlet property="loader" destination="1Be-t6-CyT" id="aDi-2z-TKR"/>
                         <outlet property="tableView" destination="iVo-ji-Lh7" id="Kdp-10-1XJ"/>
-                        <segue destination="RUU-VQ-F8t" kind="show" id="SIc-8Z-Cz4"/>
+                        <segue destination="RUU-VQ-F8t" kind="show" identifier="commentList" id="SIc-8Z-Cz4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Exn-PZ-biS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3529" y="-958"/>
         </scene>
-        <!--View Controller-->
+        <!--Stoury View Controller-->
         <scene sceneID="3fl-wq-CWa">
             <objects>
-                <viewController id="RUU-VQ-F8t" sceneMemberID="viewController">
+                <viewController id="RUU-VQ-F8t" customClass="StouryViewController" customModule="Stoury" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TQK-AK-0Y7"/>
                         <viewControllerLayoutGuide type="bottom" id="gHY-4C-IYO"/>
@@ -474,14 +474,45 @@
                         <rect key="frame" x="0.0" y="64" width="414" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ref-Ja-9n6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ref-Ja-9n6">
                                 <rect key="frame" x="0.0" y="309" width="414" height="314"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="314" id="esQ-jy-EjP"/>
+                                </constraints>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yyd-3A-WaO">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="309"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfK-9M-wWn">
+                                <rect key="frame" x="182" y="130" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="6Wl-Uu-t9E"/>
+                                    <constraint firstAttribute="height" constant="50" id="WsE-mx-bxZ"/>
+                                </constraints>
+                                <state key="normal" image="Play"/>
+                                <connections>
+                                    <action selector="playStoury:" destination="RUU-VQ-F8t" eventType="touchUpInside" id="tvt-fR-zir"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cfK-9M-wWn" firstAttribute="centerX" secondItem="yyd-3A-WaO" secondAttribute="centerX" id="4PL-tj-guy"/>
+                            <constraint firstAttribute="trailing" secondItem="ref-Ja-9n6" secondAttribute="trailing" id="QKG-n2-qEU"/>
+                            <constraint firstItem="ref-Ja-9n6" firstAttribute="top" secondItem="yyd-3A-WaO" secondAttribute="bottom" id="RC5-EQ-UCH"/>
+                            <constraint firstItem="yyd-3A-WaO" firstAttribute="leading" secondItem="OTS-at-l93" secondAttribute="leading" id="XHJ-nU-jbv"/>
+                            <constraint firstAttribute="trailing" secondItem="yyd-3A-WaO" secondAttribute="trailing" id="cY4-xg-gQ6"/>
+                            <constraint firstItem="yyd-3A-WaO" firstAttribute="top" secondItem="TQK-AK-0Y7" secondAttribute="bottom" id="hvi-vq-zmL"/>
+                            <constraint firstItem="ref-Ja-9n6" firstAttribute="leading" secondItem="OTS-at-l93" secondAttribute="leading" id="lnw-Wf-dNM"/>
+                            <constraint firstItem="cfK-9M-wWn" firstAttribute="centerY" secondItem="yyd-3A-WaO" secondAttribute="centerY" id="x5W-7y-BU9"/>
+                            <constraint firstItem="gHY-4C-IYO" firstAttribute="top" secondItem="ref-Ja-9n6" secondAttribute="bottom" id="yf8-h7-cfI"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mainVideoImage" destination="yyd-3A-WaO" id="ZYR-E1-mZQ"/>
+                        <outlet property="tableView" destination="ref-Ja-9n6" id="FIu-BN-qGW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RMX-g9-8pt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -491,7 +522,7 @@
         <scene sceneID="DHq-s5-HlV">
             <objects>
                 <navigationController storyboardIdentifier="Welcome" automaticallyAdjustsScrollViewInsets="NO" id="6fc-fI-XBv" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="6Eb-py-OTH">
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" translucent="NO" id="6Eb-py-OTH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.015686274510000001" green="0.22352941179999999" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -822,7 +853,7 @@
         <scene sceneID="sW8-DA-19s">
             <objects>
                 <navigationController navigationBarHidden="YES" id="boQ-7c-Ec2" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bsr-Pk-xXq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bsr-Pk-xXq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -919,7 +950,7 @@
             <objects>
                 <navigationController id="bbJ-OD-WH7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Stourys" image="StouryTab" id="NiW-7j-bDi"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Xa5-dW-eiX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Xa5-dW-eiX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1013,7 +1044,7 @@
             <objects>
                 <navigationController id="5iF-oe-CMM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="MeTab" id="lgy-PO-QHx"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="DgO-JV-4H4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="DgO-JV-4H4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1216,7 +1247,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dos-xx-p6f" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Post" image="PostTab" id="Led-YX-eZp"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GCD-YZ-ra6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GCD-YZ-ra6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1234,7 +1265,7 @@
             <objects>
                 <navigationController storyboardIdentifier="RecordNav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="7Sc-or-QtB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" misplaced="YES" id="94a-yv-ggH">
+                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" id="94a-yv-ggH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1252,6 +1283,7 @@
         <image name="CloseButton" width="24" height="24"/>
         <image name="Me" width="38" height="38"/>
         <image name="MeTab" width="23" height="22"/>
+        <image name="Play" width="341" height="341"/>
         <image name="PostTab" width="24" height="21"/>
         <image name="StouryTab" width="24" height="22"/>
     </resources>

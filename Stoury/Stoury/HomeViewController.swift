@@ -82,6 +82,14 @@ class HomeViewController: UIViewController {
         actionSheetController.addAction(flagActionButton)
         self.present(actionSheetController, animated: true, completion: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "commentList" {
+            let stoury = sender as! Stoury
+            let destination = segue.destination as! StouryViewController
+            destination.mainStoury = stoury            
+        }
+    }
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -122,16 +130,21 @@ extension HomeViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      
-        let stouryURL = URL(string: DataManager.sharedInstance.recentPosts[indexPath.row].url!)
-        let player = AVPlayer(url: stouryURL!)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.view.frame = self.view.bounds
-        playerViewController.player = player
-        self.present(playerViewController, animated: true) {
-            playerViewController.player!.play()
+        
+        let stoury = DataManager.sharedInstance.recentPosts[indexPath.row]
+        if (stoury.comments?.count)! > 0 {
+         self.performSegue(withIdentifier: "commentList", sender: stoury)
         }
-
+        else {
+            let stouryURL = URL(string: stoury.url!)
+            let player = AVPlayer(url: stouryURL!)
+            let playerViewController = AVPlayerViewController()
+            playerViewController.view.frame = self.view.bounds
+            playerViewController.player = player
+            self.present(playerViewController, animated: true) {
+                playerViewController.player!.play()
+            }
+        }
     }
 }
 
