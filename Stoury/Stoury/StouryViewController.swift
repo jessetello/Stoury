@@ -34,8 +34,8 @@ class StouryViewController: UIViewController {
 
     func videoPreviewUiimage(fileName:String) -> UIImage? {
 
-        let vidURL = NSURL(fileURLWithPath:fileName)
-        let asset = AVURLAsset(url: vidURL as URL)
+        let vidURL = NSURL(string: fileName)
+        let asset = AVURLAsset(url: vidURL! as URL)
         let generator = AVAssetImageGenerator(asset: asset)
         generator.appliesPreferredTrackTransform = true
         
@@ -78,6 +78,13 @@ extension StouryViewController: UITableViewDelegate {
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 138.5
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Comments"
+    }
 }
 
 extension StouryViewController: UITableViewDataSource {

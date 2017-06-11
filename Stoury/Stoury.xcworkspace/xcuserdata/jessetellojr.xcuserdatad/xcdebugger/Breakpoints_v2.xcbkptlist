@@ -132,7 +132,7 @@
                   moduleName = "Stoury"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jessetellojr/Stoury/Stoury/Stoury/VideoUploadManager.swift"
-                  timestampString = "518407192.637729"
+                  timestampString = "518889618.116946"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "66"
@@ -147,7 +147,7 @@
                   moduleName = "Stoury"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jessetellojr/Stoury/Stoury/Stoury/VideoUploadManager.swift"
-                  timestampString = "518407192.639847"
+                  timestampString = "518889618.120685"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "66"
@@ -202,6 +202,22 @@
             startingLineNumber = "53"
             endingLineNumber = "53"
             landmarkName = "getRecentPosts(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Stoury/StouryViewController.swift"
+            timestampString = "518890155.944997"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "videoPreviewUiimage(fileName:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
