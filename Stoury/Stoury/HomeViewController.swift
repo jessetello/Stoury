@@ -18,7 +18,8 @@ class HomeViewController: UIViewController {
     var recentStourys = [Stoury]()
     let homeList = ["Restaurants","Bars","Hotels", "Nightlife", "Coffee & Tea"]
     let searchController = UISearchController(searchResultsController: nil)
-
+    let cameraViewModel = CameraViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         LocationManager.sharedInstance.getLocation()
@@ -40,11 +41,25 @@ class HomeViewController: UIViewController {
         self.tableView.tableFooterView = UIView()
         self.tableView.separatorColor = UIColor.lightGray
         self.tableView.register(UINib(nibName: "StouryCell", bundle: nil), forCellReuseIdentifier: "StouryCell")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.AddToExistingStoury(notification:)), name: NSNotification.Name(rawValue: "PresentCamera"), object: nil)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         getRecentStourys()
+    }
+    
+    func AddToExistingStoury(notification: Notification) {
+        if let exist = notification.userInfo?["stouryID"] as? String {
+            if cameraViewModel.authorized {
+                cameraViewModel.presentCamera(viewController: self, selectedPlace: nil, existingStouryID: exist)
+            }
+            else {
+                cameraViewModel.authorizeRecordingView()
+            }
+        }
     }
 
     func getRecentStourys() {
@@ -81,6 +96,14 @@ class HomeViewController: UIViewController {
         actionSheetController.addAction(cancelActionButton)
         actionSheetController.addAction(flagActionButton)
         self.present(actionSheetController, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "commentList" {
+            let stoury = sender as! Stoury
+            let destination = segue.destination as! StouryViewController
+            destination.mainStoury = stoury            
+        }
     }
 }
 
@@ -122,16 +145,21 @@ extension HomeViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      
-        let stouryURL = URL(string: DataManager.sharedInstance.recentPosts[indexPath.row].url!)
-        let player = AVPlayer(url: stouryURL!)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.view.frame = self.view.bounds
-        playerViewController.player = player
-        self.present(playerViewController, animated: true) {
-            playerViewController.player!.play()
+        
+        let stoury = DataManager.sharedInstance.recentPosts[indexPath.row]
+        if (stoury.comments?.count)! > 0 {
+         self.performSegue(withIdentifier: "commentList", sender: stoury)
         }
-
+        else {
+            let stouryURL = URL(string: stoury.url!)
+            let player = AVPlayer(url: stouryURL!)
+            let playerViewController = AVPlayerViewController()
+            playerViewController.view.frame = self.view.bounds
+            playerViewController.player = player
+            self.present(playerViewController, animated: true) {
+                playerViewController.player!.play()
+            }
+        }
     }
 }
 
