@@ -18,6 +18,7 @@ class StourysViewController: UIViewController {
     @IBOutlet weak var loader: UIActivityIndicatorView!
     @IBOutlet weak var listMapControl: UISegmentedControl!
     @IBOutlet weak var noStourysLabel: UILabel!
+    let cameraViewModel = CameraViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,7 +107,13 @@ extension StourysViewController: UITableViewDataSource {
         let minutes = Int(stoury.length ?? 00.00) / 60 % 60
         let seconds = Int(stoury.length ?? 00.00) % 60
         cell.videoLength.text = String(format:"%02i:%02i", minutes, seconds)
-        cell.videoImage.image = UIImage(named: "PlaceHolder")
+        if let url = stoury.url {
+            cell.videoImage.image = self.cameraViewModel.videoPreviewUiimage(fileName: url)
+        }
+        else {
+            cell.videoImage.image = UIImage(named: "PlaceHolder")
+            
+        }
         return cell
     }
 }

@@ -124,7 +124,12 @@ extension HomeViewController: UITableViewDataSource {
         let minutes = Int(stoury.length ?? 00.00) / 60 % 60
         let seconds = Int(stoury.length ?? 00.00) % 60
         cell.videoLength.text = String(format:"%02i:%02i", minutes, seconds)
-        cell.videoImage.image = UIImage(named: "PlaceHolder")
+        if let url = stoury.url {
+            cell.videoImage.image = self.cameraViewModel.videoPreviewUiimage(fileName: url)
+        }
+        else {
+            cell.videoImage.image = UIImage(named: "PlaceHolder")
+        }
         cell.tag = indexPath.row
         if let sid = stoury.id {
             cell.stouryID = sid

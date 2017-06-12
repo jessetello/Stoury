@@ -48,4 +48,24 @@ class CameraViewModel {
             authorized = true
         }
     }
+    
+    func videoPreviewUiimage(fileName:String) -> UIImage? {
+        
+        let vidURL = NSURL(string: fileName)
+        let asset = AVURLAsset(url: vidURL! as URL)
+        let generator = AVAssetImageGenerator(asset: asset)
+        generator.appliesPreferredTrackTransform = true
+        
+        let timestamp = CMTime(seconds: 2, preferredTimescale: 60)
+        
+        do {
+            let imageRef = try generator.copyCGImage(at: timestamp, actualTime: nil)
+            return UIImage(cgImage: imageRef)
+        }
+        catch let error as NSError
+        {
+            print("Image generation failed with error \(error)")
+            return nil
+        }
+    }
 }
