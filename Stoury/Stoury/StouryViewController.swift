@@ -15,7 +15,8 @@ class StouryViewController: UIViewController {
     @IBOutlet var mainVideoImage: UIImageView!
     @IBOutlet var tableView: UITableView!
     var mainStoury:Stoury?
-    
+    let cameraViewModel = CameraViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
@@ -104,9 +105,16 @@ extension StouryViewController: UITableViewDataSource {
             let minutes = Int(stoury.length ?? 00.00) / 60 % 60
             let seconds = Int(stoury.length ?? 00.00) % 60
             cell.videoLength.text = String(format:"%02i:%02i", minutes, seconds)
-            cell.videoImage.image = UIImage(named: "PlaceHolder")
             cell.tag = indexPath.row
-            
+            cell.videoImage.image = UIImage(named: "PlaceHolder")
+            if let url = stoury.url {
+                DispatchQueue.global(qos: .background).async {
+                    let im = self.cameraViewModel.videoPreviewUiimage(fileName: url)
+                    DispatchQueue.main.async {
+                        cell.videoImage.image = im
+                    }
+                }
+            }
             if let sid = stoury.id {
                 cell.stouryID = sid
             }

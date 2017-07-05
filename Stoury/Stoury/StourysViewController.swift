@@ -107,12 +107,14 @@ extension StourysViewController: UITableViewDataSource {
         let minutes = Int(stoury.length ?? 00.00) / 60 % 60
         let seconds = Int(stoury.length ?? 00.00) % 60
         cell.videoLength.text = String(format:"%02i:%02i", minutes, seconds)
+        cell.videoImage.image = UIImage(named: "PlaceHolder")
         if let url = stoury.url {
-            cell.videoImage.image = self.cameraViewModel.videoPreviewUiimage(fileName: url)
-        }
-        else {
-            cell.videoImage.image = UIImage(named: "PlaceHolder")
-            
+            DispatchQueue.global(qos: .background).async {
+                let im = self.cameraViewModel.videoPreviewUiimage(fileName: url)
+                DispatchQueue.main.async {
+                    cell.videoImage.image = im
+                }
+            }
         }
         return cell
     }
